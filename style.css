@@ -119,3 +119,13 @@ a { margin-right: 20px; color: #3498db; }
     opacity: 0.6;
     font-size: 1rem;
 }
+/* GLOBAL ACCENT COLOR - CHANGE ONCE AND IT UPDATES EVERYWHERE */
+:root {
+    --accent-color: #0066cc;   /* nice deep blue - you can change this later */
+}
+
+/* Replace all old turquoise with the new blue */
+.nav-logo { color: var(--accent-color) !important; }
+header h1 { color: var(--accent-color) !important; }
+a { color: var(--accent-color) !important; }
+button, .gallery-item:hover { border-color: var(--accent-color); }
