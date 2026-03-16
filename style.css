@@ -129,3 +129,112 @@ a { margin-right: 20px; color: #3498db; }
 header h1 { color: var(--accent-color) !important; }
 a { color: var(--accent-color) !important; }
 button, .gallery-item:hover { border-color: var(--accent-color); }
+/* MINIMAL BORRETTI.ME VIBE */
+body {
+    background: #0f0f0f;
+    color: #eee;
+    font-family: system-ui, -apple-system, sans-serif;
+    line-height: 1.7;
+    padding-top: 90px;
+}
+
+nav {
+    background: #0f0f0f;
+    border-bottom: 1px solid #222;
+}
+
+.nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 90px;
+}
+
+.nav-logo img {
+    transition: transform 0.4s;
+}
+
+.nav-logo:hover img {
+    transform: scale(1.08);
+}
+
+ul {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+}
+
+a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+a:hover {
+    color: #0066cc;
+}
+
+.hero {
+    text-align: center;
+    padding: 140px 20px 100px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 5.2rem;
+    font-weight: 500;
+    margin: 0 0 20px 0;
+    letter-spacing: -2px;
+}
+
+.tagline {
+    font-size: 1.55rem;
+    opacity: 0.85;
+    margin-bottom: 50px;
+}
+
+.btn {
+    background: #0066cc;
+    color: white;
+    padding: 18px 48px;
+    border-radius: 9999px;
+    font-size: 1.2rem;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background: #0055aa;
+    transform: translateY(-3px);
+}
+
+/* Gallery */
+.gallery-page h1 {
+    text-align: center;
+    font-size: 3.2rem;
+    margin-bottom: 60px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+/* Rest of your old styles stay (contact form, etc.) */
