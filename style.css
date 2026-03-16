@@ -1,146 +1,20 @@
-/* ===================== NAVIGATION BAR ===================== */
-nav {
-    background: #1a1a1a;
-    padding: 20px 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-}
-
-.nav-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.nav-logo {
-    font-size: 2.2rem;
-    font-weight: bold;
-    color: #00ffcc;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.nav-logo:hover { color: #00ccaa; }
-
-nav ul {
-    display: flex;
-    gap: 35px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li a {
-    color: #eee;
-    text-decoration: none;
-    font-size: 1.15rem;
-    transition: color 0.3s;
-}
-
-nav ul li a:hover {
-    color: #00ffcc;
-}
-
-/* Make sure page content doesn't hide under the sticky nav */
+/* BORRETTI.ME STYLE - WHITE & CLEAN */
 body {
-    padding-top: 90px;   /* ← this line was added to your existing body rule */
-}body {
-    font-family: Arial, sans-serif;
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    background: #f9f9f9;
-    color: #333;
-    line-height: 1.6;
-}
-h1 { color: #2c3e50; }
-img { max-width: 100%; border-radius: 8px; }
-a { margin-right: 20px; color: #3498db; }
-/* === NEW CONTACT FORM STYLES === */
-.contact-section {
-    max-width: 700px;
-    margin: 80px auto;
-    padding: 40px;
-    text-align: center;
-}
-
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    max-width: 500px;
-    margin: 30px auto;
-}
-
-.contact-form input,
-.contact-form textarea {
-    padding: 16px;
-    font-size: 1.1rem;
-    border: 2px solid #333;
-    border-radius: 12px;
-    background: #1a1a1a;
-    color: #eee;
-}
-
-.contact-form button {
-    background: #0066cc;
-    color: white;
-    padding: 16px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.contact-form button:hover {
-    background: #0055aa;
-    transform: scale(1.05);
-}
-
-.contact-link {
-    color: #0066cc !important;
-    text-decoration: none;
-}
-
-.contact-link:hover {
-    text-decoration: underline;
-}
-
-.or {
-    margin: 30px 0;
-    opacity: 0.6;
-    font-size: 1rem;
-}
-/* GLOBAL ACCENT COLOR - CHANGE ONCE AND IT UPDATES EVERYWHERE */
-:root {
-    --accent-color: #0066cc;   /* nice deep blue - you can change this later */
-}
-
-/* Replace all old turquoise with the new blue */
-.nav-logo { color: var(--accent-color) !important; }
-header h1 { color: var(--accent-color) !important; }
-a { color: var(--accent-color) !important; }
-button, .gallery-item:hover { border-color: var(--accent-color); }
-/* MINIMAL BORRETTI.ME VIBE */
-body {
-    background: #0f0f0f;
-    color: #eee;
-    font-family: system-ui, -apple-system, sans-serif;
+    background: #ffffff;
+    color: #111111;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.7;
+    margin: 0;
     padding-top: 90px;
 }
 
 nav {
-    background: #0f0f0f;
-    border-bottom: 1px solid #222;
+    background: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
 }
 
 .nav-container {
@@ -154,7 +28,9 @@ nav {
 }
 
 .nav-logo img {
-    transition: transform 0.4s;
+    height: 52px;
+    border-radius: 8px;
+    transition: transform 0.3s;
 }
 
 .nav-logo:hover img {
@@ -163,78 +39,96 @@ nav {
 
 ul {
     display: flex;
-    gap: 40px;
+    gap: 45px;
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 a {
-    color: #ddd;
+    color: #222222;
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
+    font-weight: 500;
 }
 
 a:hover {
-    color: #0066cc;
+    color: #000000;
 }
 
+/* HERO - exactly like borretti.me */
 .hero {
     text-align: center;
-    padding: 140px 20px 100px;
+    padding: 180px 20px 140px;
     max-width: 800px;
     margin: 0 auto;
 }
 
 .hero h1 {
-    font-size: 5.2rem;
-    font-weight: 500;
+    font-size: 6rem;
+    font-weight: 400;
     margin: 0 0 20px 0;
-    letter-spacing: -2px;
+    letter-spacing: -3px;
+    color: #111111;
 }
 
 .tagline {
-    font-size: 1.55rem;
-    opacity: 0.85;
-    margin-bottom: 50px;
+    font-size: 1.65rem;
+    color: #555555;
+    margin-bottom: 60px;
 }
 
 .btn {
-    background: #0066cc;
+    background: #111111;
     color: white;
-    padding: 18px 48px;
+    padding: 18px 52px;
     border-radius: 9999px;
-    font-size: 1.2rem;
-    transition: all 0.3s;
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .btn:hover {
-    background: #0055aa;
-    transform: translateY(-3px);
+    background: #333333;
 }
 
-/* Gallery */
+/* GALLERY */
 .gallery-page h1 {
     text-align: center;
-    font-size: 3.2rem;
-    margin-bottom: 60px;
+    font-size: 3.5rem;
+    margin: 100px 0 70px;
+    color: #111111;
 }
 
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 40px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 40px 80px;
 }
 
 .gallery-item {
     overflow: hidden;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.gallery-item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.5s ease;
 }
 
 .gallery-item:hover img {
     transform: scale(1.08);
 }
 
-/* Rest of your old styles stay (contact form, etc.) */
+footer {
+    text-align: center;
+    padding: 80px 20px;
+    color: #666666;
+    font-size: 0.95rem;
+}
