@@ -33,8 +33,9 @@ nav {
 /* HOME LIST - exact borretti.me style */
 .home-list {
     max-width: 900px;
-    margin: 60px auto;
+    margin: 20px 0 0 420px;   /* ← this moves the squares right + reduces gap */
     padding: 0 40px;
+}
 }
 
 .item {
