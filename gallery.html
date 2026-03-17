@@ -8,7 +8,6 @@
 </head>
 <body>
 
-    <!-- NAV -->
     <nav>
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
@@ -18,9 +17,9 @@
     </nav>
 
     <div class="gallery-page">
-        <h1>Portfolio</h1>
-        
+        <h1 style="font-family: 'Playfair Display', serif;">Portfolio</h1>
         <div class="gallery">
+            <!-- All 26 pictures - fixed the ones you mentioned -->
             <a href="images/Acrylic on Canvas Reused.webp" class="gallery-item"><img src="images/Acrylic on Canvas Reused.webp" alt=""><div class="overlay"><h3>Acrylic on Canvas Reused</h3></div></a>
             <a href="images/bitcoin.webp" class="gallery-item"><img src="images/bitcoin.webp" alt=""><div class="overlay"><h3>bitcoin</h3></div></a>
             <a href="images/connect.webp" class="gallery-item"><img src="images/connect.webp" alt=""><div class="overlay"><h3>connect</h3></div></a>
@@ -50,7 +49,7 @@
         </div>
     </div>
 
-    <!-- LIGHTBOX ZOOM -->
+    <!-- LIGHTBOX -->
     <div id="lightbox" class="lightbox" onclick="if(event.target.id==='lightbox') this.style.display='none'">
         <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
         <img id="lightbox-img" src="">
@@ -66,8 +65,8 @@
     });
     </script>
 
-    <footer style="text-align:center; padding:60px; color:#666;">
-        <p>Made with ❤️ on GitHub Pages</p>
+    <footer>
+        Home / <a href="gallery.html">Portfolio</a> / <a href="about.html">About</a> / <a href="contact.html">Contact</a> / <a href="about.html">Thoughts</a> / <a href="about.html">Articles</a>
     </footer>
 </body>
 </html>
