@@ -33,8 +33,36 @@ nav {
 /* HOME LIST - exact borretti.me style */
 .home-list {
     max-width: 900px;
-    margin: 20px 0 0 420px;   /* ← this moves the squares right + reduces gap */
-    padding: 0 40px;
+    margin: 10px 40px 0 40px;   /* ← exactly under the name, left-aligned like the screenshot */
+    padding: 0;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 20px 0;
+    border-bottom: 1px solid #eeeeee;
+    text-decoration: none;
+    color: #111;
+    transition: all 0.4s ease;
+}
+
+.item:hover {
+    transform: scale(1.04);
+}
+
+.item img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.item span {
+    font-size: 1.45rem;
+    font-weight: 500;
+}
 }
 }
 
