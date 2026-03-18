@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Martin Hanispak</title>
+    <link rel="icon" href="images/Memory.webp">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -32,12 +33,12 @@
             </a>
             <a href="about.html" class="item">
                 <img src="images/Acrylic on Canvas Reused.webp" alt="">
-                <span>Articles</span>
+                <span>Consulting</span>
             </a>
         </div>
 
-        <!-- Right: quote slideshow (click to change + auto every 8 sec) -->
-        <div class="quote-section" style="flex:1; max-width:380px; padding-top:40px; cursor:pointer;" onclick="nextQuote()">
+        <!-- Right: quote slideshow (auto only - no click, changes every 8 seconds) -->
+        <div class="quote-section" style="flex:1; max-width:380px; padding-top:40px;">
             <div class="quote">
                 <p class="quote-text" id="quote-text" style="font-style:italic; font-size:1.15rem; color:#333; margin-bottom:20px;"></p>
                 <img id="quote-image" src="" alt="" style="width:160px; height:160px; object-fit:cover; border-radius:12px; margin:15px auto; display:block;">
@@ -48,17 +49,13 @@
 
     <script>
     const quotes = [
-        { text: "The artist must train not only his eye but also his soul.", source: "Terrence McKenna", image: "images/Memory.webp" },
-        { text: "Nature loves courage.", source: "Terrence McKenna", image: "images/Heart.webp" },
-        { text: "Stop thinking and start doing.", source: "Terrence McKenna", image: "images/Love.webp" },
-        { text: "The only way to make sense out of change is to plunge into it.", source: "Terrence McKenna", image: "images/Fireworks.webp" },
-        { text: "You are not a drop in the ocean. You are the entire ocean in a drop.", source: "Terrence McKenna", image: "images/Dinosaurs.webp" },
-        { text: "The imagination is the golden path to the soul.", source: "Terrence McKenna", image: "images/The face of Flower.webp" },
-        { text: "Reality is a hallucination we all agree on.", source: "Terrence McKenna", image: "images/Acrylic on Canvas Reused.webp" }
-        // The script cycles through your 26 images automatically (I used the first 7 for quotes, but it pulls all your pictures)
+        { text: "The artist must train not only his eye but also his soul.", source: "Terrence McKenna" },
+        { text: "Nature loves courage.", source: "Terrence McKenna" },
+        { text: "Stop thinking and start doing.", source: "Terrence McKenna" },
+        { text: "The only way to make sense out of change is to plunge into it.", source: "Terrence McKenna" },
+        { text: "You are not a drop in the ocean. You are the entire ocean in a drop.", source: "Terrence McKenna" }
     ];
 
-    let current = 0;
     const allImages = [
         "images/Memory.webp","images/Lost Acrylic on Canvas.webp","images/Love.webp","images/The face of Flower.webp","images/Acrylic on Canvas Reused.webp",
         "images/Dinosaurus.webp","images/We have no user guide to life, so let's just do it","images/bitcoin.webp","images/connect.webp","images/disguise.webp",
@@ -70,6 +67,8 @@
         "images/We suffer more in imagination than in reality.webp","images/You are on the right track now, do not turn..webp"
     ];
 
+    let current = 0;
+
     function showQuote() {
         const q = quotes[current % quotes.length];
         const img = allImages[current % allImages.length];
@@ -80,7 +79,7 @@
     }
 
     showQuote();
-    setInterval(showQuote, 8000);   // auto change every 8 seconds
+    setInterval(showQuote, 8000);
     </script>
 </body>
 </html>
