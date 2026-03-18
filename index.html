@@ -6,79 +6,62 @@
     <title>Martin Hanispak</title>
     <link rel="stylesheet" href="style.css">
 </head>
-    <script>
-const quotes = [
-    { text: "The artist must train not only his eye but also his soul.", source: "Terrence McKenna", image: "images/Memory.webp" },
-    { text: "Nature loves courage.", source: "Terrence McKenna", image: "images/Heart.webp" },
-    { text: "The only way to make sense out of change is to plunge into it.", source: "Terrence McKenna", image: "images/Love.webp" }
-];
-
-let current = 0;
-
-function showQuote() {
-    const q = quotes[current];
-    document.getElementById('quote-text').textContent = '"' + q.text + '"';
-    document.getElementById('quote-image').src = q.image;
-    document.getElementById('quote-source').textContent = '— ' + q.source;
-    current = (current + 1) % quotes.length;
-}
-
-showQuote();
-setInterval(showQuote, 8000); // changes every 8 seconds
-</script>
 <body>
 
     <h1 style="margin: 15px 40px 10px; font-size: 2.8rem; font-family: 'Playfair Display', serif;">Martin Hanispak</h1>
 
-    <div class="home-list">
-        <a href="about.html" class="item">
-            <img src="images/Memory.webp" alt="">
-            <span>About</span>
-        </a>
-        <a href="gallery.html" class="item">
-            <img src="images/Lost Acrylic on Canvas.webp" alt="">
-            <span>Portfolio</span>
-        </a>
-        <a href="contact.html" class="item">
-            <img src="images/Love.webp" alt="">
-            <span>Contact</span>
-        </a>
-        <a href="about.html" class="item">
-            <img src="images/The face of Flower.webp" alt="">
-            <span>Thoughts</span>
-        </a>
-        <a href="about.html" class="item">
-            <img src="images/Acrylic on Canvas Reused.webp" alt="">
-            <span>Articles</span>
-        </a>
+    <div style="display:flex; max-width:1100px; margin:0 auto; padding:0 40px; gap:60px;">
+
+        <!-- Left side: thumbnails -->
+        <div class="home-list" style="flex:1;">
+            <a href="about.html" class="item">
+                <img src="images/Memory.webp" alt="">
+                <span>About</span>
+            </a>
+            <a href="gallery.html" class="item">
+                <img src="images/Lost Acrylic on Canvas.webp" alt="">
+                <span>Portfolio</span>
+            </a>
+            <a href="contact.html" class="item">
+                <img src="images/Love.webp" alt="">
+                <span>Contact</span>
+            </a>
+            <a href="about.html" class="item">
+                <img src="images/The face of Flower.webp" alt="">
+                <span>Thoughts</span>
+            </a>
+            <a href="about.html" class="item">
+                <img src="images/Acrylic on Canvas Reused.webp" alt="">
+                <span>Articles</span>
+            </a>
+        </div>
+
+        <!-- Right side: quote (small, changes on refresh) -->
+        <div class="quote-section" style="flex:1; max-width:380px; padding-top:40px;">
+            <div class="quote">
+                <p class="quote-text" id="quote-text" style="font-style:italic; font-size:1.15rem; color:#333; margin-bottom:20px;"></p>
+                <img id="quote-image" src="" alt="" style="width:140px; height:140px; object-fit:cover; border-radius:12px; margin:15px auto; display:block;">
+                <p class="source" id="quote-source" style="font-size:0.95rem; opacity:0.7;"></p>
+            </div>
+        </div>
     </div>
 
-    <!-- QUOTE SECTION - small like the screenshot you sent, changes on refresh -->
-    <div class="quote-section">
-        <div class="quote">
-            <p class="quote-text" id="quote-text"></p>
-            <img id="quote-image" src="" alt="">
-            <p class="source" id="quote-source"></p>
-        </div>
-    </div><script>
-const quotes = [
-    { text: "The artist must train not only his eye but also his soul.", source: "Terrence McKenna", image: "images/Memory.webp" },
-    { text: "Nature loves courage.", source: "Terrence McKenna", image: "images/Heart.webp" },
-    { text: "The only way to make sense out of change is to plunge into it.", source: "Terrence McKenna", image: "images/Love.webp" }
-];
+    <script>
+    const quotes = [
+        { text: "The artist must train not only his eye but also his soul.", source: "Terrence McKenna", image: "images/Memory.webp" },
+        { text: "Nature loves courage.", source: "Terrence McKenna", image: "images/Heart.webp" },
+        { text: "Stop thinking and start doing.", source: "Terrence McKenna", image: "images/Love.webp" },
+        { text: "The only way to make sense out of change is to plunge into it.", source: "Terrence McKenna", image: "images/Fireworks.webp" }
+    ];
 
-let current = 0;
+    function showRandomQuote() {
+        const random = quotes[Math.floor(Math.random() * quotes.length)];
+        document.getElementById('quote-text').textContent = '"' + random.text + '"';
+        document.getElementById('quote-image').src = random.image;
+        document.getElementById('quote-source').textContent = '— ' + random.source;
+    }
 
-function showQuote() {
-    const q = quotes[current];
-    document.getElementById('quote-text').textContent = '"' + q.text + '"';
-    document.getElementById('quote-image').src = q.image;
-    document.getElementById('quote-source').textContent = '— ' + q.source;
-    current = (current + 1) % quotes.length;
-}
-
-showQuote();
-setInterval(showQuote, 8000); // changes every 8 seconds
-</script>
+    showRandomQuote();
+    </script>
 </body>
 </html>
