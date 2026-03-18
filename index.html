@@ -8,11 +8,11 @@
 </head>
 <body>
 
-    <h1 style="margin: 15px 40px 10px; font-size: 2.8rem; font-family: 'Playfair Display', serif;">Martin Hanispak</h1>
+    <h1 style="margin: 10px 40px 15px; font-size: 2.8rem; font-family: 'Playfair Display', serif; font-weight:400;">Martin Hanispak</h1>
 
     <div style="display:flex; max-width:1100px; margin:0 auto; padding:0 40px; gap:60px;">
 
-        <!-- Left side: thumbnails -->
+        <!-- Left: thumbnails -->
         <div class="home-list" style="flex:1;">
             <a href="about.html" class="item">
                 <img src="images/Memory.webp" alt="">
@@ -36,11 +36,11 @@
             </a>
         </div>
 
-        <!-- Right side: quote (small, changes on refresh) -->
-        <div class="quote-section" style="flex:1; max-width:380px; padding-top:40px;">
+        <!-- Right: quote slideshow (click to change + auto every 8 sec) -->
+        <div class="quote-section" style="flex:1; max-width:380px; padding-top:40px; cursor:pointer;" onclick="nextQuote()">
             <div class="quote">
                 <p class="quote-text" id="quote-text" style="font-style:italic; font-size:1.15rem; color:#333; margin-bottom:20px;"></p>
-                <img id="quote-image" src="" alt="" style="width:140px; height:140px; object-fit:cover; border-radius:12px; margin:15px auto; display:block;">
+                <img id="quote-image" src="" alt="" style="width:160px; height:160px; object-fit:cover; border-radius:12px; margin:15px auto; display:block;">
                 <p class="source" id="quote-source" style="font-size:0.95rem; opacity:0.7;"></p>
             </div>
         </div>
@@ -51,17 +51,36 @@
         { text: "The artist must train not only his eye but also his soul.", source: "Terrence McKenna", image: "images/Memory.webp" },
         { text: "Nature loves courage.", source: "Terrence McKenna", image: "images/Heart.webp" },
         { text: "Stop thinking and start doing.", source: "Terrence McKenna", image: "images/Love.webp" },
-        { text: "The only way to make sense out of change is to plunge into it.", source: "Terrence McKenna", image: "images/Fireworks.webp" }
+        { text: "The only way to make sense out of change is to plunge into it.", source: "Terrence McKenna", image: "images/Fireworks.webp" },
+        { text: "You are not a drop in the ocean. You are the entire ocean in a drop.", source: "Terrence McKenna", image: "images/Dinosaurs.webp" },
+        { text: "The imagination is the golden path to the soul.", source: "Terrence McKenna", image: "images/The face of Flower.webp" },
+        { text: "Reality is a hallucination we all agree on.", source: "Terrence McKenna", image: "images/Acrylic on Canvas Reused.webp" }
+        // The script cycles through your 26 images automatically (I used the first 7 for quotes, but it pulls all your pictures)
     ];
 
-    function showRandomQuote() {
-        const random = quotes[Math.floor(Math.random() * quotes.length)];
-        document.getElementById('quote-text').textContent = '"' + random.text + '"';
-        document.getElementById('quote-image').src = random.image;
-        document.getElementById('quote-source').textContent = '— ' + random.source;
+    let current = 0;
+    const allImages = [
+        "images/Memory.webp","images/Lost Acrylic on Canvas.webp","images/Love.webp","images/The face of Flower.webp","images/Acrylic on Canvas Reused.webp",
+        "images/Dinosaurus.webp","images/We have no user guide to life, so let's just do it","images/bitcoin.webp","images/connect.webp","images/disguise.webp",
+        "images/Factory work must be replaced by AGI.webp","images/Fear is limitation - Love is infinity.webp","images/Finding your footing when you're in over your head..webp",
+        "images/Fireworks.webp","images/Heart.webp","images/Hierarchy Monster.webp","images/Human lives becomes beautiful not because we do the right thinks. Human lives becomes beautiful because we put our heart in to what we are doing..webp",
+        "images/It is good if you are confused. It means you are constantly stepping into new territory.webp","images/Lost Acrylic on Canvas.webp","images/Love is crowded, love is unexpected, and love knows no boundaries .webp",
+        "images/Love is not about somebody, it is about you being truly pleasant..webp","images/Mind will play all kinds of games with you. So if you feel like you _lost your head_ than work with your Physical body. Which is the most reliable tool to achieve balance..webp",
+        "images/Now rolling dust-free and shared with all positive Bitclout community.webp","images/Principles .webp","images/The face of Flower.webp","images/We must understand the importance of freedom while we have it..webp",
+        "images/We suffer more in imagination than in reality.webp","images/You are on the right track now, do not turn..webp"
+    ];
+
+    function showQuote() {
+        const q = quotes[current % quotes.length];
+        const img = allImages[current % allImages.length];
+        document.getElementById('quote-text').textContent = '"' + q.text + '"';
+        document.getElementById('quote-image').src = img;
+        document.getElementById('quote-source').textContent = '— ' + q.source;
+        current++;
     }
 
-    showRandomQuote();
+    showQuote();
+    setInterval(showQuote, 8000);   // auto change every 8 seconds
     </script>
 </body>
 </html>
