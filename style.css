@@ -134,3 +134,29 @@ footer {
     color: #666;
     font-size: 1rem;
 }
+.quote-section {
+    max-width: 700px;
+    margin: 60px auto;
+    padding: 40px;
+    text-align: center;
+    border-top: 1px solid #eee;
+}
+
+.quote {
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #444;
+}
+
+.quote img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 20px auto;
+}
+
+.source {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
