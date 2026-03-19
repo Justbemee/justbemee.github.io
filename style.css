@@ -1,8 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&display=swap');
 
+:root {
+    --bg: #ffffff;
+    --text: #111111;
+}
+
+body.dark {
+    --bg: #0a0a0a;
+    --text: #eeeeee;
+}
+
 body {
-    background: #ffffff;
-    color: #111111;
+    background: var(--bg);
+    color: var(--text);
     font-family: system-ui, sans-serif;
     margin: 0;
     padding-top: 80px;
@@ -10,7 +20,7 @@ body {
 
 /* NAV */
 nav {
-    background: #ffffff;
+    background: var(--bg);
     border-bottom: 1px solid #eeeeee;
     position: fixed;
     top: 0;
@@ -46,7 +56,7 @@ nav {
     gap: 25px;
     padding: 20px 0;
     text-decoration: none;
-    color: #111;
+    color: var(--text);
     transition: all 0.4s ease;
 }
 
@@ -65,7 +75,7 @@ nav {
 .item:hover img {
     width: 170px;
     height: 170px;
-    transform: translateX(+45px);   /* enlarges to the RIGHT */
+    transform: translateX(+45px);
 }
 
 .item span {
@@ -74,7 +84,7 @@ nav {
     font-weight: 400;
 }
 
-/* GALLERY - uniform size */
+/* GALLERY */
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -134,34 +144,8 @@ footer {
     color: #666;
     font-size: 1rem;
 }
-.quote-section {
-    max-width: 700px;
-    margin: 60px auto;
-    padding: 40px;
-    text-align: center;
-    border-top: 1px solid #eee;
-}
 
-.quote {
-    font-style: italic;
-    font-size: 1.1rem;
-    color: #444;
-}
-
-.quote img {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
+footer a img {
+    height: 40px;
     border-radius: 8px;
-    margin: 20px auto;
-}
-
-.source {
-    font-size: 0.9rem;
-    opacity: 0.7;
-}
-.overlay h3 {
-    color: #111111 !important;
-    font-weight: 400;
-    font-family: 'Playfair Display', serif;
 }
