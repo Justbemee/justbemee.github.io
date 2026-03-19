@@ -18,7 +18,7 @@ body {
     padding-top: 80px;
 }
 
-/* NAV (only on other pages) */
+/* NAV (other pages) */
 nav {
     background: var(--bg);
     border-bottom: 1px solid #eeeeee;
