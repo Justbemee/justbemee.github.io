@@ -9,29 +9,77 @@
 </head>
 <body>
 
-    <h1 style="margin: 15px 40px 15px; font-size: 2.8rem; font-family: 'Playfair Display', serif; font-weight:400;">Martin Hanispak</h1>
+    <h1 style="margin: 10px 40px 15px; font-size: 2.8rem; font-family: 'Playfair Display', serif; font-weight:400;">Martin Hanispak</h1>
 
-    <div class="home-list">
-        <a href="about.html" class="item">
-            <img src="images/Memory.webp" alt="">
-            <span>About</span>
-        </a>
-        <a href="gallery.html" class="item">
-            <img src="images/Lost Acrylic on Canvas.webp" alt="">
-            <span>Portfolio</span>
-        </a>
-        <a href="contact.html" class="item">
-            <img src="images/Love.webp" alt="">
-            <span>Contact</span>
-        </a>
-        <a href="thoughts.html" class="item">
-            <img src="images/The face of Flower.webp" alt="">
-            <span>Thoughts</span>
-        </a>
-        <a href="consulting.html" class="item">
-            <img src="images/Acrylic on Canvas Reused.webp" alt="">
-            <span>Consulting</span>
-        </a>
+    <div style="display:flex; max-width:1100px; margin:0 auto; padding:0 40px; gap:60px;">
+
+        <!-- Left: thumbnails -->
+        <div class="home-list" style="flex:1;">
+            <a href="about.html" class="item">
+                <img src="images/Memory.webp" alt="">
+                <span>About</span>
+            </a>
+            <a href="gallery.html" class="item">
+                <img src="images/Lost Acrylic on Canvas.webp" alt="">
+                <span>Portfolio</span>
+            </a>
+            <a href="contact.html" class="item">
+                <img src="images/Love.webp" alt="">
+                <span>Contact</span>
+            </a>
+            <a href="thoughts.html" class="item">
+                <img src="images/The face of Flower.webp" alt="">
+                <span>Thoughts</span>
+            </a>
+            <a href="consulting.html" class="item">
+                <img src="images/Acrylic on Canvas Reused.webp" alt="">
+                <span>Consulting</span>
+            </a>
+        </div>
+
+        <!-- Right: quote slideshow (auto only - changes every 8 seconds) -->
+        <div class="quote-section" style="flex:1; max-width:380px; padding-top:40px;">
+            <div class="quote">
+                <p class="quote-text" id="quote-text" style="font-style:italic; font-size:1.15rem; color:#333; margin-bottom:20px;"></p>
+                <img id="quote-image" src="" alt="" style="width:160px; height:160px; object-fit:cover; border-radius:12px; margin:15px auto; display:block;">
+                <p class="source" id="quote-source" style="font-size:0.95rem; opacity:0.7;"></p>
+            </div>
+        </div>
     </div>
+
+    <script>
+    const quotes = [
+        { text: "The artist must train not only his eye but also his soul.", source: "Terrence McKenna" },
+        { text: "Nature loves courage.", source: "Terrence McKenna" },
+        { text: "Stop thinking and start doing.", source: "Terrence McKenna" },
+        { text: "The only way to make sense out of change is to plunge into it.", source: "Terrence McKenna" },
+        { text: "You are not a drop in the ocean. You are the entire ocean in a drop.", source: "Terrence McKenna" }
+    ];
+
+    const allImages = [
+        "images/Memory.webp","images/Lost Acrylic on Canvas.webp","images/Love.webp","images/The face of Flower.webp","images/Acrylic on Canvas Reused.webp",
+        "images/Dinosaurus.webp","images/We have no user guide to life, so let's just do it","images/bitcoin.webp","images/connect.webp","images/disguise.webp",
+        "images/Factory work must be replaced by AGI.webp","images/Fear is limitation - Love is infinity.webp","images/Finding your footing when you're in over your head..webp",
+        "images/Fireworks.webp","images/Heart.webp","images/Hierarchy Monster.webp","images/Human lives becomes beautiful not because we do the right thinks. Human lives becomes beautiful because we put our heart in to what we are doing..webp",
+        "images/It is good if you are confused. It means you are constantly stepping into new territory.webp","images/Lost Acrylic on Canvas.webp","images/Love is crowded, love is unexpected, and love knows no boundaries .webp",
+        "images/Love is not about somebody, it is about you being truly pleasant..webp","images/Mind will play all kinds of games with you. So if you feel like you _lost your head_ than work with your Physical body. Which is the most reliable tool to achieve balance..webp",
+        "images/Now rolling dust-free and shared with all positive Bitclout community.webp","images/Principles .webp","images/The face of Flower.webp","images/We must understand the importance of freedom while we have it..webp",
+        "images/We suffer more in imagination than in reality.webp","images/You are on the right track now, do not turn..webp"
+    ];
+
+    let current = 0;
+
+    function showQuote() {
+        const q = quotes[current % quotes.length];
+        const img = allImages[current % allImages.length];
+        document.getElementById('quote-text').textContent = '"' + q.text + '"';
+        document.getElementById('quote-image').src = img;
+        document.getElementById('quote-source').textContent = '— ' + q.source;
+        current++;
+    }
+
+    showQuote();
+    setInterval(showQuote, 8000);
+    </script>
 </body>
 </html>
