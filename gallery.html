@@ -71,6 +71,12 @@
         <p>Home</p>
         <p>© 2026 Martin Hanispak</p>
     </footer>
+        <script>
+if (localStorage.getItem('darkMode') === 'true') {
+    const theme = localStorage.getItem('theme') || 'very';
+    document.body.classList.add('dark-' + theme);
+}
+</script>
 </body>
 </html>
 <script>
