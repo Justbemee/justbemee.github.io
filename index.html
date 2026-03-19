@@ -9,22 +9,18 @@
 </head>
 <body>
 
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-                <img src="images/Memory.webp" alt="Martin Hanispak">
-            </a>
-            <!-- iPhone dark mode slider - far right -->
-            <label class="switch">
-                <input type="checkbox" id="dark-toggle">
-                <span class="slider"></span>
-            </label>
-        </div>
-    </nav>
+    <!-- Dark mode slider - top right corner (no header) -->
+    <div style="position:fixed; top:20px; right:40px; z-index:200;">
+        <label class="switch">
+            <input type="checkbox" id="dark-toggle">
+            <span class="slider"></span>
+        </label>
+    </div>
 
     <h1 style="margin: 15px 40px 15px; font-size: 2.8rem; font-family: 'Playfair Display', serif; font-weight:400;">Martin Hanispak</h1>
 
     <div style="display:flex; max-width:1100px; margin:0 auto; padding:0 40px; gap:60px;">
+
         <!-- Left thumbnails -->
         <div class="home-list" style="flex:1;">
             <a href="about.html" class="item">
@@ -60,14 +56,32 @@
     </div>
 
     <script>
+    // Dark mode toggle
     const toggle = document.getElementById('dark-toggle');
     toggle.addEventListener('change', () => {
         document.body.classList.toggle('dark', toggle.checked);
     });
 
-    // Quote slideshow
-    const quotes = [ /* same 5 quotes as before */ ];
-    const allImages = [ /* same 26 images as before */ ];
+    // Quote slideshow (auto only)
+    const quotes = [
+        { text: "The artist must train not only his eye but also his soul.", source: "Terrence McKenna" },
+        { text: "Nature loves courage.", source: "Terrence McKenna" },
+        { text: "Stop thinking and start doing.", source: "Terrence McKenna" },
+        { text: "The only way to make sense out of change is to plunge into it.", source: "Terrence McKenna" },
+        { text: "You are not a drop in the ocean. You are the entire ocean in a drop.", source: "Terrence McKenna" }
+    ];
+
+    const allImages = [
+        "images/Memory.webp","images/Lost Acrylic on Canvas.webp","images/Love.webp","images/The face of Flower.webp","images/Acrylic on Canvas Reused.webp",
+        "images/Dinosaurus.webp","images/We have no user guide to life, so let's just do it","images/bitcoin.webp","images/connect.webp","images/disguise.webp",
+        "images/Factory work must be replaced by AGI.webp","images/Fear is limitation - Love is infinity.webp","images/Finding your footing when you're in over your head..webp",
+        "images/Fireworks.webp","images/Heart.webp","images/Hierarchy Monster.webp","images/Human lives becomes beautiful not because we do the right thinks. Human lives becomes beautiful because we put our heart in to what we are doing..webp",
+        "images/It is good if you are confused. It means you are constantly stepping into new territory.webp","images/Lost Acrylic on Canvas.webp","images/Love is crowded, love is unexpected, and love knows no boundaries .webp",
+        "images/Love is not about somebody, it is about you being truly pleasant..webp","images/Mind will play all kinds of games with you. So if you feel like you _lost your head_ than work with your Physical body. Which is the most reliable tool to achieve balance..webp",
+        "images/Now rolling dust-free and shared with all positive Bitclout community.webp","images/Principles .webp","images/The face of Flower.webp","images/We must understand the importance of freedom while we have it..webp",
+        "images/We suffer more in imagination than in reality.webp","images/You are on the right track now, do not turn..webp"
+    ];
+
     let current = 0;
     function showQuote() {
         const q = quotes[current % quotes.length];
