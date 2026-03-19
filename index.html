@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <!-- Dark mode slider - top right corner (no header) -->
+    <!-- iPhone dark mode slider - top right corner -->
     <div style="position:fixed; top:20px; right:40px; z-index:200;">
         <label class="switch">
             <input type="checkbox" id="dark-toggle">
@@ -45,24 +45,34 @@
             </a>
         </div>
 
-        <!-- Right quote slideshow -->
+        <!-- Right: quote aligned with picture -->
         <div class="quote-section" style="flex:1; max-width:380px; padding-top:40px;">
-            <div class="quote">
-                <p class="quote-text" id="quote-text" style="font-style:italic; font-size:1.15rem; color:#333; margin-bottom:20px;"></p>
-                <img id="quote-image" src="" alt="" style="width:160px; height:160px; object-fit:cover; border-radius:12px; margin:15px auto; display:block;">
-                <p class="source" id="quote-source" style="font-size:0.95rem; opacity:0.7;"></p>
+            <div class="quote" style="display:flex; align-items:center; gap:25px;">
+                <img id="quote-image" src="" alt="" style="width:160px; height:160px; object-fit:cover; border-radius:12px; flex-shrink:0;">
+                <div>
+                    <p class="quote-text" id="quote-text" style="font-style:italic; font-size:1.15rem; margin-bottom:10px;"></p>
+                    <p class="source" id="quote-source" style="font-size:0.95rem; opacity:0.7;"></p>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-    // Dark mode toggle
+    // Dark mode (saved for whole site)
     const toggle = document.getElementById('dark-toggle');
     toggle.addEventListener('change', () => {
-        document.body.classList.toggle('dark', toggle.checked);
+        const isDark = toggle.checked;
+        document.body.classList.toggle('dark', isDark);
+        localStorage.setItem('darkMode', isDark);
     });
 
-    // Quote slideshow (auto only)
+    // Load saved dark mode
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark');
+        toggle.checked = true;
+    }
+
+    // Quote slideshow
     const quotes = [
         { text: "The artist must train not only his eye but also his soul.", source: "Terrence McKenna" },
         { text: "Nature loves courage.", source: "Terrence McKenna" },
