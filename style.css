@@ -5,10 +5,9 @@
     --text: #111111;
 }
 
-body.dark {
-    --bg: #0a0a0a;
-    --text: #eeeeee;
-}
+body.dark-very   { --bg: #0a0a0a; --text: #eeeeee; }
+body.dark-warm   { --bg: #1a140f; --text: #f0e6d2; }
+body.dark-cool   { --bg: #0f1a1f; --text: #e0f0ff; }
 
 body {
     background: var(--bg);
@@ -134,7 +133,7 @@ nav {
     border-radius: 12px;
 }
 
-/* iPhone-style dark mode slider */
+/* iPhone-style slider */
 .switch {
     position: relative;
     display: inline-block;
