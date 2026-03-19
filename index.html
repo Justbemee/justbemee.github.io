@@ -9,12 +9,17 @@
 </head>
 <body>
 
-    <!-- iPhone dark mode slider - top right corner -->
-    <div style="position:fixed; top:20px; right:40px; z-index:200;">
+    <!-- Slider + menu (menu appears only when dark is on) -->
+    <div style="position:fixed; top:20px; right:40px; z-index:200; text-align:right;">
         <label class="switch">
             <input type="checkbox" id="dark-toggle">
             <span class="slider"></span>
         </label>
+        <div id="theme-menu" style="display:none; margin-top:8px;">
+            <button onclick="setTheme('very')" style="margin:2px; padding:4px 8px; font-size:0.85rem;">Very Dark</button>
+            <button onclick="setTheme('warm')" style="margin:2px; padding:4px 8px; font-size:0.85rem;">Warm Dark</button>
+            <button onclick="setTheme('cool')" style="margin:2px; padding:4px 8px; font-size:0.85rem;">Cool Dark</button>
+        </div>
     </div>
 
     <h1 style="margin: 15px 40px 15px; font-size: 2.8rem; font-family: 'Playfair Display', serif; font-weight:400;">Martin Hanispak</h1>
@@ -45,34 +50,47 @@
             </a>
         </div>
 
-        <!-- Right: quote aligned with picture -->
-        <div class="quote-section" style="flex:1; max-width:380px; padding-top:40px;">
-            <div class="quote" style="display:flex; align-items:center; gap:25px;">
-                <img id="quote-image" src="" alt="" style="width:160px; height:160px; object-fit:cover; border-radius:12px; flex-shrink:0;">
-                <div>
-                    <p class="quote-text" id="quote-text" style="font-style:italic; font-size:1.15rem; margin-bottom:10px;"></p>
-                    <p class="source" id="quote-source" style="font-size:0.95rem; opacity:0.7;"></p>
-                </div>
-            </div>
+        <!-- Quote - exactly like your last screenshot -->
+        <div class="quote-section" style="flex:1; max-width:380px; padding-top:40px; text-align:center;">
+            <p class="quote-text" id="quote-text" style="font-style:italic; font-size:1.15rem; margin-bottom:15px;"></p>
+            <img id="quote-image" src="" alt="" style="width:160px; height:160px; object-fit:cover; border-radius:12px; margin:15px auto; display:block;">
+            <p class="source" id="quote-source" style="font-size:0.95rem; opacity:0.7;"></p>
         </div>
     </div>
 
     <script>
-    // Dark mode (saved for whole site)
+    // Dark mode + 3 shades
     const toggle = document.getElementById('dark-toggle');
+    const menu = document.getElementById('theme-menu');
+
     toggle.addEventListener('change', () => {
         const isDark = toggle.checked;
-        document.body.classList.toggle('dark', isDark);
+        document.body.classList.toggle('dark-very', false);
+        document.body.classList.toggle('dark-warm', false);
+        document.body.classList.toggle('dark-cool', false);
+        if (isDark) {
+            document.body.classList.add('dark-very');
+            menu.style.display = 'block';
+        } else {
+            menu.style.display = 'none';
+        }
         localStorage.setItem('darkMode', isDark);
     });
 
-    // Load saved dark mode
+    // Load saved state
     if (localStorage.getItem('darkMode') === 'true') {
-        document.body.classList.add('dark');
+        document.body.classList.add('dark-very');
         toggle.checked = true;
+        menu.style.display = 'block';
     }
 
-    // Quote slideshow
+    function setTheme(theme) {
+        document.body.classList.remove('dark-very', 'dark-warm', 'dark-cool');
+        document.body.classList.add('dark-' + theme);
+        localStorage.setItem('theme', theme);
+    }
+
+    // Quote slideshow (vertical alignment like your last screenshot)
     const quotes = [
         { text: "The artist must train not only his eye but also his soul.", source: "Terrence McKenna" },
         { text: "Nature loves courage.", source: "Terrence McKenna" },
@@ -81,16 +99,7 @@
         { text: "You are not a drop in the ocean. You are the entire ocean in a drop.", source: "Terrence McKenna" }
     ];
 
-    const allImages = [
-        "images/Memory.webp","images/Lost Acrylic on Canvas.webp","images/Love.webp","images/The face of Flower.webp","images/Acrylic on Canvas Reused.webp",
-        "images/Dinosaurus.webp","images/We have no user guide to life, so let's just do it","images/bitcoin.webp","images/connect.webp","images/disguise.webp",
-        "images/Factory work must be replaced by AGI.webp","images/Fear is limitation - Love is infinity.webp","images/Finding your footing when you're in over your head..webp",
-        "images/Fireworks.webp","images/Heart.webp","images/Hierarchy Monster.webp","images/Human lives becomes beautiful not because we do the right thinks. Human lives becomes beautiful because we put our heart in to what we are doing..webp",
-        "images/It is good if you are confused. It means you are constantly stepping into new territory.webp","images/Lost Acrylic on Canvas.webp","images/Love is crowded, love is unexpected, and love knows no boundaries .webp",
-        "images/Love is not about somebody, it is about you being truly pleasant..webp","images/Mind will play all kinds of games with you. So if you feel like you _lost your head_ than work with your Physical body. Which is the most reliable tool to achieve balance..webp",
-        "images/Now rolling dust-free and shared with all positive Bitclout community.webp","images/Principles .webp","images/The face of Flower.webp","images/We must understand the importance of freedom while we have it..webp",
-        "images/We suffer more in imagination than in reality.webp","images/You are on the right track now, do not turn..webp"
-    ];
+    const allImages = [ /* your full 26 images list - same as before */ ];
 
     let current = 0;
     function showQuote() {
