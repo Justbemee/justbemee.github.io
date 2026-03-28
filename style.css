@@ -212,3 +212,22 @@ footer a img {
 .gallery-item:hover img {
     transform: scale(1.08);      /* gentle extra zoom inside */
 }
+/* Improved hover zoom - painting grows visibly outside the thumbnail */
+.gallery-item {
+    overflow: visible !important;
+    position: relative;
+    z-index: 10;
+}
+
+.gallery-item:hover {
+    transform: scale(1.30) !important;   /* ~30% bigger - about 1cm extra all around */
+    z-index: 20;
+}
+
+.gallery-item img {
+    transition: transform 0.45s ease !important;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.15) !important;   /* gentle extra zoom inside */
+}
