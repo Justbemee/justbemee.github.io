@@ -17,7 +17,7 @@ body {
     padding-top: 80px;
 }
 
-/* NAV (other pages) */
+/* NAV */
 nav {
     background: var(--bg);
     border-bottom: 1px solid #eeeeee;
@@ -105,7 +105,7 @@ nav {
 }
 
 .gallery-item:hover {
-    transform: scale(1.32);
+    transform: scale(1.35);
     z-index: 20;
 }
 
@@ -119,7 +119,7 @@ nav {
 }
 
 .gallery-item:hover img {
-    transform: scale(1.15);
+    transform: scale(1.0);   /* shows full original painting on hover */
 }
 
 .overlay h3 {
@@ -128,36 +128,44 @@ nav {
     font-family: 'Playfair Display', serif;
 }
 
-/* LIGHTBOX */
+/* LIGHTBOX with movable zoom lens */
 .lightbox {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9);
+    background: rgba(0,0,0,0.92);
     display: none;
     align-items: center;
     justify-content: center;
     z-index: 200;
+    overflow: hidden;
 }
 
 .lightbox img {
     max-width: 92%;
     max-height: 92%;
     border-radius: 12px;
-    transition: transform 0.25s ease;
-    cursor: zoom-in;
+    transition: none;
+    cursor: none;
 }
 
-.lightbox img:hover {
-    transform: scale(2.2);   /* extra close-up zoom inside lightbox */
-}
-
-.close {
+#zoom-lens {
     position: absolute;
-    top: 30px;
-    right: 40px;
-    font-size: 3.5rem;
-    color: white;
-    cursor: pointer;
+    width: 180px;
+    height: 180px;
+    border: 3px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    pointer-events: none;
+    display: none;
+    background: rgba(255,255,255,0.1);
+    overflow: hidden;
+}
+
+#zoom-lens img {
+    position: absolute;
+    width: 800%;
+    height: 800%;
+    object-fit: none;
 }
 
 /* iPhone slider */
