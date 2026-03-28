@@ -83,7 +83,7 @@ nav {
     font-weight: 400;
 }
 
-/* GALLERY - fixed colors & no underline */
+/* GALLERY */
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -91,24 +91,35 @@ nav {
     max-width: 1300px;
     margin: 80px auto;
     padding: 0 40px;
+    overflow: visible;
 }
 
 .gallery-item {
     text-decoration: none;
     border-radius: 18px;
-    overflow: hidden;
+    overflow: visible;
+    position: relative;
+    z-index: 10;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     cursor: pointer;
+}
+
+.gallery-item:hover {
+    transform: scale(1.32);
+    z-index: 20;
 }
 
 .gallery-item img {
     width: 100%;
     height: 280px;
     object-fit: cover;
+    border-radius: 18px;
+    transition: transform 0.5s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .gallery-item:hover img {
-    transform: scale(1.08);
+    transform: scale(1.15);
 }
 
 .overlay h3 {
@@ -132,6 +143,21 @@ nav {
     max-width: 92%;
     max-height: 92%;
     border-radius: 12px;
+    transition: transform 0.25s ease;
+    cursor: zoom-in;
+}
+
+.lightbox img:hover {
+    transform: scale(2.2);   /* extra close-up zoom inside lightbox */
+}
+
+.close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 3.5rem;
+    color: white;
+    cursor: pointer;
 }
 
 /* iPhone slider */
@@ -188,90 +214,4 @@ footer {
 footer a img {
     height: 40px;
     border-radius: 8px;
-}
-/* Better hover zoom - painting grows outside the box, fully visible */
-.gallery-item {
-    overflow: visible;           /* important - allows overflow */
-    position: relative;
-    z-index: 10;
-    transition: transform 0.3s ease;
-}
-
-.gallery-item:hover {
-    transform: scale(1.25);      /* ~25% bigger - about 1cm extra */
-    z-index: 20;                 /* stays on top of other paintings */
-}
-
-.gallery-item img {
-    transition: transform 0.4s ease;
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.08);      /* gentle extra zoom inside */
-}
-/* Improved thumbnail hover - full painting visible, smooth rounded edges, no distortion */
-.gallery-item {
-    overflow: visible;
-    position: relative;
-    z-index: 10;
-    border-radius: 18px;
-}
-
-.gallery-item:hover {
-    transform: scale(1.28);        /* enlarges ~1 cm outside the box */
-    z-index: 20;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 280px;
-    object-fit: cover;             /* keeps original look */
-    border-radius: 18px;
-    transition: transform 0.45s ease;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.gallery-item:hover img {
-    transform: scale(1.12);        /* gentle extra zoom inside */
-}
-/* Thumbnail hover - full painting visible, no cropping */
-.gallery {
-    overflow: visible;
-}
-
-.gallery-item {
-    overflow: visible !important;
-    position: relative;
-    z-index: 10;
-    border-radius: 18px;
-}
-
-.gallery-item:hover {
-    transform: scale(1.32);        /* slightly bigger enlargement */
-    z-index: 20;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-    border-radius: 18px;
-    transition: transform 0.5s ease;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.gallery-item:hover img {
-    transform: scale(1.15);        /* gentle inner zoom */
-}
-/* Lightbox extra close-up zoom on mouse hover */
-#lightbox img {
-    transition: transform 0.2s ease;
-    cursor: zoom-in;
-}
-
-#lightbox img:hover {
-    transform: scale(1.8);   /* strong close-up zoom inside lightbox */
 }
