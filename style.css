@@ -17,7 +17,7 @@ body {
     padding-top: 80px;
 }
 
-/* NAV */
+/* NAV, HOME THUMBNAILS, etc. (unchanged) */
 nav {
     background: var(--bg);
     border-bottom: 1px solid #eeeeee;
@@ -42,7 +42,6 @@ nav {
     border-radius: 8px;
 }
 
-/* HOME THUMBNAILS */
 .home-list {
     max-width: 900px;
     margin: 10px 40px 0 40px;
@@ -83,7 +82,7 @@ nav {
     font-weight: 400;
 }
 
-/* GALLERY - Final hover fix */
+/* GALLERY - Improved hover (no explosion, no white space) */
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -105,25 +104,25 @@ nav {
 }
 
 .gallery-item:hover {
-    transform: scale(1.32);   /* moderate enlargement */
+    transform: scale(1.28);   /* moderate, controlled enlargement */
     z-index: 30;
 }
 
 .gallery-item img {
     width: 100%;
     height: 280px;
-    object-fit: cover;        /* normal view - clean filled box */
+    object-fit: cover;        /* normal view - clean */
     border-radius: 18px;
-    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);  /* smooth & nice pop */
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .gallery-item:hover img {
-    object-fit: contain !important;   /* full painting on hover */
+    object-fit: contain !important;
     width: auto !important;
     height: auto !important;
-    max-width: 520px !important;      /* ← limits max size so no full-screen zoom */
-    max-height: 520px !important;
+    max-width: 460px !important;   /* limits size - no full screen */
+    max-height: 460px !important;
     transform: scale(1.0) !important;
     border-radius: 12px;
 }
@@ -134,7 +133,7 @@ nav {
     font-family: 'Playfair Display', serif;
 }
 
-/* LIGHTBOX (kept as is for now) */
+/* LIGHTBOX with working movable zoom lens */
 .lightbox {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -150,28 +149,28 @@ nav {
     max-width: 92%;
     max-height: 92%;
     border-radius: 12px;
-    transition: none;
     cursor: none;
 }
 
 #zoom-lens {
     position: absolute;
-    width: 180px;
-    height: 180px;
-    border: 3px solid white;
+    width: 200px;
+    height: 200px;
+    border: 3px solid rgba(255,255,255,0.9);
     border-radius: 50%;
-    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    box-shadow: 0 0 25px rgba(0,0,0,0.7);
     pointer-events: none;
     display: none;
-    background: rgba(255,255,255,0.1);
     overflow: hidden;
+    background: rgba(255,255,255,0.08);
 }
 
 #zoom-lens img {
     position: absolute;
-    width: 800%;
-    height: 800%;
+    width: 600%;
+    height: 600%;
     object-fit: none;
+    transform-origin: top left;
 }
 
 /* iPhone slider */
