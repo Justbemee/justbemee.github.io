@@ -67,7 +67,6 @@
         <!-- All Paintings -->
         <h2 id="all-paintings" style="font-family: 'Playfair Display', serif; font-weight:400; text-align:center; margin:80px 0 30px; font-size:1.8rem;">All Paintings</h2>
         <div class="gallery">
-            <!-- All 26 paintings -->
             <a href="#" class="gallery-item" data-src="images/Acrylic on Canvas Reused.webp"><img src="images/Acrylic on Canvas Reused.webp" alt=""><div class="overlay"><h3>Acrylic on Canvas Reused</h3></div></a>
             <a href="#" class="gallery-item" data-src="images/Dinosaurus.webp"><img src="images/Dinosaurus.webp" alt=""><div class="overlay"><h3>Dinosaurus</h3></div></a>
             <a href="#" class="gallery-item" data-src="images/Factory work must be replaced by AGI.webp"><img src="images/Factory work must be replaced by AGI.webp" alt=""><div class="overlay"><h3>Factory work must be replaced by AGI</h3></div></a>
@@ -102,10 +101,13 @@
 
     </div>
 
-    <!-- Lightbox -->
+    <!-- Lightbox with movable zoom lens -->
     <div id="lightbox" class="lightbox" onclick="if(event.target.id==='lightbox') this.style.display='none'">
         <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
         <img id="lightbox-img" src="">
+        <div id="zoom-lens" class="zoom-lens">
+            <img id="zoom-lens-img" src="">
+        </div>
     </div>
 
     <footer style="text-align:center; padding:60px 20px; color:#666;">
@@ -115,14 +117,39 @@
     </footer>
 
     <script>
-    // Click any painting → full lightbox zoom
+    // Lightbox with movable zoom lens
+    let lightbox = document.getElementById('lightbox');
+    let lightboxImg = document.getElementById('lightbox-img');
+    let zoomLens = document.getElementById('zoom-lens');
+    let zoomLensImg = document.getElementById('zoom-lens-img');
+
     document.querySelectorAll('.gallery-item').forEach(item => {
         item.addEventListener('click', function(e) {
             e.preventDefault();
             const src = this.getAttribute('data-src');
-            document.getElementById('lightbox-img').src = src;
-            document.getElementById('lightbox').style.display = 'flex';
+            lightboxImg.src = src;
+            zoomLensImg.src = src;
+            lightbox.style.display = 'flex';
         });
+    });
+
+    // Movable zoom lens
+    lightbox.addEventListener('mousemove', function(e) {
+        const rect = lightboxImg.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        zoomLens.style.display = 'block';
+        zoomLens.style.left = (x - 90) + 'px';
+        zoomLens.style.top = (y - 90) + 'px';
+
+        const scale = 8;
+        zoomLensImg.style.left = -(x * scale - 90) + 'px';
+        zoomLensImg.style.top = -(y * scale - 90) + 'px';
+    });
+
+    lightbox.addEventListener('mouseleave', function() {
+        zoomLens.style.display = 'none';
     });
     </script>
 </body>
