@@ -105,8 +105,8 @@ nav {
 }
 
 .gallery-item:hover {
-    transform: scale(1.35);
-    z-index: 20;
+    transform: scale(1.40);
+    z-index: 30;
 }
 
 .gallery-item img {
@@ -114,12 +114,18 @@ nav {
     height: 280px;
     object-fit: cover;
     border-radius: 18px;
-    transition: transform 0.5s ease;
+    transition: all 0.55s cubic-bezier(0.4, 0.0, 0.2, 1);
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .gallery-item:hover img {
-    transform: scale(1.0);   /* shows full original painting on hover */
+    object-fit: contain !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    transform: scale(1.0) !important;
+    border-radius: 12px;
 }
 
 .overlay h3 {
@@ -222,58 +228,4 @@ footer {
 footer a img {
     height: 40px;
     border-radius: 8px;
-}
-/* Thumbnail hover - FULL painting visible, no cropping */
-.gallery-item {
-    overflow: visible !important;
-    position: relative;
-    z-index: 10;
-}
-
-.gallery-item:hover {
-    transform: scale(1.38) !important;
-    z-index: 20;
-}
-
-.gallery-item img {
-    transition: transform 0.5s ease !important;
-}
-
-.gallery-item:hover img {
-    object-fit: contain !important;   /* shows full original painting */
-    transform: scale(1.0) !important;
-}
-/* Thumbnail hover - full painting visible, no white space during hover */
-.gallery {
-    overflow: visible;
-}
-
-.gallery-item {
-    overflow: visible !important;
-    position: relative;
-    z-index: 10;
-    border-radius: 18px;
-}
-
-.gallery-item:hover {
-    transform: scale(1.40) !important;   /* nice enlargement outside the box */
-    z-index: 25;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 280px;
-    object-fit: cover;                   /* normal view - clean & filled */
-    border-radius: 18px;
-    transition: all 0.5s ease;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.gallery-item:hover img {
-    object-fit: contain !important;      /* full painting on hover */
-    width: auto !important;              /* prevents forced box size */
-    height: auto !important;
-    max-width: none !important;
-    max-height: none !important;
-    transform: scale(1.0) !important;
 }
