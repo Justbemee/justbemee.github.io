@@ -117,7 +117,7 @@
     </footer>
 
     <script>
-    // Click any painting → lightbox with working zoom lens
+    // Open lightbox
     document.querySelectorAll('.gallery-item').forEach(item => {
         item.addEventListener('click', function(e) {
             e.preventDefault();
@@ -128,30 +128,28 @@
         });
     });
 
-    // Movable zoom lens
+    // Improved movable zoom lens
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const zoomLens = document.getElementById('zoom-lens');
     const zoomLensImg = document.getElementById('zoom-lens-img');
 
     lightbox.addEventListener('mousemove', function(e) {
-        if (!lightboxImg.src) return;
-
         const rect = lightboxImg.getBoundingClientRect();
         let x = e.clientX - rect.left;
         let y = e.clientY - rect.top;
 
-        // Keep lens inside image bounds
+        // Keep lens inside the image
         x = Math.max(100, Math.min(x, rect.width - 100));
         y = Math.max(100, Math.min(y, rect.height - 100));
 
         zoomLens.style.display = 'block';
-        zoomLens.style.left = (x - 100) + 'px';
-        zoomLens.style.top = (y - 100) + 'px';
+        zoomLens.style.left = (x - 110) + 'px';
+        zoomLens.style.top = (y - 110) + 'px';
 
-        const scale = 5.5;  // zoom strength
-        zoomLensImg.style.left = (-x * scale + 100) + 'px';
-        zoomLensImg.style.top = (-y * scale + 100) + 'px';
+        const zoomLevel = 7;   // stronger zoom — increase if needed
+        zoomLensImg.style.left = (-x * zoomLevel + 110) + 'px';
+        zoomLensImg.style.top = (-y * zoomLevel + 110) + 'px';
     });
 
     lightbox.addEventListener('mouseleave', function() {
