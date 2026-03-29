@@ -117,7 +117,6 @@
     </footer>
 
     <script>
-    // Click any painting → full lightbox with zoom lens
     document.querySelectorAll('.gallery-item').forEach(item => {
         item.addEventListener('click', function(e) {
             e.preventDefault();
@@ -128,7 +127,6 @@
         });
     });
 
-    // Movable zoom lens
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const zoomLens = document.getElementById('zoom-lens');
@@ -139,14 +137,14 @@
         let x = e.clientX - rect.left;
         let y = e.clientY - rect.top;
 
-        x = Math.max(100, Math.min(x, rect.width - 100));
-        y = Math.max(100, Math.min(y, rect.height - 100));
+        x = Math.max(110, Math.min(x, rect.width - 110));
+        y = Math.max(110, Math.min(y, rect.height - 110));
 
         zoomLens.style.display = 'block';
         zoomLens.style.left = (x - 110) + 'px';
         zoomLens.style.top = (y - 110) + 'px';
 
-        const zoomLevel = 7;
+        const zoomLevel = 8;   // stronger magnification
         zoomLensImg.style.left = (-x * zoomLevel + 110) + 'px';
         zoomLensImg.style.top = (-y * zoomLevel + 110) + 'px';
     });
@@ -155,5 +153,3 @@
         zoomLens.style.display = 'none';
     });
     </script>
-</body>
-</html>
