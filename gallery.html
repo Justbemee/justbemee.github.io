@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Martin Hanispak — Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 140px;   /* space for title to be visible */
+        }
+    </style>
 </head>
 <body>
 
@@ -29,7 +35,7 @@
         </div>
 
         <!-- NFTs -->
-        <h2 id="nfts" style="font-family: 'Playfair Display', serif; font-weight:400; text-align:center; margin:80px 0 40px; font-size:1.9rem;">NFTs</h2>
+        <h2 id="nfts" style="font-family: 'Playfair Display', serif; font-weight:400; text-align:center; margin:100px 0 50px; font-size:1.9rem;">NFTs</h2>
         <div class="gallery">
             <a href="#" class="gallery-item" data-src="images/Acrylic on Canvas Reused.webp"><img src="images/Acrylic on Canvas Reused.webp" alt=""></a>
             <a href="#" class="gallery-item" data-src="images/Finding your footing when you're in over your head..webp"><img src="images/Finding your footing when you're in over your head..webp" alt=""></a>
@@ -45,7 +51,7 @@
         </div>
 
         <!-- Real Abstract -->
-        <h2 id="real-abstract" style="font-family: 'Playfair Display', serif; font-weight:400; text-align:center; margin:120px 0 40px; font-size:1.9rem;">Real Abstract</h2>
+        <h2 id="real-abstract" style="font-family: 'Playfair Display', serif; font-weight:400; text-align:center; margin:140px 0 50px; font-size:1.9rem;">Real Abstract</h2>
         <div class="gallery">
             <a href="#" class="gallery-item" data-src="images/Dinosaurus.webp"><img src="images/Dinosaurus.webp" alt=""></a>
             <a href="#" class="gallery-item" data-src="images/Factory work must be replaced by AGI.webp"><img src="images/Factory work must be replaced by AGI.webp" alt=""></a>
@@ -65,7 +71,7 @@
         </div>
 
         <!-- Current Work -->
-        <h2 id="current-work" style="font-family: 'Playfair Display', serif; font-weight:400; text-align:center; margin:120px 0 40px; font-size:1.9rem;">Current Work (in progress)</h2>
+        <h2 id="current-work" style="font-family: 'Playfair Display', serif; font-weight:400; text-align:center; margin:140px 0 50px; font-size:1.9rem;">Current Work (in progress)</h2>
         <p style="text-align:center; color:#666; font-style:italic; font-size:1.1rem;">New works will appear here soon.</p>
 
     </div>
@@ -86,7 +92,7 @@
     </footer>
 
     <script>
-    // Lightbox script (kept the same as before)
+    // Lightbox with stronger zoom
     document.querySelectorAll('.gallery-item').forEach(item => {
         item.addEventListener('click', function(e) {
             e.preventDefault();
@@ -107,14 +113,14 @@
         let x = e.clientX - rect.left;
         let y = e.clientY - rect.top;
 
-        x = Math.max(110, Math.min(x, rect.width - 110));
-        y = Math.max(110, Math.min(y, rect.height - 110));
+        x = Math.max(120, Math.min(x, rect.width - 120));
+        y = Math.max(120, Math.min(y, rect.height - 120));
 
         zoomLens.style.display = 'block';
         zoomLens.style.left = (x - 110) + 'px';
         zoomLens.style.top = (y - 110) + 'px';
 
-        const zoomLevel = 7;
+        const zoomLevel = 9;   // stronger magnification
         zoomLensImg.style.left = (-x * zoomLevel + 110) + 'px';
         zoomLensImg.style.top = (-y * zoomLevel + 110) + 'px';
     });
