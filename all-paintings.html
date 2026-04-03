@@ -68,14 +68,14 @@
         <p>© 2026 Martin Hanispak</p>
     </footer>
 
-        <script>
-    // Open lightbox + show painting name
+    <script>
+    // Open lightbox with painting name
     document.querySelectorAll('.gallery-item').forEach(item => {
         item.addEventListener('click', function(e) {
             e.preventDefault();
             const src = this.getAttribute('data-src');
             const filename = src.split('/').pop().replace('.webp', '');
-            const cleanName = filename.replace(/[-.]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            const cleanName = filename.replace(/[-._]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 
             document.getElementById('lightbox-img').src = src;
             document.getElementById('zoom-lens-img').src = src;
@@ -84,7 +84,7 @@
         });
     });
 
-    // Improved movable zoom lens
+    // Fixed movable zoom lens
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const zoomLens = document.getElementById('zoom-lens');
@@ -95,18 +95,22 @@
         let x = e.clientX - rect.left;
         let y = e.clientY - rect.top;
 
-        // Keep lens inside image
-        x = Math.max(120, Math.min(x, rect.width - 120));
-        y = Math.max(120, Math.min(y, rect.height - 120));
+        x = Math.max(130, Math.min(x, rect.width - 130));
+        y = Math.max(130, Math.min(y, rect.height - 130));
 
         zoomLens.style.display = 'block';
         zoomLens.style.left = (x - 110) + 'px';
         zoomLens.style.top = (y - 110) + 'px';
 
-        const zoomLevel = 8.5;   // strong magnification
+        const zoomLevel = 9;   // strong zoom
         zoomLensImg.style.left = (-x * zoomLevel + 110) + 'px';
         zoomLensImg.style.top = (-y * zoomLevel + 110) + 'px';
     });
+
+    lightbox.addEventListener('mouseleave', function() {
+        zoomLens.style.display = 'none';
+    });
+    </script>
 
     lightbox.addEventListener('mouseleave', function() {
         zoomLens.style.display = 'none';
