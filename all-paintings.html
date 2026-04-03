@@ -52,14 +52,14 @@
 
     </div>
 
-          <!-- Lightbox - Clean fixed right side, no background -->
+              <!-- Lightbox - Fixed right edge, no background -->
     <div id="lightbox" class="lightbox" onclick="if(event.target.id==='lightbox') this.style.display='none'">
         <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
         <img id="lightbox-img" src="">
         
-        <!-- Fixed info on the right - no background -->
-        <div id="lightbox-info" style="position:absolute; top:22%; right:70px; width:340px; color:white; font-family:'Playfair Display', serif; text-align:left; pointer-events:none;">
-            <div id="lightbox-name" style="font-size:1.75rem; font-weight:400; margin-bottom:18px; text-shadow:0 2px 12px rgba(0,0,0,0.95);"></div>
+        <!-- Fixed info on the right edge of the screen -->
+        <div id="lightbox-info" style="position:absolute; top:25%; right:60px; width:320px; color:white; font-family:'Playfair Display', serif; text-align:left; pointer-events:none;">
+            <div id="lightbox-name" style="font-size:1.75rem; font-weight:400; margin-bottom:16px; text-shadow:0 2px 10px rgba(0,0,0,0.9);"></div>
             <div id="lightbox-details" style="font-size:1.08rem; line-height:1.65; opacity:0.92; text-shadow:0 1px 8px rgba(0,0,0,0.8);"></div>
         </div>
     </div>
@@ -69,7 +69,7 @@
         <p>© 2026 Martin Hanispak</p>
     </footer>
     <script>
-    // Lightbox with fixed right-side info, no background
+    // Lightbox with fixed right-edge info
     document.querySelectorAll('.gallery-item').forEach(item => {
         item.addEventListener('click', function(e) {
             e.preventDefault();
