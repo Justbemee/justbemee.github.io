@@ -76,15 +76,19 @@
 
     </div>
 
-               <!-- Lightbox -->
+              <!-- Lightbox - Clean version -->
     <div id="lightbox" class="lightbox" onclick="if(event.target.id==='lightbox') this.style.display='none'">
         <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
         <img id="lightbox-img" src="">
-        <div id="zoom-lens">
-            <img id="zoom-lens-img" src="">
+        
+        <!-- Name on the painting with black bar -->
+        <div id="lightbox-name-bar" style="position:absolute; bottom:0; left:0; right:0; background:rgba(0,0,0,0.65); padding:18px 0; text-align:center;">
+            <div id="lightbox-name" style="color:white; font-family:'Playfair Display', serif; font-size:1.6rem; font-weight:400; text-shadow:0 2px 8px rgba(0,0,0,0.8);"></div>
         </div>
-        <div id="lightbox-info" style="position:absolute; bottom:35px; right:50px; color:white; font-family:'Playfair Display', serif; font-size:1.35rem; text-shadow:0 2px 10px rgba(0,0,0,0.9); pointer-events:none; text-align:right; max-width:380px;">
-            <!-- Name and details will appear here on the right side -->
+        
+        <!-- Details under the painting -->
+        <div id="lightbox-details" style="position:absolute; bottom:-75px; left:50%; transform:translateX(-50%); color:#ddd; font-size:1.05rem; text-align:center; white-space:nowrap;">
+            Acrylic on Canvas • Size: 100×100 cm • Available
         </div>
     </div>
 
@@ -93,8 +97,8 @@
         <p>Home</p>
         <p>© 2026 Martin Hanispak</p>
     </footer>
-        <script>
-    // Open lightbox with info on the right side
+       <script>
+    // Simple clean lightbox
     document.querySelectorAll('.gallery-item').forEach(item => {
         item.addEventListener('click', function(e) {
             e.preventDefault();
@@ -103,40 +107,8 @@
             const cleanName = filename.replace(/[-._]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 
             document.getElementById('lightbox-img').src = src;
-            document.getElementById('zoom-lens-img').src = src;
-            document.getElementById('lightbox-info').innerHTML = `
-                <strong style="font-size:1.5rem;">${cleanName}</strong><br>
-                <span style="font-size:1.05rem; opacity:0.95;">Acrylic on Canvas • Size: 100×100 cm • Available</span>
-            `;
+            document.getElementById('lightbox-name').textContent = cleanName;
             document.getElementById('lightbox').style.display = 'flex';
         });
-    });
-
-    // Stronger & more accurate movable zoom lens
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const zoomLens = document.getElementById('zoom-lens');
-    const zoomLensImg = document.getElementById('zoom-lens-img');
-
-    lightbox.addEventListener('mousemove', function(e) {
-        const rect = lightboxImg.getBoundingClientRect();
-        let x = e.clientX - rect.left;
-        let y = e.clientY - rect.top;
-
-        // Better bounds to prevent lens going off screen
-        x = Math.max(150, Math.min(x, rect.width - 150));
-        y = Math.max(150, Math.min(y, rect.height - 150));
-
-        zoomLens.style.display = 'block';
-        zoomLens.style.left = (x - 110) + 'px';
-        zoomLens.style.top = (y - 110) + 'px';
-
-        const zoomLevel = 11;   // even stronger magnification
-        zoomLensImg.style.left = (-x * zoomLevel + 110) + 'px';
-        zoomLensImg.style.top = (-y * zoomLevel + 110) + 'px';
-    });
-
-    lightbox.addEventListener('mouseleave', function() {
-        zoomLens.style.display = 'none';
     });
     </script>
