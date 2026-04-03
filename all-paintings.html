@@ -52,14 +52,16 @@
 
     </div>
 
-    <!-- Lightbox -->
+       <!-- Lightbox -->
     <div id="lightbox" class="lightbox" onclick="if(event.target.id==='lightbox') this.style.display='none'">
         <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
         <img id="lightbox-img" src="">
         <div id="zoom-lens">
             <img id="zoom-lens-img" src="">
         </div>
-        <div id="lightbox-name" style="position:absolute; bottom:40px; left:50%; transform:translateX(-50%); color:white; font-family:'Playfair Display', serif; font-size:1.45rem; text-shadow:0 2px 12px rgba(0,0,0,0.9); pointer-events:none; text-align:center; max-width:80%;"></div>
+        <div id="lightbox-info" style="position:absolute; bottom:30px; left:50%; transform:translateX(-50%); color:white; font-family:'Playfair Display', serif; font-size:1.35rem; text-shadow:0 2px 10px rgba(0,0,0,0.9); pointer-events:none; text-align:center; max-width:85%; line-height:1.4;">
+            <!-- Name, size, medium will appear here -->
+        </div>
     </div>
 
     <footer style="text-align:center; padding:60px 20px; color:#666;">
@@ -67,9 +69,8 @@
         <p>Home</p>
         <p>© 2026 Martin Hanispak</p>
     </footer>
-
     <script>
-    // Open lightbox with painting name
+    // Open lightbox with painting info
     document.querySelectorAll('.gallery-item').forEach(item => {
         item.addEventListener('click', function(e) {
             e.preventDefault();
@@ -79,12 +80,15 @@
 
             document.getElementById('lightbox-img').src = src;
             document.getElementById('zoom-lens-img').src = src;
-            document.getElementById('lightbox-name').textContent = cleanName;
+            document.getElementById('lightbox-info').innerHTML = `
+                <strong>${cleanName}</strong><br>
+                <span style="font-size:1.05rem; opacity:0.9;">Acrylic on Canvas • Size: 100×100 cm • Available</span>
+            `;
             document.getElementById('lightbox').style.display = 'flex';
         });
     });
 
-    // Fixed movable zoom lens
+    // Fixed & stronger movable zoom lens
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const zoomLens = document.getElementById('zoom-lens');
@@ -95,22 +99,18 @@
         let x = e.clientX - rect.left;
         let y = e.clientY - rect.top;
 
-        x = Math.max(130, Math.min(x, rect.width - 130));
-        y = Math.max(130, Math.min(y, rect.height - 130));
+        // Better bounds
+        x = Math.max(140, Math.min(x, rect.width - 140));
+        y = Math.max(140, Math.min(y, rect.height - 140));
 
         zoomLens.style.display = 'block';
         zoomLens.style.left = (x - 110) + 'px';
         zoomLens.style.top = (y - 110) + 'px';
 
-        const zoomLevel = 9;   // strong zoom
+        const zoomLevel = 10;   // stronger zoom
         zoomLensImg.style.left = (-x * zoomLevel + 110) + 'px';
         zoomLensImg.style.top = (-y * zoomLevel + 110) + 'px';
     });
-
-    lightbox.addEventListener('mouseleave', function() {
-        zoomLens.style.display = 'none';
-    });
-    </script>
 
     lightbox.addEventListener('mouseleave', function() {
         zoomLens.style.display = 'none';
