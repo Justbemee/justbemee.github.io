@@ -16,34 +16,45 @@
         </div>
     </nav>
 
-    <div style="max-width:800px; margin:80px auto; padding:40px;">
-        <h1 style="font-family: 'Playfair Display', serif; font-weight:400;">About</h1>
-        <img src="images/You are on the right track now, do not turn..webp" alt="You are on the right track" style="width:100%; border-radius:12px; margin:30px 0;">
+    <div style="max-width:900px; margin:80px auto; padding:0 40px;">
 
-        <p style="font-size:1.15rem; line-height:1.8;">My work lives in the space of pure abstraction, where painting is not about depicting the world, but about experiencing it from within.</p>
-        <p style="font-size:1.15rem; line-height:1.8;">My practice is driven by instinct as much as thought. Rooted in non-representational art, the subconscious, allowing the work to evolve organically, shaped by both intention and accident rather than following a fixed plan.</p>
-        <p style="font-size:1.15rem; line-height:1.8;">Until recently (2026), I worked without relying on photographs or external references, letting each piece emerge through intuition and an ongoing dialogue with the canvas. While I now explore ways to make the work more accessible to the eye, I feel my strongest work remains in pure abstraction.</p>
-        <p style="font-size:1.15rem; line-height:1.8;">Words have always been part of my expression. Present in my work since my earliest canvases in around 2011.</p>
-        <p style="font-size:1.15rem; line-height:1.8;">I come from a self-directed background, outside formal art education. This independence allows intuition to take precedence over convention, aligning my practice with abstract and process-driven traditions.</p>
-        <p style="font-size:1.15rem; line-height:1.8;">Ultimately, my paintings are not representations of something seen, but records of something felt.</p>
+        <!-- Hero image -->
+        <img src="images/You are on the right track now, do not turn..webp" 
+             alt="You are on the right track now, do not turn" 
+             style="width:100%; border-radius:12px; margin-bottom:50px; box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+
+        <!-- Short artistic quote -->
+        <p style="text-align:center; font-style:italic; font-size:1.35rem; max-width:700px; margin:0 auto 50px; color:#444;">
+            “My paintings are not representations of something seen, but records of something felt.”
+        </p>
+
+        <div style="font-size:1.15rem; line-height:1.85; color:#333;">
+            <p>My work lives in the space of pure abstraction, where painting is not about depicting the world, but about experiencing it from within.</p>
+            
+            <p>My practice is driven by instinct as much as thought. Rooted in non-representational art and the subconscious, the work evolves organically — shaped by both intention and accident rather than following a fixed plan.</p>
+            
+            <p>Until recently (2026), I worked without relying on photographs or external references, letting each piece emerge through intuition and an ongoing dialogue with the canvas. While I now explore ways to make the work more accessible to the eye, I feel my strongest work remains in pure abstraction.</p>
+            
+            <p>Words have always been part of my expression, present in my work since my earliest canvases around 2011.</p>
+            
+            <p>I come from a self-directed background, outside formal art education. This independence allows intuition to take precedence over convention, aligning my practice with abstract and process-driven traditions.</p>
+            
+            <p>Ultimately, my paintings are not representations of something seen, but records of something felt.</p>
+        </div>
+
     </div>
 
-    <footer>
-            <footer style="text-align:center; padding:60px 20px; color:#666;">
+    <footer style="text-align:center; padding:80px 20px 50px; color:#666;">
         <a href="index.html"><img src="images/Memory.webp" style="height:40px; border-radius:8px;"></a>
-        <p>Home</p>
+        <p style="margin:12px 0 8px;">Home</p>
         <p>© 2026 Martin Hanispak</p>
     </footer>
-        <script>
-if (localStorage.getItem('darkMode') === 'true') {
-    const theme = localStorage.getItem('theme') || 'very';
-    document.body.classList.add('dark-' + theme);
-}
-</script>
+
+    <script>
+    // Simple dark mode persistence
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark');
+    }
+    </script>
 </body>
 </html>
-<script>
-if (localStorage.getItem('darkMode') === 'true') {
-    document.body.classList.add('dark');
-}
-</script>
