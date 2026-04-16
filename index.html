@@ -9,18 +9,23 @@
 </head>
 <body>
 
-<!-- Top banner aligned with dark mode switch -->
-<div style="background:#f8f8f8; color:#555; text-align:center; padding:16px 20px; font-size:1.05rem; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center; max-width:1100px; margin:0 auto;">
-    <div style="flex:1;"></div>
-    <div>This website is still growing and evolving.<br>Feel free to explore the gallery or <a href="contact.html" style="color:#0066cc; text-decoration:underline;">get in touch</a> directly.</div>
-    <div style="flex:1; text-align:right;">
-        <!-- Dark mode slider moved here to align with the banner -->
-        <label class="switch" style="margin-right:20px;">
+<div style="background:#f8f8f8; color:#555; text-align:center; padding:16px 20px; font-size:1.05rem; border-bottom:1px solid #eee;">
+    This website is still growing and evolving.<br>
+    Feel free to explore the gallery or <a href="contact.html" style="color:#0066cc; text-decoration:underline;">get in touch</a> directly.
+</div>
+
+    <!-- Dark mode slider -->
+    <div style="position:fixed; top:20px; right:40px; z-index:200; text-align:right;">
+        <label class="switch">
             <input type="checkbox" id="dark-toggle">
             <span class="slider"></span>
         </label>
+        <div id="theme-menu" style="display:none; margin-top:8px;">
+            <button onclick="setTheme('very')" style="margin:3px; padding:5px 10px; font-size:0.85rem;">Dark</button>
+            <button onclick="setTheme('warm')" style="margin:3px; padding:5px 10px; font-size:0.85rem;">Warm</button>
+            <button onclick="setTheme('cool')" style="margin:3px; padding:5px 10px; font-size:0.85rem;">Cool</button>
+        </div>
     </div>
-</div>
 
     <h1 style="margin: 15px 40px 15px; font-size: 2.8rem; font-family: 'Playfair Display', serif; font-weight:400;">Martin Hanispak</h1>
 
@@ -50,16 +55,14 @@
             </a>
         </div>
 
-        <!-- Quote section -->
-        <div class="quote-section" style="flex:1; max-width:380px; display:flex; flex-direction:column; align-items:center; text-align:center;">
-            <hr style="border:none; border-top:1px solid #ddd; width:100%; margin:0 auto 15px;">   <!-- longer line -->
-            <p class="quote-text" id="quote-text" style="font-style:italic; font-size:1.15rem; margin-bottom:20px;"></p>
+        <!-- Quote section - image 3x bigger, lower and centered -->
+        <div class="quote-section" style="flex:1; max-width:420px; display:flex; flex-direction:column; justify-content:center; align-items:center; min-height:520px; text-align:center;">
+            <hr style="border:none; border-top:1px solid #ddd; width:100%; margin:0 auto 20px;">   <!-- longer line -->
+            <p class="quote-text" id="quote-text" style="font-style:italic; font-size:1.15rem; margin-bottom:25px;"></p>
             
             <!-- Bigger quote image -->
             <img id="quote-image" src="" alt="" 
-                 style="width:480px; height:480px; object-fit:cover; border-radius:12px; margin:20px auto; display:block; box-shadow:0 10px 30px rgba(0,0,0,0.1);">
-            
-            <!-- Removed Terrence McKenna name -->
+                 style="width:480px; height:480px; object-fit:cover; border-radius:12px; margin:30px auto 25px; display:block; box-shadow:0 10px 30px rgba(0,0,0,0.1);">
         </div>
     </div>
 
