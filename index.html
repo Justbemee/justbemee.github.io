@@ -10,7 +10,7 @@
         .main-container {
             display: flex;
             max-width: 100%;
-            margin: 40px 40px 0 40px;
+            margin: 40px 40px 0;
             padding: 0;
             gap: 60px;
         }
@@ -20,7 +20,7 @@
         }
         .name {
             font-family: 'Playfair Display', serif;
-            font-size: 2.45rem;   /* smaller to fit thumbnails perfectly */
+            font-size: 2.45rem;
             font-weight: 400;
             margin-bottom: 42px;
             line-height: 1.05;
@@ -38,7 +38,7 @@
             transform: translateX(6px);
         }
         .thumbnail img {
-            width: 82px;   /* EXACT original size */
+            width: 82px;
             height: 82px;
             object-fit: cover;
             border-radius: 8px;
@@ -49,35 +49,26 @@
         }
 
         .right-column {
-            flex: 2.8;   /* opens wide to the right edge */
-            height: 720px;
-            overflow: hidden;
-            position: relative;
+            flex: 2.8;
+            columns: 2;
+            column-gap: 20px;
+            padding-right: 20px;
         }
-        .film-belt {
-            position: absolute;
+        .right-column img {
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            animation: scrollUp 48s linear infinite;
-            gap: 18px;
-            transform: rotate(-1.8deg);   /* overall film tilt like your example */
-        }
-        .film-belt img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
+            margin-bottom: 20px;
             border-radius: 12px;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.18);
-            transform: rotate(var(--lean));   /* individual slight lean */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            break-inside: avoid;
+            transition: transform 0.4s ease;
         }
-        .film-belt img:nth-child(odd)  { --lean: -2.5deg; }
-        .film-belt img:nth-child(even) { --lean: 2.2deg; }
-
-        @keyframes scrollUp {
-            0%   { transform: translateY(0) rotate(-1.8deg); }
-            100% { transform: translateY(-50%) rotate(-1.8deg); }
+        .right-column img:hover {
+            transform: scale(1.03);
         }
+        /* Slight tilt on some images */
+        .right-column img:nth-child(3n)   { transform: rotate(-1.5deg); }
+        .right-column img:nth-child(4n+1) { transform: rotate(1.8deg); }
+        .right-column img:nth-child(5n)   { transform: rotate(-2deg); }
     </style>
 </head>
 <body>
@@ -124,9 +115,20 @@
             </a>
         </div>
 
-        <!-- Right column - Wide open vertical film belt (tilted like your example) -->
+        <!-- Right column - Masonry collage with tilt (Option 2) -->
         <div class="right-column">
-            <div class="film-belt" id="film-belt"></div>
+            <img src="images/Memory.webp" alt="">
+            <img src="images/Lost Acrylic on Canvas.webp" alt="">
+            <img src="images/Love.webp" alt="">
+            <img src="images/The face of Flower.webp" alt="">
+            <img src="images/Acrylic on Canvas Reused.webp" alt="">
+            <img src="images/Heart.webp" alt="">
+            <img src="images/We suffer more in imagination than in reality.webp" alt="">
+            <img src="images/You are on the right track now, do not turn..webp" alt="">
+            <img src="images/Fireworks.webp" alt="">
+            <img src="images/Hierarchy Monster.webp" alt="">
+            <img src="images/Principles .webp" alt="">
+            <img src="images/We must understand the importance of freedom while we have it..webp" alt="">
         </div>
     </div>
 
@@ -141,24 +143,6 @@
         document.body.classList.add('dark');
         toggle.checked = true;
     }
-
-    // Vertical upward film belt with tilt
-    const images = [
-        "images/Memory.webp", "images/Lost Acrylic on Canvas.webp", "images/Love.webp",
-        "images/The face of Flower.webp", "images/Acrylic on Canvas Reused.webp", "images/Heart.webp",
-        "images/We suffer more in imagination than in reality.webp", "images/You are on the right track now, do not turn..webp",
-        "images/Fireworks.webp", "images/Hierarchy Monster.webp", "images/Principles .webp",
-        "images/We must understand the importance of freedom while we have it..webp"
-    ];
-
-    const belt = document.getElementById('film-belt');
-
-    // Duplicate for seamless loop
-    [...images, ...images].forEach(src => {
-        const img = document.createElement('img');
-        img.src = src;
-        belt.appendChild(img);
-    });
     </script>
 </body>
 </html>
