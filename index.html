@@ -38,7 +38,7 @@
             transform: translateX(6px);
         }
         .thumbnail img {
-            width: 82px;
+            width: 82px;   /* exact original size */
             height: 82px;
             object-fit: cover;
             border-radius: 8px;
@@ -50,25 +50,29 @@
 
         .right-column {
             flex: 2.8;
-            columns: 2;
-            column-gap: 20px;
-            padding-right: 20px;
+            height: 720px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 16px;
         }
-        .right-column img {
+        .film-belt {
+            position: absolute;
             width: 100%;
-            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            transform: rotate(-1.6deg);   /* overall film tilt */
+        }
+        .film-belt img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-            break-inside: avoid;
-            transition: transform 0.4s ease;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+            transform: rotate(var(--lean));
         }
-        .right-column img:hover {
-            transform: scale(1.03);
-        }
-        /* Slight tilt on some images */
-        .right-column img:nth-child(3n)   { transform: rotate(-1.5deg); }
-        .right-column img:nth-child(4n+1) { transform: rotate(1.8deg); }
-        .right-column img:nth-child(5n)   { transform: rotate(-2deg); }
+        .film-belt img:nth-child(odd)  { --lean: -2.8deg; }
+        .film-belt img:nth-child(even) { --lean: 2.4deg; }
     </style>
 </head>
 <body>
@@ -115,20 +119,9 @@
             </a>
         </div>
 
-        <!-- Right column - Masonry collage with tilt (Option 2) -->
+        <!-- Right column - Smooth vertical upward film belt -->
         <div class="right-column">
-            <img src="images/Memory.webp" alt="">
-            <img src="images/Lost Acrylic on Canvas.webp" alt="">
-            <img src="images/Love.webp" alt="">
-            <img src="images/The face of Flower.webp" alt="">
-            <img src="images/Acrylic on Canvas Reused.webp" alt="">
-            <img src="images/Heart.webp" alt="">
-            <img src="images/We suffer more in imagination than in reality.webp" alt="">
-            <img src="images/You are on the right track now, do not turn..webp" alt="">
-            <img src="images/Fireworks.webp" alt="">
-            <img src="images/Hierarchy Monster.webp" alt="">
-            <img src="images/Principles .webp" alt="">
-            <img src="images/We must understand the importance of freedom while we have it..webp" alt="">
+            <div class="film-belt" id="film-belt"></div>
         </div>
     </div>
 
@@ -143,6 +136,41 @@
         document.body.classList.add('dark');
         toggle.checked = true;
     }
+
+    // Smooth upward scrolling film belt (JS version)
+    const images = [
+        "images/Memory.webp", "images/Lost Acrylic on Canvas.webp", "images/Love.webp",
+        "images/The face of Flower.webp", "images/Acrylic on Canvas Reused.webp", "images/Heart.webp",
+        "images/We suffer more in imagination than in reality.webp", "images/You are on the right track now, do not turn..webp",
+        "images/Fireworks.webp", "images/Hierarchy Monster.webp", "images/Principles .webp",
+        "images/We must understand the importance of freedom while we have it..webp"
+    ];
+
+    const belt = document.getElementById('film-belt');
+
+    // Duplicate for seamless loop
+    const allImages = [...images, ...images];
+    allImages.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        belt.appendChild(img);
+    });
+
+    // Smooth scroll with JS (better control)
+    let scrollPos = 0;
+    const speed = 0.35;   // pixels per frame - adjust if too fast/slow
+
+    function animate() {
+        scrollPos += speed;
+        belt.style.transform = `translateY(-${scrollPos}px) rotate(-1.6deg)`;
+
+        // Reset when half way (seamless)
+        if (scrollPos > belt.scrollHeight / 2) {
+            scrollPos = 0;
+        }
+        requestAnimationFrame(animate);
+    }
+    animate();
     </script>
 </body>
 </html>
