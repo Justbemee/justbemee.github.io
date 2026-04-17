@@ -9,9 +9,9 @@
     <style>
         .main-container {
             display: flex;
-            max-width: 1280px;
-            margin: 40px auto 0;
-            padding: 0 40px;
+            max-width: 100%;
+            margin: 40px 40px 0 40px;
+            padding: 0;
             gap: 60px;
         }
         .left-column {
@@ -20,7 +20,7 @@
         }
         .name {
             font-family: 'Playfair Display', serif;
-            font-size: 2.65rem;
+            font-size: 2.45rem;   /* smaller to fit thumbnails perfectly */
             font-weight: 400;
             margin-bottom: 42px;
             line-height: 1.05;
@@ -38,7 +38,7 @@
             transform: translateX(6px);
         }
         .thumbnail img {
-            width: 82px;   /* same size as your original */
+            width: 82px;   /* EXACT original size */
             height: 82px;
             object-fit: cover;
             border-radius: 8px;
@@ -49,34 +49,34 @@
         }
 
         .right-column {
-            flex: 2;
+            flex: 2.8;   /* opens wide to the right edge */
             height: 720px;
             overflow: hidden;
             position: relative;
-            border-radius: 16px;
         }
         .film-belt {
             position: absolute;
             width: 100%;
             display: flex;
             flex-direction: column;
-            animation: scrollUp 52s linear infinite;
+            animation: scrollUp 48s linear infinite;
             gap: 18px;
+            transform: rotate(-1.8deg);   /* overall film tilt like your example */
         }
         .film-belt img {
             width: 100%;
             height: auto;
             object-fit: cover;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            transform: rotate(-2deg);   /* slight lean for cool effect */
+            box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+            transform: rotate(var(--lean));   /* individual slight lean */
         }
-        .film-belt img:nth-child(2n) {
-            transform: rotate(2deg);    /* alternate slight lean */
-        }
+        .film-belt img:nth-child(odd)  { --lean: -2.5deg; }
+        .film-belt img:nth-child(even) { --lean: 2.2deg; }
+
         @keyframes scrollUp {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-50%); }
+            0%   { transform: translateY(0) rotate(-1.8deg); }
+            100% { transform: translateY(-50%) rotate(-1.8deg); }
         }
     </style>
 </head>
@@ -124,7 +124,7 @@
             </a>
         </div>
 
-        <!-- Right column - Vertical upward film belt with slight tilt -->
+        <!-- Right column - Wide open vertical film belt (tilted like your example) -->
         <div class="right-column">
             <div class="film-belt" id="film-belt"></div>
         </div>
@@ -142,25 +142,18 @@
         toggle.checked = true;
     }
 
-    // Vertical upward film belt (many images + slight tilt)
+    // Vertical upward film belt with tilt
     const images = [
-        "images/Memory.webp",
-        "images/Lost Acrylic on Canvas.webp",
-        "images/Love.webp",
-        "images/The face of Flower.webp",
-        "images/Acrylic on Canvas Reused.webp",
-        "images/Heart.webp",
-        "images/We suffer more in imagination than in reality.webp",
-        "images/You are on the right track now, do not turn..webp",
-        "images/Fireworks.webp",
-        "images/Hierarchy Monster.webp",
-        "images/Principles .webp",
+        "images/Memory.webp", "images/Lost Acrylic on Canvas.webp", "images/Love.webp",
+        "images/The face of Flower.webp", "images/Acrylic on Canvas Reused.webp", "images/Heart.webp",
+        "images/We suffer more in imagination than in reality.webp", "images/You are on the right track now, do not turn..webp",
+        "images/Fireworks.webp", "images/Hierarchy Monster.webp", "images/Principles .webp",
         "images/We must understand the importance of freedom while we have it..webp"
     ];
 
     const belt = document.getElementById('film-belt');
 
-    // Add images twice for seamless infinite scroll
+    // Duplicate for seamless loop
     [...images, ...images].forEach(src => {
         const img = document.createElement('img');
         img.src = src;
