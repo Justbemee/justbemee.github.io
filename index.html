@@ -7,12 +7,17 @@
     <link rel="icon" href="images/Memory.webp">
     <link rel="stylesheet" href="style.css">
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
         .main-container {
             display: flex;
             max-width: 1280px;
             margin: 40px auto 0;
             padding: 0 40px;
             gap: 80px;
+            min-height: calc(100vh - 120px); /* prevents unnecessary scroll */
         }
         .left-column {
             flex: 1;
@@ -27,7 +32,7 @@
         .home-list {
             display: flex;
             flex-direction: column;
-            gap: 28px;
+            gap: 26px;
         }
         .item {
             display: flex;
@@ -41,7 +46,7 @@
             transform: translateX(8px);
         }
         .item img {
-            width: 82px;
+            width: 82px;   /* exact original size */
             height: 82px;
             object-fit: cover;
             border-radius: 8px;
@@ -54,25 +59,25 @@
         .right-column {
             flex: 2;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 25px;
         }
         .right-column img {
             width: 100%;
-            height: 280px;
+            height: 260px;
             object-fit: cover;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.12);
             transition: transform 0.4s ease;
         }
         .right-column img:hover {
-            transform: scale(1.04);
+            transform: scale(1.03);
         }
 
         .quote-box {
-            grid-column: 1 / -1;   /* spans full width */
+            grid-column: 1 / -1;
             background: #f9f9f9;
-            padding: 40px;
+            padding: 35px;
             border-radius: 16px;
             text-align: center;
             box-shadow: 0 8px 25px rgba(0,0,0,0.08);
@@ -135,7 +140,7 @@
             </div>
         </div>
 
-        <!-- Right: Static grid of large images + quote box (like Jessica Chou example) -->
+        <!-- Right: Static grid of large images + quote (no scrolling) -->
         <div class="right-column">
             <img src="images/Heart.webp" alt="">
             <img src="images/Lost Acrylic on Canvas.webp" alt="">
@@ -144,7 +149,7 @@
             <img src="images/Acrylic on Canvas Reused.webp" alt="">
             <img src="images/We suffer more in imagination than in reality.webp" alt="">
 
-            <!-- Quote space -->
+            <!-- Quote box -->
             <div class="quote-box">
                 <p id="quote-text" style="font-style:italic; font-size:1.18rem; margin-bottom:25px; line-height:1.6;"></p>
                 <img id="quote-image" src="" alt="">
