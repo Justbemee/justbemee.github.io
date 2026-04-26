@@ -3,175 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Martin Hanispak</title>
-    <link rel="icon" href="images/Memory.webp">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>My Website</title>
     <style>
-        .main-container {
+        body {
             display: flex;
-            max-width: 1380px;
-            margin: 40px auto 0;
-            padding: 0 60px;
-            gap: 90px;
+            margin: 0;
+            font-family: Arial, sans-serif;
         }
-        .left-column {
-            flex: 0 0 290px;
-            width: 290px;
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            height: 100vh;
+            padding: 20px;
         }
-        .name {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.45rem;
-            font-weight: 400;
-            margin-bottom: 42px;
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+            overflow-y: auto;
+            height: 100vh;
         }
-        .home-list {
-            display: flex;
-            flex-direction: column;
-            gap: 26px;
-        }
-        .item {
-            display: flex;
-            align-items: center;
-            gap: 22px;
-            text-decoration: none;
-            color: inherit;
-            transition: transform 0.3s ease;
-        }
-        .item:hover {
-            transform: translateX(8px);
-        }
-        .item img {
-            width: 82px;
-            height: 82px;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-        }
-        .item span {
-            font-size: 1.28rem;
-        }
-
-        .right-column {
-            flex: 1;
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
         }
-        .right-column img {
+        .quote-slideshow {
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+            height: 100px;
+        }
+        .quote {
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            position: absolute;
             width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-        }
-
-        .quote-area {
-            grid-column: 1 / -1;
             text-align: center;
-            padding: 30px 0 40px;
         }
-        .quote-text {
-            font-style: italic;
-            font-size: 1.25rem;
-            line-height: 1.7;
-            margin-bottom: 25px;
-        }
-        #quote-image {
-            width: 420px;
-            height: 420px;
-            object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        .quote-active {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
-
-    <!-- Top banner - moved to very top, aligned with dark mode button -->
-    <div style="background:#f8f8f8; color:#555; text-align:center; padding:14px 20px; font-size:1.05rem; border-bottom:1px solid #eee; position: relative;">
-        This website is still growing and evolving.<br>
-        Feel free to explore the gallery or <a href="contact.html" style="color:#0066cc; text-decoration:underline;">get in touch</a> directly.
-        
-        <!-- Dark mode toggle - aligned on the same line -->
-        <div style="position:absolute; top:14px; right:60px;">
-            <label class="switch">
-                <input type="checkbox" id="dark-toggle">
-                <span class="slider"></span>
-            </label>
+    <div class="sidebar">
+        <h2>Site Name</h2>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="content">
+        <h1>Welcome to My Website</h1>
+        <div class="grid">
+            <img src="image1.jpg" alt="Description of Image 1">
+            <img src="image2.jpg" alt="Description of Image 2">
+            <img src="image3.jpg" alt="Description of Image 3">
+            <img src="image4.jpg" alt="Description of Image 4">
+        </div>
+        <div class="quote-slideshow">
+            <div class="quote quote-active">"Quote 1"</div>
+            <div class="quote">"Quote 2"</div>
+            <div class="quote">"Quote 3"</div>
+            <div class="quote">"Quote 4"</div>
         </div>
     </div>
-
-    <div class="main-container">
-
-        <!-- Left - Original thumbnails -->
-        <div class="left-column">
-            <h1 class="name">Martin Hanispak</h1>
-            <div class="home-list">
-                <a href="about.html" class="item">
-                    <img src="images/Memory.webp" alt="">
-                    <span>About</span>
-                </a>
-                <a href="gallery.html" class="item">
-                    <img src="images/Lost Acrylic on Canvas.webp" alt="">
-                    <span>Portfolio</span>
-                </a>
-                <a href="contact.html" class="item">
-                    <img src="images/Love.webp" alt="">
-                    <span>Contact</span>
-                </a>
-                <a href="thoughts.html" class="item">
-                    <img src="images/The face of Flower.webp" alt="">
-                    <span>Thoughts</span>
-                </a>
-                <a href="consulting.html" class="item">
-                    <img src="images/Acrylic on Canvas Reused.webp" alt="">
-                    <span>Consulting</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Right - 4 large static images + quote (Heart in 4th position) -->
-        <div class="right-column">
-            <img src="images/Heart.webp" alt="">
-            <img src="images/Lost Acrylic on Canvas.webp" alt="">
-            <img src="images/The face of Flower.webp" alt="">
-            <img src="images/We suffer more in imagination than in reality.webp" alt="">
-
-            <!-- Quote -->
-            <div class="quote-area">
-                <p class="quote-text" id="quote-text">"Stop thinking and start doing."</p>
-                <img id="quote-image" src="images/Love.webp" alt="">
-            </div>
-        </div>
-    </div>
-
     <script>
-    // Dark mode
-    const toggle = document.getElementById('dark-toggle');
-    toggle.addEventListener('change', () => {
-        document.body.classList.toggle('dark', toggle.checked);
-        localStorage.setItem('darkMode', toggle.checked);
-    });
-    if (localStorage.getItem('darkMode') === 'true') {
-        document.body.classList.add('dark');
-        toggle.checked = true;
-    }
+        const quotes = document.querySelectorAll('.quote');
+        let currentIndex = 0;
 
-    // Quote rotator
-    const quotes = [
-        "Stop thinking and start doing.",
-        "You are not a drop in the ocean. You are the entire ocean in a drop.",
-        "Nature loves courage."
-    ];
-    const quoteImgs = ["images/Love.webp", "images/Heart.webp", "images/The face of Flower.webp"];
+        function showNextQuote() {
+            quotes[currentIndex].classList.remove('quote-active');
+            currentIndex = (currentIndex + 1) % quotes.length;
+            quotes[currentIndex].classList.add('quote-active');
+        }
 
-    let i = 0;
-    function rotateQuote() {
-        i = (i + 1) % quotes.length;
-        document.getElementById('quote-text').textContent = '"' + quotes[i] + '"';
-        document.getElementById('quote-image').src = quoteImgs[i];
-    }
-    setInterval(rotateQuote, 8000);
+        setInterval(showNextQuote, 3000);
     </script>
 </body>
 </html>
