@@ -9,13 +9,13 @@
     <style>
         .main-container {
             display: flex;
-            max-width: 1380px;   /* wider overall */
+            max-width: 1380px;
             margin: 40px auto 0;
-            padding: 0 60px;     /* more space on left and right */
+            padding: 0 60px;
             gap: 90px;
         }
         .left-column {
-            flex: 0 0 290px;   /* fixed width - thumbnails stay original size */
+            flex: 0 0 290px;
             width: 290px;
         }
         .name {
@@ -87,91 +87,21 @@
 </head>
 <body>
 
-    <!-- Top banner -->
-    <div style="background:#f8f8f8; color:#555; text-align:center; padding:14px 20px; font-size:1.05rem; border-bottom:1px solid #eee;">
+    <!-- Top banner - moved to very top, aligned with dark mode button -->
+    <div style="background:#f8f8f8; color:#555; text-align:center; padding:14px 20px; font-size:1.05rem; border-bottom:1px solid #eee; position: relative;">
         This website is still growing and evolving.<br>
         Feel free to explore the gallery or <a href="contact.html" style="color:#0066cc; text-decoration:underline;">get in touch</a> directly.
-    </div>
-
-    <!-- Dark mode toggle -->
-    <div style="position:fixed; top:20px; right:40px; z-index:200; text-align:right;">
-        <label class="switch">
-            <input type="checkbox" id="dark-toggle">
-            <span class="slider"></span>
-        </label>
+        
+        <!-- Dark mode toggle - aligned on the same line -->
+        <div style="position:absolute; top:14px; right:60px;">
+            <label class="switch">
+                <input type="checkbox" id="dark-toggle">
+                <span class="slider"></span>
+            </label>
+        </div>
     </div>
 
     <div class="main-container">
 
         <!-- Left - Original thumbnails -->
-        <div class="left-column">
-            <h1 class="name">Martin Hanispak</h1>
-            <div class="home-list">
-                <a href="about.html" class="item">
-                    <img src="images/Memory.webp" alt="">
-                    <span>About</span>
-                </a>
-                <a href="gallery.html" class="item">
-                    <img src="images/Lost Acrylic on Canvas.webp" alt="">
-                    <span>Portfolio</span>
-                </a>
-                <a href="contact.html" class="item">
-                    <img src="images/Love.webp" alt="">
-                    <span>Contact</span>
-                </a>
-                <a href="thoughts.html" class="item">
-                    <img src="images/The face of Flower.webp" alt="">
-                    <span>Thoughts</span>
-                </a>
-                <a href="consulting.html" class="item">
-                    <img src="images/Acrylic on Canvas Reused.webp" alt="">
-                    <span>Consulting</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Right - 4 large static images (Heart moved up to 4th position) + quote -->
-        <div class="right-column">
-            <img src="images/Heart.webp" alt="">
-            <img src="images/Lost Acrylic on Canvas.webp" alt="">
-            <img src="images/The face of Flower.webp" alt="">
-            <img src="images/We suffer more in imagination than in reality.webp" alt="">
-
-            <!-- Quote -->
-            <div class="quote-area">
-                <p class="quote-text" id="quote-text">"Stop thinking and start doing."</p>
-                <img id="quote-image" src="images/Love.webp" alt="">
-            </div>
-        </div>
-    </div>
-
-    <script>
-    // Dark mode
-    const toggle = document.getElementById('dark-toggle');
-    toggle.addEventListener('change', () => {
-        document.body.classList.toggle('dark', toggle.checked);
-        localStorage.setItem('darkMode', toggle.checked);
-    });
-    if (localStorage.getItem('darkMode') === 'true') {
-        document.body.classList.add('dark');
-        toggle.checked = true;
-    }
-
-    // Quote rotator
-    const quotes = [
-        "Stop thinking and start doing.",
-        "You are not a drop in the ocean. You are the entire ocean in a drop.",
-        "Nature loves courage."
-    ];
-    const quoteImgs = ["images/Love.webp", "images/Heart.webp", "images/The face of Flower.webp"];
-
-    let i = 0;
-    function rotateQuote() {
-        i = (i + 1) % quotes.length;
-        document.getElementById('quote-text').textContent = '"' + quotes[i] + '"';
-        document.getElementById('quote-image').src = quoteImgs[i];
-    }
-    setInterval(rotateQuote, 8000);
-    </script>
-</body>
-</html>
+       
