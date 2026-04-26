@@ -104,4 +104,74 @@
     <div class="main-container">
 
         <!-- Left - Original thumbnails -->
-       
+        <div class="left-column">
+            <h1 class="name">Martin Hanispak</h1>
+            <div class="home-list">
+                <a href="about.html" class="item">
+                    <img src="images/Memory.webp" alt="">
+                    <span>About</span>
+                </a>
+                <a href="gallery.html" class="item">
+                    <img src="images/Lost Acrylic on Canvas.webp" alt="">
+                    <span>Portfolio</span>
+                </a>
+                <a href="contact.html" class="item">
+                    <img src="images/Love.webp" alt="">
+                    <span>Contact</span>
+                </a>
+                <a href="thoughts.html" class="item">
+                    <img src="images/The face of Flower.webp" alt="">
+                    <span>Thoughts</span>
+                </a>
+                <a href="consulting.html" class="item">
+                    <img src="images/Acrylic on Canvas Reused.webp" alt="">
+                    <span>Consulting</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Right - 4 large static images + quote (Heart in 4th position) -->
+        <div class="right-column">
+            <img src="images/Heart.webp" alt="">
+            <img src="images/Lost Acrylic on Canvas.webp" alt="">
+            <img src="images/The face of Flower.webp" alt="">
+            <img src="images/We suffer more in imagination than in reality.webp" alt="">
+
+            <!-- Quote -->
+            <div class="quote-area">
+                <p class="quote-text" id="quote-text">"Stop thinking and start doing."</p>
+                <img id="quote-image" src="images/Love.webp" alt="">
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Dark mode
+    const toggle = document.getElementById('dark-toggle');
+    toggle.addEventListener('change', () => {
+        document.body.classList.toggle('dark', toggle.checked);
+        localStorage.setItem('darkMode', toggle.checked);
+    });
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark');
+        toggle.checked = true;
+    }
+
+    // Quote rotator
+    const quotes = [
+        "Stop thinking and start doing.",
+        "You are not a drop in the ocean. You are the entire ocean in a drop.",
+        "Nature loves courage."
+    ];
+    const quoteImgs = ["images/Love.webp", "images/Heart.webp", "images/The face of Flower.webp"];
+
+    let i = 0;
+    function rotateQuote() {
+        i = (i + 1) % quotes.length;
+        document.getElementById('quote-text').textContent = '"' + quotes[i] + '"';
+        document.getElementById('quote-image').src = quoteImgs[i];
+    }
+    setInterval(rotateQuote, 8000);
+    </script>
+</body>
+</html>
