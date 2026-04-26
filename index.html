@@ -3,89 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Martin Hanispak's Page</title>
     <link rel="stylesheet" href="styles.css">
-    <title>My Website</title>
     <style>
-        body {
-            display: flex;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-        .sidebar {
-            width: 250px;
-            background-color: #333;
-            color: white;
-            position: fixed;
-            height: 100vh;
-            padding: 20px;
-        }
-        .content {
-            margin-left: 270px;
-            padding: 20px;
-            overflow-y: auto;
-            height: 100vh;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
-        .quote-slideshow {
-            margin-top: 20px;
-            position: relative;
-            overflow: hidden;
-            height: 100px;
-        }
-        .quote {
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            position: absolute;
-            width: 100%;
-            text-align: center;
-        }
-        .quote-active {
-            opacity: 1;
-        }
+        body { font-family: Arial, sans-serif; display: flex; }
+        .sidebar { width: 200px; position: sticky; top: 0; background: #f5f5f5; padding: 20px; }
+        .content { flex: 1; padding: 20px; overflow-y: auto; min-height: 100vh; }
+        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .quote { margin-top: 20px; }
+        .quote-slideshow { /* Define styles for your slideshow */ }
     </style>
 </head>
 <body>
     <div class="sidebar">
-        <h2>Site Name</h2>
+        <h2>Martin Hanispak</h2>
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
+                <li><a href="#">Portfolio</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
         </nav>
     </div>
     <div class="content">
-        <h1>Welcome to My Website</h1>
         <div class="grid">
-            <img src="image1.jpg" alt="Description of Image 1">
-            <img src="image2.jpg" alt="Description of Image 2">
-            <img src="image3.jpg" alt="Description of Image 3">
-            <img src="image4.jpg" alt="Description of Image 4">
+            <img src="image1.jpg" alt="Image 1">
+            <img src="image2.jpg" alt="Image 2">
+            <img src="image3.jpg" alt="Image 3">
+            <img src="image4.jpg" alt="Image 4">
         </div>
-        <div class="quote-slideshow">
-            <div class="quote quote-active">"Quote 1"</div>
-            <div class="quote">"Quote 2"</div>
-            <div class="quote">"Quote 3"</div>
-            <div class="quote">"Quote 4"</div>
+        <div class="quote">
+            <div class="quote-slideshow">
+                <!-- Slideshow implementation here -->
+                <p>Quote 1</p>
+                <p>Quote 2</p>
+                <p>Quote 3</p>
+            </div>
         </div>
     </div>
-    <script>
-        const quotes = document.querySelectorAll('.quote');
-        let currentIndex = 0;
-
-        function showNextQuote() {
-            quotes[currentIndex].classList.remove('quote-active');
-            currentIndex = (currentIndex + 1) % quotes.length;
-            quotes[currentIndex].classList.add('quote-active');
-        }
-
-        setInterval(showNextQuote, 3000);
-    </script>
 </body>
 </html>
