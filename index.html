@@ -15,12 +15,12 @@
             gap: 80px;
         }
         .left-column {
-            flex: 0 0 290px;   /* fixed - no shrinking */
+            flex: 0 0 290px;   /* fixed width - thumbnails stay original size */
             width: 290px;
         }
         .name {
             font-family: 'Playfair Display', serif;
-            font-size: 2.4rem;   /* slightly smaller to fit better */
+            font-size: 2.45rem;
             font-weight: 400;
             margin-bottom: 42px;
         }
@@ -54,12 +54,12 @@
         .right-column {
             flex: 1;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
         }
         .right-column img {
             width: 100%;
-            height: 280px;
+            height: 320px;
             object-fit: cover;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.12);
@@ -68,13 +68,13 @@
         .quote-area {
             grid-column: 1 / -1;
             text-align: center;
-            padding: 30px 0;
+            padding: 20px 0 40px;
         }
         .quote-text {
             font-style: italic;
-            font-size: 1.22rem;
+            font-size: 1.25rem;
             line-height: 1.7;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         #quote-image {
             width: 420px;
@@ -130,19 +130,16 @@
             </div>
         </div>
 
-        <!-- Right - Static grid like your screenshot (no scrolling) -->
+        <!-- Right - 3 large static images + quote (no scrolling) -->
         <div class="right-column">
             <img src="images/Heart.webp" alt="">
             <img src="images/Lost Acrylic on Canvas.webp" alt="">
             <img src="images/The face of Flower.webp" alt="">
-            <img src="images/Love.webp" alt="">
-            <img src="images/Acrylic on Canvas Reused.webp" alt="">
-            <img src="images/We suffer more in imagination than in reality.webp" alt="">
 
-            <!-- Quote area -->
+            <!-- Quote -->
             <div class="quote-area">
-                <p class="quote-text" id="quote-text">"You are not a drop in the ocean. You are the entire ocean in a drop."</p>
-                <img id="quote-image" src="images/Heart.webp" alt="">
+                <p class="quote-text" id="quote-text">"Stop thinking and start doing."</p>
+                <img id="quote-image" src="images/Love.webp" alt="">
             </div>
         </div>
     </div>
@@ -159,13 +156,13 @@
         toggle.checked = true;
     }
 
-    // Simple quote rotator
+    // Quote rotator (optional)
     const quotes = [
+        "Stop thinking and start doing.",
         "You are not a drop in the ocean. You are the entire ocean in a drop.",
-        "Nature loves courage.",
-        "Stop thinking and start doing."
+        "Nature loves courage."
     ];
-    const quoteImgs = ["images/Heart.webp", "images/Love.webp", "images/The face of Flower.webp"];
+    const quoteImgs = ["images/Love.webp", "images/Heart.webp", "images/The face of Flower.webp"];
 
     let i = 0;
     function rotateQuote() {
