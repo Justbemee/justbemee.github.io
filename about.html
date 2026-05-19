@@ -16,9 +16,21 @@
         </div>
     </nav>
 
-    <div style="max-width:820px; margin:80px auto; padding:40px; line-height:1.8;">
+    <div style="max-width:900px; margin:80px auto; padding:0 40px;">
 
-        <h1 style="font-family: 'Playfair Display', serif; font-weight:400; margin-bottom:50px;">About</h1>
+        <!-- Hero image -->
+        <img src="images/You are on the right track now, do not turn..webp" 
+             alt="You are on the right track now, do not turn" 
+             style="width:100%; border-radius:12px; margin-bottom:50px; box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+
+        <!-- Short artistic quote -->
+        <p style="text-align:center; font-style:italic; font-size:1.35rem; max-width:700px; margin:0 auto 50px; color:#444;">
+            “My paintings are not representations of something seen, but records of something felt.”
+        </p>
+
+         <div style="max-width:820px; margin:80px auto; padding:40px; line-height:1.8;">
+
+        <h1 style="font-family: 'Playfair Display', serif; font-weight:400; margin-bottom:50px;"></h1>
 
         <p>My work lives in the space of pure abstraction. Driven equally by instinct and thought. Rooted in non-representational art and the subconscious, my paintings evolve organically through gestural expression and spontaneity.</p>
 
@@ -30,8 +42,21 @@
             “Believing in myself like no one else, yet painting for everyone else.”<br>
             <span style="font-size:1.1rem; opacity:0.8;">— Martin Hanispak — thank you so much for stopping by.</span>
         </blockquote>
+        </div>
 
     </div>
 
+    <footer style="text-align:center; padding:80px 20px 50px; color:#666;">
+        <a href="index.html"><img src="images/Memory.webp" style="height:40px; border-radius:8px;"></a>
+        <p style="margin:12px 0 8px;">Home</p>
+        <p>© 2026 Martin Hanispak</p>
+    </footer>
+
+    <script>
+    // Simple dark mode persistence
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark');
+    }
+    </script>
 </body>
 </html>
