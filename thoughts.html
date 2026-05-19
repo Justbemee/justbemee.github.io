@@ -5,10 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Martin Hanispak — Thoughts</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .quote-card {
+            background: #f9f9f9;
+            padding: 32px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            font-style: italic;
+            line-height: 1.65;
+            font-size: 1.22rem;
+        }
+        body.dark .quote-card {
+            background: #1f1f1f;
+        }
+    </style>
 </head>
-    <script>
-}
-</script>
 <body>
 
     <nav>
@@ -19,29 +36,34 @@
         </div>
     </nav>
 
-    <div style="max-width:800px; margin:80px auto; padding:40px;">
-        <h1 style="font-family: 'Playfair Display', serif; font-weight:400;">Quote</h1>
-        <p style="font-size:1.15rem; line-height:1.8;">Your quotes will go here (we can add the slideshow later if you want).</p>
+    <div style="max-width:1100px; margin:80px auto; padding:0 40px;">
 
-        <h1 style="font-family: 'Playfair Display', serif; font-weight:400; margin-top:60px;">Thought</h1>
-        <p style="font-size:1.15rem; line-height:1.8;">Your thoughts will go here.</p>
+        <h1 style="font-family: 'Playfair Display', serif; font-weight:400; text-align:center; margin-bottom:20px;">Thoughts & Quotes</h1>
+        <p style="text-align:center; opacity:0.7; margin-bottom:60px;">Reflections and moments of clarity</p>
+
+        <div class="quotes-grid">
+            <!-- Repeated for visual testing -->
+            <div class="quote-card">“The greatest high is an expanding mind.”</div>
+            <div class="quote-card">“Believing in myself like no one else, yet painting for everyone else.”</div>
+            <div class="quote-card">“The greatest high is an expanding mind.”</div>
+            <div class="quote-card">“Believing in myself like no one else, yet painting for everyone else.”</div>
+            <div class="quote-card">“The greatest high is an expanding mind.”</div>
+            <div class="quote-card">“Believing in myself like no one else, yet painting for everyone else.”</div>
+            <div class="quote-card">“The greatest high is an expanding mind.”</div>
+            <div class="quote-card">“Believing in myself like no one else, yet painting for everyone else.”</div>
+        </div>
+
+        <p style="text-align:center; margin-top:70px; font-size:1.1rem; opacity:0.75;">
+            — Martin Hanispak
+        </p>
+
     </div>
 
-    <footer style="text-align:center; padding:60px 20px; color:#666;">
+    <footer style="text-align:center; padding:80px 20px 50px; color:#666;">
         <a href="index.html"><img src="images/Memory.webp" style="height:40px; border-radius:8px;"></a>
         <p>Home</p>
         <p>© 2026 Martin Hanispak</p>
     </footer>
-    <script>
-if (localStorage.getItem('darkMode') === 'true') {
-    const theme = localStorage.getItem('theme') || 'very';
-    document.body.classList.add('dark-' + theme);
-}
-</script>
+
 </body>
 </html>
-<script>
-if (localStorage.getItem('darkMode') === 'true') {
-    document.body.classList.add('dark');
-}
-</script>
