@@ -6,9 +6,6 @@
     <title>Martin Hanispak — Thoughts</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .section {
-            margin-bottom: 80px;
-        }
         .quotes-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -26,20 +23,6 @@
         }
         body.dark .quote-card {
             background: #1f1f1f;
-        }
-        .view-all {
-            display: inline-block;
-            margin-top: 40px;
-            padding: 12px 28px;
-            background: #222;
-            color: white;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-        }
-        body.dark .view-all {
-            background: #ddd;
-            color: #111;
         }
     </style>
 </head>
@@ -59,7 +42,7 @@
         <p style="text-align:center; opacity:0.7; margin-bottom:70px;">Reflections and moments of clarity</p>
 
         <!-- Quotes Section -->
-        <div class="section">
+        <div style="margin-bottom:80px;">
             <h2 style="font-family: 'Playfair Display', serif; font-weight:400; margin-bottom:30px;">Quotes</h2>
             
             <div class="quotes-grid">
@@ -73,11 +56,13 @@
                 <div class="quote-card">“Believing in myself like no one else, yet painting for everyone else.”</div>
             </div>
 
-            <a href="#" class="view-all">View all quotes →</a>
+            <p style="text-align:center; margin-top:50px; opacity:0.75; font-size:1.05rem;">
+                — All quotes by Martin Hanispak
+            </p>
         </div>
 
-        <!-- Thoughts Section (ready for future long texts) -->
-        <div class="section">
+        <!-- Thoughts Section -->
+        <div>
             <h2 style="font-family: 'Playfair Display', serif; font-weight:400; margin-bottom:30px;">Thoughts</h2>
             <p style="font-size:1.15rem; line-height:1.8; color:#555;">
                 Longer reflections, essays and ideas will appear here.<br>
