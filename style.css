@@ -1,33 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&display=swap');
 
-/* =========================
-   THEME VARIABLES
-========================= */
-
 :root {
     --bg: #ffffff;
     --text: #111111;
 }
 
-/* IMPORTANT: FIXED SCOPE (must match JS body class) */
-.dark-very {
-    --bg: #0a0a0a;
-    --text: #eeeeee;
-}
-
-.dark-warm {
-    --bg: #1a140f;
-    --text: #f0e6d2;
-}
-
-.dark-cool {
-    --bg: #0f1a1f;
-    --text: #e0f0ff;
-}
-
-/* =========================
-   BASE
-========================= */
+body.dark-very { --bg: #0a0a0a; --text: #eeeeee; }
+body.dark-warm { --bg: #1a140f; --text: #f0e6d2; }
+body.dark-cool { --bg: #0f1a1f; --text: #e0f0ff; }
 
 body {
     background: var(--bg);
@@ -37,165 +17,11 @@ body {
     padding-top: 80px;
 }
 
-/* =========================
-   TOP BANNER
-========================= */
-
-.top-banner {
-    background: #f8f8f8;
-    color: #555;
-    text-align: center;
-    padding: 14px 20px;
-    font-size: 1.05rem;
-    border-bottom: 1px solid #eee;
-}
-
-.banner-link {
-    color: #0066cc;
-    text-decoration: underline;
-}
-
-/* =========================
-   THEME SWITCH
-========================= */
-
-.theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 40px;
-    z-index: 200;
-    text-align: right;
-}
-
-.theme-menu {
-    display: none;
-    margin-top: 8px;
-}
-
-.theme-btn {
-    margin: 3px;
-    padding: 5px 10px;
-    font-size: .85rem;
-}
-
-/* =========================
-   HOME TITLE
-========================= */
-
-.home-title {
-    margin: 15px 40px;
-    font-size: 2.8rem;
-    font-family: 'Playfair Display', serif;
-    font-weight: 400;
-}
-
-/* =========================
-   HOME LAYOUT
-   (FIXED ALIGNMENT ISSUE)
-========================= */
-
-.home-layout {
-    display: flex;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 40px;
-    gap: 60px;
-    align-items: flex-start;
-}
-
-/* LEFT LIST (THIS FIXES ALIGNMENT WITH "M") */
-.home-list {
-    flex: 1;
-    max-width: 520px;
-    margin: 0;
-    padding: 0;
-}
-
-/* =========================
-   THUMB ITEMS
-========================= */
-
-.item {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    padding: 20px 0;
-    text-decoration: none;
-    color: var(--text);
-    transition: all .35s ease;
-}
-
-/* subtle hover only (no layout jump) */
-.item:hover {
-    transform: translateX(6px);
-}
-
-.item img {
-    width: 110px;
-    height: 110px;
-    object-fit: cover;
-    border-radius: 12px;
-    transition: transform .35s ease;
-}
-
-/* IMPORTANT FIX:
-   removed size jump that was breaking alignment */
-.item:hover img {
-    transform: scale(1.05);
-}
-
-.item span {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.55rem;
-}
-
-/* =========================
-   QUOTE SECTION
-========================= */
-
-.quote-section {
-    flex: 1;
-    max-width: 420px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 520px;
-    text-align: center;
-}
-
-.quote-divider {
-    border: none;
-    border-top: 1px solid #ddd;
-    width: 100%;
-    margin: 0 auto 20px;
-}
-
-.quote-text {
-    font-style: italic;
-    font-size: 1.15rem;
-    margin-bottom: 25px;
-}
-
-/* FIXED IMAGE RESPONSIVENESS */
-#quote-image {
-    width: 100%;
-    max-width: 480px;
-    aspect-ratio: 1;
-    object-fit: cover;
-    border-radius: 12px;
-    margin: 30px auto 25px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-/* =========================
-   NAV (FIXED HEADER ISSUE)
-========================= */
-
+/* NAV */
 nav {
     background: var(--bg);
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-    position: sticky;   /* FIX: no more floating line */
+    border-bottom: 1px solid #eeeeee;
+    position: fixed;
     top: 0;
     width: 100%;
     z-index: 100;
@@ -207,6 +33,7 @@ nav {
     padding: 0 40px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 80px;
 }
 
@@ -215,56 +42,128 @@ nav {
     border-radius: 8px;
 }
 
-/* =========================
-   GALLERY
-========================= */
+/* HOME THUMBNAILS */
+.home-list {
+    max-width: 900px;
+    margin: 10px 40px 0 40px;
+    padding: 0;
+}
 
+.item {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 20px 0;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.4s ease;
+}
+
+.item:hover {
+    transform: scale(1.04);
+}
+
+.item img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: all 0.5s ease;
+}
+
+.item:hover img {
+    width: 170px;
+    height: 170px;
+    transform: translateX(+45px);
+}
+
+.item span {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.55rem;
+    font-weight: 400;
+}
+
+/* GALLERY - Clean thumbnails, no white gaps, better spacing */
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 50px;
+    gap: 50px;                    /* more breathing room between paintings */
     max-width: 1300px;
     margin: 80px auto;
     padding: 0 40px;
+    overflow: visible;
+    align-items: start;           /* prevents stretching */
 }
 
 .gallery-item {
+    text-decoration: none;
     border-radius: 18px;
     overflow: hidden;
     position: relative;
+    z-index: 10;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    background: var(--bg);
-    transition: transform .3s ease;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+    background: var(--bg);        /* prevents white gaps */
 }
 
 .gallery-item:hover {
-    transform: scale(1.06);
+    transform: scale(1.08);
+    z-index: 20;
 }
 
-/* =========================
-   LIGHTBOX
-========================= */
+.gallery-item img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 18px;
+    transition: transform 0.5s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
 
+.gallery-item:hover img {
+    transform: scale(1.12);
+}
+
+/* LIGHTBOX with better zoom lens */
 .lightbox {
     position: fixed;
-    inset: 0;
+    top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0,0,0,0.95);
     display: none;
     align-items: center;
     justify-content: center;
     z-index: 200;
+    overflow: hidden;
 }
 
 .lightbox img {
     max-width: 90%;
     max-height: 90%;
     border-radius: 12px;
+    cursor: none;
 }
 
-/* =========================
-   SWITCH
-========================= */
+#zoom-lens {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border: 4px solid rgba(255,255,255,0.95);
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    pointer-events: none;
+    display: none;
+    overflow: hidden;
+}
 
+#zoom-lens img {
+    position: absolute;
+    width: 700%;
+    height: 700%;
+    object-fit: none;
+}
+
+/* iPhone slider */
 .switch {
     position: relative;
     display: inline-block;
@@ -280,36 +179,34 @@ nav {
 
 .slider {
     position: absolute;
-    inset: 0;
-    background: #ccc;
-    border-radius: 34px;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
     transition: .4s;
+    border-radius: 34px;
 }
 
 .slider:before {
-    content: "";
     position: absolute;
+    content: "";
     height: 26px;
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background: white;
-    border-radius: 50%;
+    background-color: white;
     transition: .4s;
+    border-radius: 50%;
 }
 
 input:checked + .slider {
-    background: #2196F3;
+    background-color: #2196F3;
 }
 
 input:checked + .slider:before {
     transform: translateX(26px);
 }
 
-/* =========================
-   FOOTER
-========================= */
-
+/* FOOTER */
 footer {
     text-align: center;
     padding: 60px 20px 40px;
@@ -320,19 +217,4 @@ footer {
 footer a img {
     height: 40px;
     border-radius: 8px;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 900px) {
-    .home-layout {
-        flex-direction: column;
-        padding: 0 20px;
-    }
-
-    #quote-image {
-        width: 100%;
-    }
 }
