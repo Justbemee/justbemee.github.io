@@ -20,122 +20,44 @@ directly.
 </div>
 
 <div class="theme-toggle">
+    <label class="switch">
+        <input type="checkbox" id="dark-toggle">
+        <span class="slider"></span>
+    </label>
 
-<label class="switch">
-<input type="checkbox" id="dark-toggle">
-<span class="slider"></span>
-</label>
-
-<div id="theme-menu" class="theme-menu">
-
-<button class="theme-btn" onclick="setTheme('very')">Dark</button>
-<button class="theme-btn" onclick="setTheme('warm')">Warm</button>
-<button class="theme-btn" onclick="setTheme('cool')">Cool</button>
-
+    <div id="theme-menu" class="theme-menu">
+        <button class="theme-btn" onclick="setTheme('very')">Dark</button>
+        <button class="theme-btn" onclick="setTheme('warm')">Warm</button>
+        <button class="theme-btn" onclick="setTheme('cool')">Cool</button>
+    </div>
 </div>
 
-</div>
-
-<h1 class="home-title">
-Martin Hanispak
-</h1>
+<h1 class="home-title">Martin Hanispak</h1>
 
 <div class="home-layout">
 
 <div class="home-list">
 
-<a href="about.html" class="item">
-<img src="images/Memory.webp">
-<span>About</span>
-</a>
-
-<a href="gallery.html" class="item">
-<img src="images/Lost Acrylic on Canvas.webp">
-<span>Portfolio</span>
-</a>
-
-<a href="contact.html" class="item">
-<img src="images/Love.webp">
-<span>Contact</span>
-</a>
-
-<a href="thoughts.html" class="item">
-<img src="images/The face of Flower.webp">
-<span>Thoughts</span>
-</a>
-
-<a href="consulting.html" class="item">
-<img src="images/Acrylic on Canvas Reused.webp">
-<span>Consulting</span>
-</a>
+<a href="about.html" class="item"><img src="images/Memory.webp"><span>About</span></a>
+<a href="gallery.html" class="item"><img src="images/Lost Acrylic on Canvas.webp"><span>Portfolio</span></a>
+<a href="contact.html" class="item"><img src="images/Love.webp"><span>Contact</span></a>
+<a href="thoughts.html" class="item"><img src="images/The face of Flower.webp"><span>Thoughts</span></a>
+<a href="consulting.html" class="item"><img src="images/Acrylic on Canvas Reused.webp"><span>Consulting</span></a>
 
 </div>
 
 <div class="quote-section">
-
 <hr class="quote-divider">
-
 <p class="quote-text" id="quote-text"></p>
-
-<img id="quote-image" src="" alt="">
-
+<img id="quote-image" src="">
 </div>
 
 </div>
+
+<script src="theme.js"></script>
 
 <script>
-
-/* =========================
-   THEME SYSTEM (FIXED)
-========================= */
-
-const toggle = document.getElementById('dark-toggle');
-const menu = document.getElementById('theme-menu');
-
-function applyTheme(theme) {
-    document.body.classList.remove('dark-very','dark-warm','dark-cool');
-    document.body.classList.add('dark-' + theme);
-}
-
-/* load saved state */
-const savedDark = localStorage.getItem('darkMode');
-const savedTheme = localStorage.getItem('theme') || 'very';
-
-if (savedDark === 'true') {
-    toggle.checked = true;
-    menu.style.display = 'block';
-    applyTheme(savedTheme);
-}
-
-/* toggle on/off */
-toggle.addEventListener('change', () => {
-    const isDark = toggle.checked;
-
-    if (isDark) {
-        applyTheme(localStorage.getItem('theme') || 'very');
-        menu.style.display = 'block';
-    } else {
-        document.body.classList.remove('dark-very','dark-warm','dark-cool');
-        menu.style.display = 'none';
-    }
-
-    localStorage.setItem('darkMode', isDark);
-});
-
-/* set theme */
-function setTheme(theme) {
-    applyTheme(theme);
-    localStorage.setItem('theme', theme);
-    localStorage.setItem('darkMode', 'true');
-    toggle.checked = true;
-    menu.style.display = 'block';
-}
-
-/* =========================
-   QUOTES
-========================= */
-
-const quotes = [
+const quotes=[
 {text:"The artist must train not only his eye but also his soul."},
 {text:"Nature loves courage."},
 {text:"Stop thinking and start doing."},
@@ -143,52 +65,24 @@ const quotes = [
 {text:"You are not a drop in the ocean. You are the entire ocean in a drop."}
 ];
 
-const allImages = [
+const allImages=[
 "images/Memory.webp",
 "images/Lost Acrylic on Canvas.webp",
 "images/Love.webp",
 "images/The face of Flower.webp",
-"images/Acrylic on Canvas Reused.webp",
-"images/Dinosaurus.webp",
-"images/We have no user guide to life, so let's just do it.webp",
-"images/bitcoin.webp",
-"images/connect.webp",
-"images/disguise.webp",
-"images/Factory work must be replaced by AGI.webp",
-"images/Fear is limitation - Love is infinity.webp",
-"images/Finding your footing when you're in over your head..webp",
-"images/Fireworks.webp",
-"images/Heart.webp",
-"images/Hierarchy Monster.webp",
-"images/Human lives becomes beautiful not because we do the right thinks. Human lives becomes beautiful because we put our heart in to what we are doing..webp",
-"images/It is good if you are confused. It means you are constantly stepping into new territory.webp",
-"images/Lost Acrylic on Canvas.webp",
-"images/Love is crowded, love is unexpected, and love knows no boundaries .webp",
-"images/Love is not about somebody, it is about you being truly pleasant..webp",
-"images/Mind will play all kinds of games with you. So if you feel like you _lost your head_ than work with your Physical body. Which is the most reliable tool to achieve balance..webp",
-"images/Now rolling dust-free and shared with all positive Bitclout community.webp",
-"images/Principles .webp",
-"images/The face of Flower.webp",
-"images/We must understand the importance of freedom while we have it..webp",
-"images/We suffer more in imagination than in reality.webp",
-"images/You are on the right track now, do not turn..webp"
+"images/Acrylic on Canvas Reused.webp"
 ];
 
-let current = 0;
+let i=0;
 
-function showQuote() {
-    const q = quotes[current % quotes.length];
-    const img = allImages[current % allImages.length];
-
-    document.getElementById('quote-text').textContent = '"' + q.text + '"';
-    document.getElementById('quote-image').src = img;
-
-    current++;
+function showQuote(){
+document.getElementById("quote-text").textContent='"'+quotes[i%quotes.length].text+'"';
+document.getElementById("quote-image").src=allImages[i%allImages.length];
+i++;
 }
 
 showQuote();
-setInterval(showQuote, 8000);
-
+setInterval(showQuote,8000);
 </script>
 
 </body>
