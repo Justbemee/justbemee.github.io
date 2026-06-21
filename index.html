@@ -85,95 +85,65 @@ Martin Hanispak
 
 <script>
 
+/* =========================
+   THEME SYSTEM (FIXED)
+========================= */
+
 const toggle = document.getElementById('dark-toggle');
 const menu = document.getElementById('theme-menu');
 
-/* =========================
-   APPLY SAVED THEME ON LOAD
-========================= */
+function applyTheme(theme) {
+    document.body.classList.remove('dark-very','dark-warm','dark-cool');
+    document.body.classList.add('dark-' + theme);
+}
 
+/* load saved state */
 const savedDark = localStorage.getItem('darkMode');
-const savedTheme = localStorage.getItem('theme');
+const savedTheme = localStorage.getItem('theme') || 'very';
 
 if (savedDark === 'true') {
     toggle.checked = true;
     menu.style.display = 'block';
-
-    document.body.classList.add(
-        'dark-' + (savedTheme || 'very')
-    );
+    applyTheme(savedTheme);
 }
 
-/* =========================
-   TOGGLE DARK MODE
-========================= */
-
+/* toggle on/off */
 toggle.addEventListener('change', () => {
+    const isDark = toggle.checked;
 
-const isDark = toggle.checked;
+    if (isDark) {
+        applyTheme(localStorage.getItem('theme') || 'very');
+        menu.style.display = 'block';
+    } else {
+        document.body.classList.remove('dark-very','dark-warm','dark-cool');
+        menu.style.display = 'none';
+    }
 
-document.body.classList.remove(
-'dark-very',
-'dark-warm',
-'dark-cool'
-);
-
-if (isDark) {
-
-const theme = localStorage.getItem('theme') || 'very';
-
-document.body.classList.add('dark-' + theme);
-
-menu.style.display = 'block';
-
-} else {
-
-menu.style.display = 'none';
-
-}
-
-localStorage.setItem('darkMode', isDark);
-
+    localStorage.setItem('darkMode', isDark);
 });
 
-/* =========================
-   SET THEME
-========================= */
-
+/* set theme */
 function setTheme(theme) {
-
-document.body.classList.remove(
-'dark-very',
-'dark-warm',
-'dark-cool'
-);
-
-document.body.classList.add('dark-' + theme);
-
-localStorage.setItem('theme', theme);
-localStorage.setItem('darkMode', 'true');
-
-toggle.checked = true;
-menu.style.display = 'block';
-
+    applyTheme(theme);
+    localStorage.setItem('theme', theme);
+    localStorage.setItem('darkMode', 'true');
+    toggle.checked = true;
+    menu.style.display = 'block';
 }
 
 /* =========================
-   QUOTE SLIDER
+   QUOTES
 ========================= */
 
 const quotes = [
-
 {text:"The artist must train not only his eye but also his soul."},
 {text:"Nature loves courage."},
 {text:"Stop thinking and start doing."},
 {text:"The only way to make sense out of change is to plunge into it."},
 {text:"You are not a drop in the ocean. You are the entire ocean in a drop."}
-
 ];
 
 const allImages = [
-
 "images/Memory.webp",
 "images/Lost Acrylic on Canvas.webp",
 "images/Love.webp",
@@ -202,23 +172,18 @@ const allImages = [
 "images/We must understand the importance of freedom while we have it..webp",
 "images/We suffer more in imagination than in reality.webp",
 "images/You are on the right track now, do not turn..webp"
-
 ];
 
 let current = 0;
 
 function showQuote() {
+    const q = quotes[current % quotes.length];
+    const img = allImages[current % allImages.length];
 
-const q = quotes[current % quotes.length];
-const img = allImages[current % allImages.length];
+    document.getElementById('quote-text').textContent = '"' + q.text + '"';
+    document.getElementById('quote-image').src = img;
 
-document.getElementById('quote-text').textContent =
-'"' + q.text + '"';
-
-document.getElementById('quote-image').src = img;
-
-current++;
-
+    current++;
 }
 
 showQuote();
