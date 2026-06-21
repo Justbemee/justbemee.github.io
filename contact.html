@@ -1,67 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Martin Hanispak — Contact</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <nav>
-    <div class="nav-container">
-        <a href="index.html" class="nav-logo">
-            <img src="images/Memory.webp" alt="Martin Hanispak">
-        </a>
-    </div>
+<div class="nav-container">
+<a href="index.html" class="nav-logo">
+<img src="images/Memory.webp">
+</a>
+</div>
 </nav>
 
-<div style="max-width:1000px; margin:100px auto; padding:0 40px;">
+<div style="max-width:1000px;margin:100px auto;padding:0 40px;">
 
-    <h1 style="font-family: 'Playfair Display', serif; font-weight:400; text-align:center; margin-bottom:30px;">
-        Contact Me
-    </h1>
+<h1>Contact Me</h1>
 
-    <p style="text-align:center; max-width:620px; margin:0 auto 70px; color:inherit; font-size:1.1rem;">
-        Interested in a painting, collaboration, or just want to say hello? I’d love to hear from you.
-    </p>
+<p>Interested in a painting or collaboration?</p>
 
-    <form action="https://formspree.io/f/mpqoowwy" method="POST" style="max-width:620px; margin:0 auto 80px;">
+<form action="https://formspree.io/f/mpqoowwy" method="POST">
 
-        <input type="text" name="name" placeholder="Your Name" required
-               style="width:100%; padding:16px; margin-bottom:20px; border:1px solid #ddd; border-radius:8px; font-size:1.05rem;">
+<input type="text" name="name" placeholder="Name">
+<input type="email" name="email" placeholder="Email">
+<textarea name="message" placeholder="Message"></textarea>
 
-        <input type="email" name="email" placeholder="Your Email" required
-               style="width:100%; padding:16px; margin-bottom:20px; border:1px solid #ddd; border-radius:8px; font-size:1.05rem;">
+<button type="submit">Send</button>
 
-        <textarea name="message" placeholder="Your Message" rows="7" required
-                  style="width:100%; padding:16px; margin-bottom:30px; border:1px solid #ddd; border-radius:8px; font-size:1.05rem; resize:vertical;"></textarea>
+</form>
 
-        <button type="submit"
-                style="width:100%; padding:16px; background:#111; color:white; border:none; border-radius:8px; font-size:1.1rem; cursor:pointer;">
-            Send Message
-        </button>
-
-    </form>
-
-    <div style="margin:50px 0; text-align:center; color:inherit; font-size:1.1rem;">
-        — OR —
-    </div>
-
-    <div style="text-align:center; font-size:1.15rem; line-height:1.8;">
-        📧 <a href="mailto:discoverytwo@proton.me" style="color:#0066cc;">discoverytwo@proton.me</a><br><br>
-        📱 <a href="tel:+421944150131" style="color:#0066cc;">+421 944 150 131</a>
-    </div>
+<div style="text-align:center;margin-top:40px;">
+📧 discoverytwo@proton.me<br>
+📱 +421 944 150 131
+</div>
 
 </div>
 
-<footer style="text-align:center; padding:80px 20px 50px; color:inherit;">
-    <a href="index.html">
-        <img src="images/Memory.webp" style="height:40px; border-radius:8px;">
-    </a>
-    <p style="margin:12px 0 8px;">Home</p>
-    <p>© 2026 Martin Hanispak</p>
+<footer style="text-align:center;padding:60px 20px;">
+<a href="index.html"><img src="images/Memory.webp" style="height:40px;"></a>
+<p>© 2026 Martin Hanispak</p>
 </footer>
 
 <script src="theme.js"></script>
