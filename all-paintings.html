@@ -11,13 +11,15 @@
 
 <script>
 (function () {
-    const savedTheme = localStorage.getItem('theme');
-    const savedDark = localStorage.getItem('darkMode');
 
-    if (savedDark === 'true') {
-        const theme = savedTheme || 'very';
-        document.body.classList.add('dark-' + theme);
-    }
+const savedTheme = localStorage.getItem('theme');
+const savedDark = localStorage.getItem('darkMode');
+
+if (savedDark === 'true') {
+    const theme = savedTheme || 'very';
+    document.body.classList.add('dark-' + theme);
+}
+
 })();
 </script>
 
@@ -31,7 +33,7 @@
 
 <div style="max-width:1300px; margin:80px auto; padding:0 40px;">
 
-    <h1 style="font-family: 'Playfair Display', serif; font-weight:400; text-align:center; margin-bottom:80px; color:inherit;">
+    <h1 style="font-family: 'Playfair Display', serif; font-weight:400; text-align:center; margin-bottom:80px;">
         All Paintings
     </h1>
 
@@ -77,15 +79,11 @@
     </div>
 </div>
 
-<footer style="text-align:center; padding:60px 20px; color:inherit;">
-    <a href="index.html">
-        <img src="images/Memory.webp" style="height:40px; border-radius:8px;">
-    </a>
+<footer style="text-align:center; padding:60px 20px; color:#666;">
+    <a href="index.html"><img src="images/Memory.webp" style="height:40px; border-radius:8px;"></a>
     <p>Home</p>
     <p>© 2026 Martin Hanispak</p>
 </footer>
-
-<script src="theme.js"></script>
 
 <script>
 document.querySelectorAll('.gallery-item').forEach(item => {
