@@ -6,6 +6,22 @@
     <title>All Paintings — Martin Hanispak</title>
     <link rel="stylesheet" href="style.css">
 </head>
+    <script>
+(function () {
+
+const savedTheme = localStorage.getItem('theme');
+const savedDark = localStorage.getItem('darkMode');
+
+if (savedDark === 'true') {
+    document.body.classList.add('dark-very');
+
+    if (savedTheme) {
+        document.body.classList.add('dark-' + savedTheme);
+    }
+}
+
+})();
+</script>
 <body>
 
     <nav>
