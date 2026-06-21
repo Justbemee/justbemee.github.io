@@ -28,17 +28,9 @@ directly.
 
 <div id="theme-menu" class="theme-menu">
 
-<button class="theme-btn" onclick="setTheme('very')">
-Dark
-</button>
-
-<button class="theme-btn" onclick="setTheme('warm')">
-Warm
-</button>
-
-<button class="theme-btn" onclick="setTheme('cool')">
-Cool
-</button>
+<button class="theme-btn" onclick="setTheme('very')">Dark</button>
+<button class="theme-btn" onclick="setTheme('warm')">Warm</button>
+<button class="theme-btn" onclick="setTheme('cool')">Cool</button>
 
 </div>
 
@@ -83,15 +75,9 @@ Martin Hanispak
 
 <hr class="quote-divider">
 
-<p
-class="quote-text"
-id="quote-text">
-</p>
+<p class="quote-text" id="quote-text"></p>
 
-<img
-id="quote-image"
-src=""
-alt="">
+<img id="quote-image" src="" alt="">
 
 </div>
 
@@ -99,22 +85,32 @@ alt="">
 
 <script>
 
-const toggle =
-document.getElementById(
-'dark-toggle'
-);
+const toggle = document.getElementById('dark-toggle');
+const menu = document.getElementById('theme-menu');
 
-const menu =
-document.getElementById(
-'theme-menu'
-);
+/* =========================
+   APPLY SAVED THEME ON LOAD
+========================= */
 
-toggle.addEventListener(
-'change',
-()=>{
+const savedDark = localStorage.getItem('darkMode');
+const savedTheme = localStorage.getItem('theme');
 
-const isDark=
-toggle.checked;
+if (savedDark === 'true') {
+    toggle.checked = true;
+    menu.style.display = 'block';
+
+    document.body.classList.add(
+        'dark-' + (savedTheme || 'very')
+    );
+}
+
+/* =========================
+   TOGGLE DARK MODE
+========================= */
+
+toggle.addEventListener('change', () => {
+
+const isDark = toggle.checked;
 
 document.body.classList.remove(
 'dark-very',
@@ -122,58 +118,29 @@ document.body.classList.remove(
 'dark-cool'
 );
 
-if(isDark){
+if (isDark) {
 
-const theme=
-localStorage.getItem(
-'theme'
-)||'very';
+const theme = localStorage.getItem('theme') || 'very';
 
-document.body.classList.add(
-'dark-'+theme
-);
+document.body.classList.add('dark-' + theme);
 
-menu.style.display='block';
+menu.style.display = 'block';
 
-}else{
+} else {
 
-menu.style.display='none';
+menu.style.display = 'none';
 
 }
 
-localStorage.setItem(
-'darkMode',
-isDark
-);
+localStorage.setItem('darkMode', isDark);
 
-}
-);
+});
 
-const savedDark=
-localStorage.getItem(
-'darkMode'
-);
+/* =========================
+   SET THEME
+========================= */
 
-const savedTheme=
-localStorage.getItem(
-'theme'
-);
-
-if(savedDark==='true'){
-
-toggle.checked=true;
-
-document.body.classList.add(
-'dark-'+(
-savedTheme||
-'very'
-));
-
-menu.style.display='block';
-
-}
-
-function setTheme(theme){
+function setTheme(theme) {
 
 document.body.classList.remove(
 'dark-very',
@@ -181,138 +148,81 @@ document.body.classList.remove(
 'dark-cool'
 );
 
-document.body.classList.add(
-'dark-'+theme
-);
+document.body.classList.add('dark-' + theme);
 
-localStorage.setItem(
-'theme',
-theme
-);
+localStorage.setItem('theme', theme);
+localStorage.setItem('darkMode', 'true');
 
-localStorage.setItem(
-'darkMode',
-'true'
-);
-
-toggle.checked=true;
-
-menu.style.display='block';
+toggle.checked = true;
+menu.style.display = 'block';
 
 }
 
-const quotes=[
+/* =========================
+   QUOTE SLIDER
+========================= */
+
+const quotes = [
 
 {text:"The artist must train not only his eye but also his soul."},
-
 {text:"Nature loves courage."},
-
 {text:"Stop thinking and start doing."},
-
 {text:"The only way to make sense out of change is to plunge into it."},
-
 {text:"You are not a drop in the ocean. You are the entire ocean in a drop."}
 
 ];
 
-const allImages=[
+const allImages = [
 
 "images/Memory.webp",
-
 "images/Lost Acrylic on Canvas.webp",
-
 "images/Love.webp",
-
 "images/The face of Flower.webp",
-
 "images/Acrylic on Canvas Reused.webp",
-
 "images/Dinosaurus.webp",
-
 "images/We have no user guide to life, so let's just do it.webp",
-
 "images/bitcoin.webp",
-
 "images/connect.webp",
-
 "images/disguise.webp",
-
 "images/Factory work must be replaced by AGI.webp",
-
 "images/Fear is limitation - Love is infinity.webp",
-
 "images/Finding your footing when you're in over your head..webp",
-
 "images/Fireworks.webp",
-
 "images/Heart.webp",
-
 "images/Hierarchy Monster.webp",
-
 "images/Human lives becomes beautiful not because we do the right thinks. Human lives becomes beautiful because we put our heart in to what we are doing..webp",
-
 "images/It is good if you are confused. It means you are constantly stepping into new territory.webp",
-
 "images/Lost Acrylic on Canvas.webp",
-
 "images/Love is crowded, love is unexpected, and love knows no boundaries .webp",
-
 "images/Love is not about somebody, it is about you being truly pleasant..webp",
-
 "images/Mind will play all kinds of games with you. So if you feel like you _lost your head_ than work with your Physical body. Which is the most reliable tool to achieve balance..webp",
-
 "images/Now rolling dust-free and shared with all positive Bitclout community.webp",
-
 "images/Principles .webp",
-
 "images/The face of Flower.webp",
-
 "images/We must understand the importance of freedom while we have it..webp",
-
 "images/We suffer more in imagination than in reality.webp",
-
 "images/You are on the right track now, do not turn..webp"
 
 ];
 
-let current=0;
+let current = 0;
 
-function showQuote(){
+function showQuote() {
 
-const q=
-quotes[
-current%
-quotes.length
-];
+const q = quotes[current % quotes.length];
+const img = allImages[current % allImages.length];
 
-const img=
-allImages[
-current%
-allImages.length
-];
+document.getElementById('quote-text').textContent =
+'"' + q.text + '"';
 
-document.getElementById(
-'quote-text'
-).textContent=
-'"'+
-q.text+
-'"';
-
-document.getElementById(
-'quote-image'
-).src=
-img;
+document.getElementById('quote-image').src = img;
 
 current++;
 
 }
 
 showQuote();
-
-setInterval(
-showQuote,
-8000
-);
+setInterval(showQuote, 8000);
 
 </script>
 
