@@ -3,86 +3,30 @@
     const menu = document.getElementById('theme-menu');
     const msg = document.getElementById('theme-message');
     const timerBox = document.getElementById('theme-timer');
-    const toggleUI = document.querySelector('.switch');
+
+    const toggleUI = document.querySelector(".switch");
 
     let themeTimerInterval = null;
     let themeTimeLeft = 15;
-    let themeLocked = false;
+
+    let jokeInterval = null;
 
     const jokes = [
-        "Choose wisely… the internet is watching 👀",
-        "No pressure… but also yes pressure 😄",
-        "Dark mode judges your taste.",
-        "Warm mode says you're emotional today.",
-        "Cool mode respects your confidence.",
-        "Time is an illusion… but this timer is not.",
+        "Choose wisely…😄the internet is watching👀",
+        "No pressure…,but also yes pressure 😄",
+        "Dark mode judges your taste 😄.",
         "Pick before the pixels get impatient.",
-        "The UI is mildly judging your hesitation."
+        "Cool mode approves your logic👀."
     ];
 
-    function getRandomJoke() {
-        return jokes[Math.floor(Math.random() * jokes.length)];
-    }
+    let jokeIndex = 0;
 
     function applyTheme(theme) {
         document.body.classList.remove('dark-very', 'dark-warm', 'dark-cool');
         document.body.classList.add('dark-' + theme);
     }
 
-    function startThemeCountdown() {
-        themeTimeLeft = 15;
-        themeLocked = false;
-
-        if (!menu || !msg || !timerBox) return;
-
-        menu.style.display = "block";
-        msg.style.display = "block";
-        timerBox.style.display = "block";
-
-        msg.textContent = "You have 15 seconds to choose your dark mode 😄";
-        timerBox.textContent = `Time left: ${themeTimeLeft}s`;
-
-        clearInterval(themeTimerInterval);
-
-        themeTimerInterval = setInterval(() => {
-            themeTimeLeft--;
-
-            if (themeTimeLeft > 0) {
-
-                // LAST 4 SECONDS → FLASH ONLY TOGGLE
-                if (themeTimeLeft <= 4) {
-                    if (toggleUI) toggleUI.classList.add("flash-toggle");
-
-                    msg.textContent = "HURRY 😄 choose your vibe!";
-                    timerBox.textContent = `FINAL COUNTDOWN: ${themeTimeLeft}s`;
-
-                } else {
-                    if (toggleUI) toggleUI.classList.remove("flash-toggle");
-
-                    timerBox.textContent = `Time left: ${themeTimeLeft}s`;
-                    msg.textContent = getRandomJoke();
-                }
-
-            } else {
-                clearInterval(themeTimerInterval);
-                themeLocked = true;
-
-                if (toggleUI) toggleUI.classList.add("flash-toggle");
-
-                menu.style.display = "none";
-                msg.textContent = "Too slow 😈 the UI has decided for you.";
-                timerBox.textContent = "";
-
-                setTimeout(() => {
-                    if (toggleUI) toggleUI.classList.remove("flash-toggle");
-                    msg.style.display = "none";
-                    timerBox.style.display = "none";
-                }, 2500);
-            }
-        }, 1000);
-    }
-
-    // APPLY ON LOAD
+    // Load saved theme
     const savedDark = localStorage.getItem('darkMode') === 'true';
     const savedTheme = localStorage.getItem('theme') || 'very';
 
@@ -90,33 +34,24 @@
         applyTheme(savedTheme);
     }
 
-    // TOGGLE HANDLING
     if (toggle) {
         toggle.checked = savedDark;
-        menu.style.display = savedDark ? 'block' : 'none';
 
         toggle.addEventListener('change', () => {
             const isDark = toggle.checked;
 
             if (isDark) {
                 applyTheme(localStorage.getItem('theme') || 'very');
-                menu.style.display = 'block';
-
-                // START YOUR GAME HERE
                 startThemeCountdown();
-
             } else {
+                stopAll();
                 document.body.classList.remove('dark-very', 'dark-warm', 'dark-cool');
-                menu.style.display = 'none';
-
-                clearInterval(themeTimerInterval);
             }
 
             localStorage.setItem('darkMode', isDark);
         });
     }
 
-    // THEME SELECTION (USER PICKS EARLY = STOP TIMER)
     window.setTheme = function (theme) {
         localStorage.setItem('theme', theme);
         localStorage.setItem('darkMode', 'true');
@@ -124,16 +59,79 @@
         applyTheme(theme);
 
         if (toggle) toggle.checked = true;
-        if (menu) menu.style.display = 'block';
 
-        // STOP GAME IF ACTIVE
-        clearInterval(themeTimerInterval);
-
-        if (msg) msg.style.display = "none";
-        if (timerBox) timerBox.style.display = "none";
-        if (toggleUI) toggleUI.classList.remove("flash-toggle");
-
-        themeLocked = false;
+        if (msg) {
+            msg.style.display = "block";
+            msg.textContent = "Selected ✔";
+        }
     };
+
+    function startThemeCountdown() {
+        themeTimeLeft = 15;
+        jokeIndex = 0;
+
+        clearInterval(themeTimerInterval);
+        clearInterval(jokeInterval);
+
+        if (menu) menu.style.display = "block";
+        if (msg) msg.style.display = "block";
+        if (timerBox) timerBox.style.display = "block";
+
+        msg.textContent = "You have 15 seconds to choose your dark mode 😄";
+        timerBox.textContent = `Time left: ${themeTimeLeft}s`;
+
+        themeTimerInterval = setInterval(() => {
+            themeTimeLeft--;
+
+            // Phase 1: intro stays ~8s
+            if (themeTimeLeft > 11) {
+                timerBox.textContent = `Time left: ${themeTimeLeft}s`;
+            }
+
+            // Phase 2: jokes (every ~2.5s)
+            else if (themeTimeLeft > 4) {
+                if (!jokeInterval) {
+                    jokeInterval = setInterval(() => {
+                        msg.textContent = jokes[jokeIndex % jokes.length];
+                        jokeIndex++;
+                    }, 2500);
+                }
+
+                timerBox.textContent = `Time left: ${themeTimeLeft}s`;
+            }
+
+            // Phase 3: last 4 seconds
+            else if (themeTimeLeft > 0) {
+                clearInterval(jokeInterval);
+
+                if (toggleUI) toggleUI.classList.add("flash-toggle");
+
+                msg.textContent = "HURRY 😄 choose your vibe!";
+                timerBox.textContent = `FINAL COUNTDOWN: ${themeTimeLeft}s`;
+            }
+
+            // End
+            else {
+                stopAll();
+
+                msg.textContent = "Too slow 😈 the UI has decided.";
+                timerBox.textContent = "";
+
+                setTimeout(() => {
+                    if (menu) menu.style.display = "none";
+                    if (msg) msg.style.display = "none";
+                    if (timerBox) timerBox.style.display = "none";
+                    if (toggleUI) toggleUI.classList.remove("flash-toggle");
+                }, 2000);
+            }
+
+        }, 1000);
+    }
+
+    function stopAll() {
+        clearInterval(themeTimerInterval);
+        clearInterval(jokeInterval);
+        jokeInterval = null;
+    }
 
 })();
