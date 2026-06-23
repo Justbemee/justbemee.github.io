@@ -84,9 +84,9 @@
             themeTimeLeft--;
 
         // Phase 1: intro (first 4 seconds)
-if (themeTimeLeft > 11) {
-    timerBox.textContent = `Time left: ${themeTimeLeft}s`;
-}
+        if (themeTimeLeft > 9) {
+            timerBox.textContent = `Time left: ${themeTimeLeft}s`;
+        }
 
             // Phase 2: jokes (every ~2.5s)
             else if (themeTimeLeft > 4) {
