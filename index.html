@@ -24,17 +24,22 @@
     <a href="contact.html" style="color:#0066cc; text-decoration:underline;">get in touch</a> directly.
 </div>
 
-    <!-- Dark mode slider -->
-    <div style="position:fixed; top:20px; right:40px; z-index:200; text-align:right;">
-        <label class="switch">
-            <input type="checkbox" id="dark-toggle">
-            <span class="slider"></span>
-        </label>
-        <div id="theme-menu" style="display:none; margin-top:8px;">
-            <button onclick="setTheme('very')" style="margin:3px; padding:5px 10px; font-size:0.85rem;">Dark</button>
-            <button onclick="setTheme('warm')" style="margin:3px; padding:5px 10px; font-size:0.85rem;">Warm</button>
-            <button onclick="setTheme('cool')" style="margin:3px; padding:5px 10px; font-size:0.85rem;">Cool</button>
-        </div>
+<!-- Dark mode slider -->
+<div style="position:fixed; top:20px; right:40px; z-index:200; text-align:right;">
+    <label class="switch">
+        <input type="checkbox" id="dark-toggle">
+        <span class="slider"></span>
+    </label>
+
+    <div id="theme-menu" style="display:none; margin-top:8px;">
+        <button onclick="setTheme('very')" style="margin:3px; padding:5px 10px; font-size:0.85rem;">Dark</button>
+        <button onclick="setTheme('warm')" style="margin:3px; padding:5px 10px; font-size:0.85rem;">Warm</button>
+        <button onclick="setTheme('cool')" style="margin:3px; padding:5px 10px; font-size:0.85rem;">Cool</button>
+    </div>
+
+    <div id="theme-message" style="display:none; margin-top:8px; font-size:0.85rem; color:#555;"></div>
+    <div id="theme-timer" style="display:none; margin-top:4px; font-size:0.85rem; color:#555;"></div>
+</div>
     </div>
 
     <div class="home-list">
