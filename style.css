@@ -339,3 +339,12 @@ footer a img {
     height: 40px;
     border-radius: 8px;
 }
+@keyframes flash {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); filter: brightness(1.5); }
+    100% { transform: scale(1); }
+}
+
+.flash-toggle {
+    animation: flash 0.4s infinite;
+}
