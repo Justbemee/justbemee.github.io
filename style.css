@@ -348,3 +348,64 @@ footer a img {
 .flash-toggle {
     animation: flash 0.4s infinite;
 }
+/* ===== HOME LAYOUT ===== */
+
+.home-list{
+    position:relative;
+}
+
+/* LEFT COLUMN */
+.home-list > div:first-child{
+
+    position:fixed;
+
+    top:150px;
+
+    left:80px;
+
+    width:280px;
+
+    transition:
+        opacity .6s ease,
+        transform .6s ease;
+}
+
+/* subtle fade */
+.home-list > div:first-child.scrolled{
+
+    opacity:.72;
+
+    transform:
+        translateY(10px);
+}
+
+/* RIGHT CONTENT */
+
+.quote-section{
+
+    margin-left:420px !important;
+
+    max-width:900px !important;
+
+    min-height:700px !important;
+}
+
+/* Bigger slideshow image */
+
+#quote-image{
+
+    width:620px !important;
+
+    height:620px !important;
+
+    max-width:90%;
+}
+
+/* Quote breathing room */
+
+.quote-text{
+
+    max-width:700px;
+
+    margin:auto;
+}
