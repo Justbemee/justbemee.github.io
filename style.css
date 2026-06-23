@@ -43,46 +43,169 @@ nav {
 }
 
 /* HOME THUMBNAILS */
-.home-list {
-    max-width: 900px;
-    margin: 10px 40px 0 40px;
-    padding: 0;
+/* HOME LAYOUT */
+
+.home-layout{
+    display:flex;
+    max-width:1600px;
+    margin:0 auto;
+    padding:40px 60px;
+    gap:120px;
+    align-items:flex-start;
 }
 
-.item {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    padding: 20px 0;
-    text-decoration: none;
-    color: var(--text);
-    transition: all 0.4s ease;
+/* LEFT COLUMN */
+
+.home-list{
+
+width:420px;
+
+flex-shrink:0;
+
+position:sticky;
+
+top:90px;
+
+align-self:flex-start;
+
+margin:0;
+
+padding:0;
+
 }
 
-.item:hover {
-    transform: scale(1.04);
+/* TITLE */
+
+.home-title{
+
+font-family:'Playfair Display',serif;
+
+font-size:3rem;
+
+font-weight:400;
+
+margin:0 0 50px;
+
 }
 
-.item img {
-    width: 110px;
-    height: 110px;
-    object-fit: cover;
-    border-radius: 12px;
-    transition: all 0.5s ease;
+/* MENU ITEMS */
+
+.item{
+
+display:flex;
+
+align-items:center;
+
+gap:28px;
+
+padding:22px 0;
+
+text-decoration:none;
+
+color:var(--text);
+
+transition:all .45s ease;
+
 }
 
-.item:hover img {
-    width: 170px;
-    height: 170px;
-    transform: translateX(+45px);
+.item:hover{
+
+transform:translateX(10px);
+
 }
 
-.item span {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.55rem;
-    font-weight: 400;
+.item img{
+
+width:120px;
+
+height:120px;
+
+object-fit:cover;
+
+border-radius:12px;
+
+transition:all .55s ease;
+
 }
 
+.item:hover img{
+
+width:185px;
+
+height:185px;
+
+transform:translateX(45px);
+
+}
+
+.item span{
+
+font-family:'Playfair Display',serif;
+
+font-size:1.65rem;
+
+}
+/* RIGHT SIDE */
+
+.quote-section{
+
+flex:1;
+
+max-width:none;
+
+padding-top:140px;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+}
+
+.quote-text{
+
+font-style:italic;
+
+font-size:1.45rem;
+
+max-width:700px;
+
+line-height:1.8;
+
+text-align:center;
+
+margin-bottom:60px;
+
+}
+
+#quote-image{
+
+width:min(100%,850px);
+
+height:850px;
+
+object-fit:cover;
+
+border-radius:18px;
+
+box-shadow:
+0 25px 80px
+rgba(0,0,0,.14);
+
+transition:all .8s ease;
+
+}
+
+.quote-divider{
+
+width:100%;
+
+max-width:900px;
+
+margin-bottom:40px;
+
+}
 /* GALLERY - Clean thumbnails, no white gaps, better spacing */
 .gallery {
     display: grid;
