@@ -379,26 +379,26 @@ footer a img {
         translateY(10px);
 }
 
-/* RIGHT CONTENT */
+./* RIGHT SIDE ONLY */
 
 .quote-section{
 
-    margin-left:420px !important;
+    margin-left:180px !important;
 
-    max-width:900px !important;
+    max-width:none !important;
 
-    min-height:700px !important;
+    width:auto !important;
+
+    padding-right:80px;
 }
-
-/* Bigger slideshow image */
 
 #quote-image{
 
-    width:620px !important;
+    width:min(700px,80vw) !important;
 
-    height:620px !important;
+    height:auto !important;
 
-    max-width:90%;
+    aspect-ratio:1/1;
 }
 
 /* Quote breathing room */
