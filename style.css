@@ -354,20 +354,21 @@ footer a img {
     position:relative;
 }
 
-/* LEFT COLUMN */
+/* LEFT COLUMN POSITION */
+
 .home-list > div:first-child{
 
-    position:fixed;
+position:sticky;
 
-    top:130px;
+top:70px;
 
-    left:80px;
+align-self:flex-start;
 
-    width:280px;
+transition:
+opacity .8s ease,
+transform .8s ease,
+filter .8s ease;
 
-    transition:
-        opacity .6s ease,
-        transform .6s ease;
 }
 
 /* subtle fade */
