@@ -7,6 +7,32 @@
     <link rel="icon" href="images/Memory.webp">
     <link rel="stylesheet" href="style.css">
     <script>
+(function () {
+
+const dark =
+localStorage.getItem("darkMode");
+
+const theme =
+localStorage.getItem("theme") || "very";
+
+if (dark === "true") {
+
+document.documentElement.style.background =
+theme === "warm"
+? "#1a140f"
+: theme === "cool"
+? "#0f1a1f"
+: "#0a0a0a";
+
+document.write(
+'<style>body{visibility:hidden}</style>'
+);
+
+}
+
+})();
+</script>
+    <script>
 (function(){
 
 const dark =
