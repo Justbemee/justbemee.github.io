@@ -375,14 +375,28 @@ footer a img {
 }
 
 /* subtle fade */
-.home-list > div:first-child.scrolled{
+/* LEFT SIDE SOFT FADE */
 
-    opacity:.72;
+.home-list > div:first-child{
 
-    transform:
-        translateY(10px);
+transition:
+opacity .8s ease,
+transform .8s ease,
+filter .8s ease;
+
 }
 
+.home-list > div:first-child.scrolled{
+
+opacity:.78;
+
+transform:
+translateY(-4px);
+
+filter:
+saturate(.88);
+
+}
 ./* RIGHT SIDE ONLY */
 
 .quote-section{
