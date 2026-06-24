@@ -246,6 +246,24 @@ function showQuote() {
 
 showQuote();
 setInterval(showQuote, 8000);
+    window.addEventListener("scroll", () => {
+
+const left =
+document.querySelector(".home-list > div:first-child");
+
+if (!left) return;
+
+if (window.scrollY > 260) {
+
+left.classList.add("scrolled");
+
+} else {
+
+left.classList.remove("scrolled");
+
+}
+
+});
     /* LEFT SIDE FADE ON SCROLL */
     window.addEventListener("scroll",()=>{
 
