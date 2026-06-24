@@ -35,6 +35,35 @@ document.body.classList.add(
 
 })();
 </script>
+    <script>
+(function(){
+
+const dark =
+localStorage.getItem('darkMode');
+
+const theme =
+localStorage.getItem('theme');
+
+if(dark==='true'){
+
+document.documentElement.classList.add(
+'theme-preload'
+);
+
+document.addEventListener(
+'DOMContentLoaded',
+()=>{
+
+document.body.classList.add(
+'dark-'+(theme||'very')
+);
+
+});
+
+}
+
+})();
+</script>
 </head>
 
 <body>
