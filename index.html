@@ -68,78 +68,50 @@ if(dark==='true'){
     <div id="theme-timer" style="display:none; margin-top:4px; font-size:0.85rem; color:#555;"></div>
 </div>
 
-<!-- MAIN LAYOUT - TWO COLUMNS -->
-<div class="home-layout">
-
-    <!-- LEFT COLUMN - STICKY MENU -->
-    <div class="home-list">
-        <h1 class="home-title">Martin Hanispak</h1>
-
-        <a href="about.html" class="item">
-            <img src="images/Memory.webp" alt="">
+<!-- HORIZONTAL NAVIGATION BAR -->
+<div class="nav-bar">
+    <h1 class="nav-title">Martin Hanispak</h1>
+    
+    <div class="nav-items">
+        <a href="about.html" class="nav-item">
+            <img src="images/Memory.webp" alt="About">
             <span>About</span>
         </a>
-        <a href="gallery.html" class="item">
-            <img src="images/Lost Acrylic on Canvas.webp" alt="">
+        <a href="gallery.html" class="nav-item">
+            <img src="images/Lost Acrylic on Canvas.webp" alt="Portfolio">
             <span>Portfolio</span>
         </a>
-        <a href="contact.html" class="item">
-            <img src="images/Love.webp" alt="">
+        <a href="contact.html" class="nav-item">
+            <img src="images/Love.webp" alt="Contact">
             <span>Contact</span>
         </a>
-        <a href="thoughts.html" class="item">
-            <img src="images/The face of Flower.webp" alt="">
+        <a href="thoughts.html" class="nav-item">
+            <img src="images/The face of Flower.webp" alt="Thoughts">
             <span>Thoughts</span>
         </a>
-        <a href="consulting.html" class="item">
-            <img src="images/Acrylic on Canvas Reused.webp" alt="">
+        <a href="consulting.html" class="nav-item">
+            <img src="images/Acrylic on Canvas Reused.webp" alt="Consulting">
             <span>Consulting</span>
         </a>
     </div>
+</div>
 
-    <!-- RIGHT COLUMN - SCROLLING CONTENT -->
-    <div class="quote-section">
+<!-- MAIN CONTENT -->
+<div class="main-content">
+    <hr class="divider">
 
-        <hr style="
-            border: none;
-            border-top: 1px solid #ddd;
-            width: 100%;
-            margin: 0 auto 20px;
-        ">
+    <!-- QUOTE SECTION -->
+    <p class="quote-text" id="quote-text"></p>
 
-        <!-- MAIN QUOTE (slideshow) -->
-        <p class="quote-text" id="quote-text"></p>
+    <!-- MAIN IMAGE -->
+    <img id="quote-image" src="" alt="" class="main-image">
 
-        <!-- MAIN IMAGE (slideshow) -->
-        <img id="quote-image" src="" alt="" style="margin-bottom: 60px;">
+    <!-- SECOND SECTION -->
+    <hr class="divider-secondary">
 
-        <!-- SECOND SECTION -->
-        <hr style="
-            width: 80%;
-            margin: 80px auto;
-            opacity: 0.25;
-        ">
+    <p class="secondary-text">"The next work awaits."</p>
 
-        <p style="
-            font-style: italic;
-            font-size: 1.35rem;
-            text-align: center;
-            margin-bottom: 40px;
-            max-width: 900px;
-        ">
-            "The next work awaits."
-        </p>
-
-        <img src="images/Love.webp" alt="" style="
-            width: min(900px, 85vw);
-            display: block;
-            margin: auto;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,.12);
-        ">
-
-    </div>
-
+    <img src="images/Love.webp" alt="" class="secondary-image">
 </div>
 
 <script>
@@ -176,14 +148,21 @@ setInterval(showQuote, 8000);
 
 // FADE EFFECT ON SCROLL
 window.addEventListener("scroll", () => {
-    const leftMenu = document.querySelector(".home-list");
-    if (!leftMenu) return;
+    const navBar = document.querySelector(".nav-bar");
+    if (!navBar) return;
     
-    leftMenu.classList.toggle("scrolled", window.scrollY > 120);
+    if (window.scrollY > 100) {
+        navBar.classList.add("scrolled");
+    } else {
+        navBar.classList.remove("scrolled");
+    }
 });
 </script>
 
 <script src="theme.js"></script>
+
+</body>
+</html>
 
 </body>
 </html>
