@@ -388,82 +388,64 @@ footer a img {
 /* ===== HOME LAYOUT ===== */
 
 .home-list{
-    position:relative;
+    display: flex;
+    max-width: 1700px;
+    margin: 0 auto;
+    padding: 0 80px;
+    align-items: flex-start;
+    gap: 80px;
+    position: relative;
 }
 
-/* LEFT COLUMN POSITION */
+/* LEFT COLUMN */
 
 .home-list > div:first-child{
+    width: 430px;
+    flex-shrink: 0;
 
-position:sticky;
+    position: sticky;
+    top: 55px;
+    align-self: flex-start;
 
-top:55px;
-
-align-self:flex-start;
-
-transition:
-opacity .8s ease,
-transform .8s ease,
-filter .8s ease;
-
+    transition:
+        opacity .8s ease,
+        transform .8s ease,
+        filter .8s ease;
 }
 
-/* subtle fade */
-/* LEFT SIDE SOFT FADE */
-
-.home-list > div:first-child{
-
-transition:
-opacity .8s ease,
-transform .8s ease,
-filter .8s ease;
-
-}
+/* LEFT FADE STATE */
 
 .home-list > div:first-child.scrolled{
-
-opacity:.78;
-
-transform:
-translateY(-4px);
-
-filter:
-saturate(.88);
-
+    opacity: .78;
+    transform: translateY(-4px);
+    filter: saturate(.88);
 }
-./* RIGHT SIDE ONLY */
 
-.quote-section{
+/* RIGHT COLUMN (replaces margin-left system) */
 
-    margin-left:180px !important;
-
-    max-width:none !important;
-
-    width:auto !important;
-
-    padding-right:80px;
+.home-list > div:last-child{
+    flex: 1;
+    min-width: 0;
 }
+
+/* IMAGE */
 
 #quote-image{
-
-    width:min(700px,80vw) !important;
-
-    height:auto !important;
-
-    aspect-ratio:1/1;
+    width: min(700px, 80vw) !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1;
+    display: block;
 }
 
-/* Quote breathing room */
+/* TEXT BLOCK */
 
 .quote-text{
-
-    max-width:700px;
-
-    margin:auto;
+    max-width: 700px;
+    margin: auto;
 }
 
+/* TITLE */
+
 .home-title{
-
-margin-top:-40px !important;
-
+    margin-top: -40px !important;
 }
