@@ -57,22 +57,45 @@ nav {
 /* LEFT COLUMN */
 
 .home-list{
+display:flex;
+align-items:flex-start;
+gap:120px;
 
-width:430px;
+max-width:1600px;
 
-flex-shrink:0;
+margin:0 auto;
+
+padding-top:20px;
+}
+
+/* LEFT PANEL */
+
+.home-list > div:first-child{
+
+width:280px;
 
 position:sticky;
 
-top:80px;
+top:40px;
 
 align-self:flex-start;
 
-padding-left:40px;
-
-box-sizing:border-box;
+transition:
+opacity .6s ease,
+transform .6s ease;
 
 }
+
+/* fade only */
+
+.home-list > div:first-child.scrolled{
+
+opacity:.72;
+
+transform:translateY(-10px);
+
+}
+
 /* TITLE */
 .home-title{
 
