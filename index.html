@@ -163,16 +163,26 @@ document.body.classList.add(
     </div>
 
  <!-- Quote section -->
-<div class="quote-section" style="
+<div
+class="quote-section"
+
+style="
 flex:1;
-max-width:none;
+
 display:flex;
+
 flex-direction:column;
-justify-content:center;
+
 align-items:center;
-min-height:520px;
+
+padding-top:30px;
+
+margin-left:40px;
+
 text-align:center;
-">
+
+"
+>
 
     <hr style="
     border:none;
@@ -272,22 +282,19 @@ function showQuote() {
 
 showQuote();
 setInterval(showQuote, 8000);
-    window.addEventListener("scroll", () => {
+window.addEventListener("scroll",()=>{
 
-const left =
-document.querySelector(".home-list > div:first-child");
+const left=
+document.querySelector(
+".home-list > div:first-child"
+);
 
-if (!left) return;
+if(!left)return;
 
-if (window.scrollY > 260) {
-
-left.classList.add("scrolled");
-
-} else {
-
-left.classList.remove("scrolled");
-
-}
+left.classList.toggle(
+"scrolled",
+window.scrollY>150
+);
 
 });
     /* LEFT SIDE FADE ON SCROLL */
