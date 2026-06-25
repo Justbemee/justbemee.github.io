@@ -66,6 +66,20 @@ margin:0 auto;
 
 padding-top:0;
 
+width:430px;
+
+flex-shrink:0;
+
+position:sticky;
+
+top:80px;
+
+align-self:flex-start;
+
+padding-left:40px;
+
+box-sizing:border-box;
+
 }
 
 /* LEFT PANEL */
