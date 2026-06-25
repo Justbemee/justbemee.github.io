@@ -57,15 +57,15 @@ nav {
 /* LEFT COLUMN */
 
 .home-list{
-display:flex;
-align-items:flex-start;
-gap:120px;
 
-max-width:1600px;
+display:flex;
+
+max-width:1700px;
 
 margin:0 auto;
 
-padding-top:20px;
+padding-top:0;
+
 }
 
 /* LEFT PANEL */
