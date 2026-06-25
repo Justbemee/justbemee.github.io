@@ -42,215 +42,118 @@ nav {
     border-radius: 8px;
 }
 
-/* HOME THUMBNAILS */
-/* HOME LAYOUT */
-
-.home-layout{
-    display:flex;
-    max-width:1600px;
-    margin:0 auto;
-    padding:40px 60px;
-    gap:120px;
-    align-items:flex-start;
+/* HOME LAYOUT - TWO COLUMN */
+.home-layout {
+    display: flex;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 60px;
+    gap: 120px;
+    align-items: flex-start;
 }
 
-/* LEFT COLUMN */
-
-.home-list{
-
-display:flex;
-
-max-width:1700px;
-
-margin:0 auto;
-
-padding-top:0;
-
-width:430px;
-
-flex-shrink:0;
-
-position:sticky;
-
-top:80px;
-
-align-self:flex-start;
-
-padding-left:40px;
-
-box-sizing:border-box;
-
-}
-
-/* LEFT PANEL */
-
-.home-list > div:first-child{
-
-width:280px;
-
-position:sticky;
-
-top:40px;
-
-align-self:flex-start;
-
-transition:
-opacity .6s ease,
-transform .6s ease;
-
-}
-
-/* fade only */
-
-.home-list > div:first-child.scrolled{
-
-opacity:.72;
-
-transform:translateY(-10px);
-
+/* LEFT COLUMN - STICKY */
+.home-list {
+    width: 280px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 100px;
+    align-self: flex-start;
 }
 
 /* TITLE */
-.home-title{
-
-font-family:'Playfair Display',serif;
-
-font-size:3rem;
-
-font-weight:400;
-
-margin:0 0 55px 35px;
-
-line-height:1;
-
+.home-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 400;
+    margin: 0 0 55px 0;
+    line-height: 1;
 }
+
 /* MENU ITEMS */
-
-.item{
-
-display:flex;
-
-align-items:center;
-
-gap:55px;
-
-padding:20px 0;
-
-text-decoration:none;
-
-color:var(--text);
-
-transition:all .45s ease;
-
-}
-.item:hover{
-
-transform:translateX(10px);
-
+.item {
+    display: flex;
+    align-items: center;
+    gap: 55px;
+    padding: 20px 0;
+    text-decoration: none;
+    color: var(--text);
+    transition: all .45s ease;
 }
 
-.item img{
-
-width:120px;
-
-height:120px;
-
-object-fit:cover;
-
-border-radius:12px;
-
-transition:all .55s ease;
-
+.item:hover {
+    transform: translateX(10px);
 }
 
-.item:hover img{
-
-width:185px;
-
-height:185px;
-
-transform:translateX(45px);
-
+.item img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: all .55s ease;
 }
 
-.item span{
-
-font-family:'Playfair Display',serif;
-
-font-size:1.65rem;
-
-}
-/* RIGHT SIDE */
-
-.quote-section{
-
-flex:1;
-
-max-width:none;
-
-padding-top:140px;
-
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
-
+.item:hover img {
+    width: 185px;
+    height: 185px;
+    transform: translateX(45px);
 }
 
-.quote-text{
-
-font-style:italic;
-
-font-size:1.45rem;
-
-max-width:700px;
-
-line-height:1.8;
-
-text-align:center;
-
-margin-bottom:60px;
-
+.item span {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.65rem;
 }
 
-#quote-image{
-
-width:min(100%,850px);
-
-height:850px;
-
-object-fit:cover;
-
-border-radius:18px;
-
-box-shadow:
-0 25px 80px
-rgba(0,0,0,.14);
-
-transition:all .8s ease;
-
+/* FADE EFFECT ON SCROLL */
+.home-list.scrolled {
+    opacity: 0.78;
+    transform: translateY(-4px);
+    filter: saturate(0.88);
 }
 
-.quote-divider{
-
-width:100%;
-
-max-width:900px;
-
-margin-bottom:40px;
-
+/* RIGHT COLUMN - SCROLLS */
+.quote-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0;
 }
-/* GALLERY - Clean thumbnails, no white gaps, better spacing */
+
+.quote-text {
+    font-style: italic;
+    font-size: 1.45rem;
+    max-width: 700px;
+    line-height: 1.8;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+#quote-image {
+    width: min(100%, 850px);
+    height: 850px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.14);
+    transition: all .8s ease;
+}
+
+.quote-divider {
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 40px;
+}
+
+/* GALLERY */
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 50px;                    /* more breathing room between paintings */
+    gap: 50px;
     max-width: 1300px;
     margin: 80px auto;
     padding: 0 40px;
     overflow: visible;
-    align-items: start;           /* prevents stretching */
+    align-items: start;
 }
 
 .gallery-item {
@@ -262,7 +165,7 @@ margin-bottom:40px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
     cursor: pointer;
     transition: transform 0.4s ease;
-    background: var(--bg);        /* prevents white gaps */
+    background: var(--bg);
 }
 
 .gallery-item:hover {
@@ -283,7 +186,7 @@ margin-bottom:40px;
     transform: scale(1.12);
 }
 
-/* LIGHTBOX with better zoom lens */
+/* LIGHTBOX */
 .lightbox {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -321,7 +224,7 @@ margin-bottom:40px;
     object-fit: none;
 }
 
-/* iPhone slider */
+/* THEME TOGGLE */
 .switch {
     position: relative;
     display: inline-block;
@@ -376,6 +279,7 @@ footer a img {
     height: 40px;
     border-radius: 8px;
 }
+
 @keyframes flash {
     0% { transform: scale(1); }
     50% { transform: scale(1.15); filter: brightness(1.5); }
@@ -384,86 +288,4 @@ footer a img {
 
 .flash-toggle {
     animation: flash 0.4s infinite;
-}
-/* ===== HOME LAYOUT ===== */
-
-.home-list{
-    position:relative;
-}
-
-/* LEFT COLUMN POSITION */
-
-.home-list > div:first-child{
-
-position:sticky;
-
-top:55px;
-
-align-self:flex-start;
-
-transition:
-opacity .8s ease,
-transform .8s ease,
-filter .8s ease;
-
-}
-
-/* subtle fade */
-/* LEFT SIDE SOFT FADE */
-
-.home-list > div:first-child{
-
-transition:
-opacity .8s ease,
-transform .8s ease,
-filter .8s ease;
-
-}
-
-.home-list > div:first-child.scrolled{
-
-opacity:.78;
-
-transform:
-translateY(-4px);
-
-filter:
-saturate(.88);
-
-}
-./* RIGHT SIDE ONLY */
-
-.quote-section{
-
-    margin-left:180px !important;
-
-    max-width:none !important;
-
-    width:auto !important;
-
-    padding-right:80px;
-}
-
-#quote-image{
-
-    width:min(700px,80vw) !important;
-
-    height:auto !important;
-
-    aspect-ratio:1/1;
-}
-
-/* Quote breathing room */
-
-.quote-text{
-
-    max-width:700px;
-
-    margin:auto;
-}
-
-.home-title{
-
-margin-top:-40px !important;
-
 }
