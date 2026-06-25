@@ -8,88 +8,26 @@
     <link rel="stylesheet" href="style.css">
     <script>
 (function () {
-
-const dark =
-localStorage.getItem("darkMode");
-
-const theme =
-localStorage.getItem("theme") || "very";
-
+const dark = localStorage.getItem("darkMode");
+const theme = localStorage.getItem("theme") || "very";
 if (dark === "true") {
-
-document.documentElement.style.background =
-theme === "warm"
-? "#1a140f"
-: theme === "cool"
-? "#0f1a1f"
-: "#0a0a0a";
-
-document.write(
-'<style>body{visibility:hidden}</style>'
-);
-
+    document.documentElement.style.background = theme === "warm" ? "#1a140f" : theme === "cool" ? "#0f1a1f" : "#0a0a0a";
+    document.write('<style>body{visibility:hidden}</style>');
 }
-
 })();
-</script>
+    </script>
     <script>
 (function(){
-
-const dark =
-localStorage.getItem('darkMode');
-
-const theme =
-localStorage.getItem('theme');
-
+const dark = localStorage.getItem('darkMode');
+const theme = localStorage.getItem('theme');
 if(dark==='true'){
-
-document.documentElement.classList.add(
-'theme-preload'
-);
-
-document.addEventListener(
-'DOMContentLoaded',
-()=>{
-
-document.body.classList.add(
-'dark-'+(theme||'very')
-);
-
-});
-
+    document.documentElement.classList.add('theme-preload');
+    document.addEventListener('DOMContentLoaded', ()=>{
+        document.body.classList.add('dark-'+(theme||'very'));
+    });
 }
-
 })();
-</script>
-    <script>
-(function(){
-
-const dark =
-localStorage.getItem('darkMode');
-
-const theme =
-localStorage.getItem('theme');
-
-if(dark==='true'){
-
-document.documentElement.classList.add(
-'theme-preload'
-);
-
-document.addEventListener(
-'DOMContentLoaded',
-()=>{
-
-document.body.classList.add(
-'dark-'+(theme||'very')
-);
-
-});
-
-}
-
-})();
-</script>
+    </script>
 </head>
 
 <body>
@@ -121,35 +59,22 @@ document.body.classList.add(
         <input type="checkbox" id="dark-toggle">
         <span class="slider"></span>
     </label>
-
     <div id="theme-menu" style="display:none; margin-top:8px;">
         <button onclick="setTheme('very')" style="margin:3px; padding:5px 10px; font-size:0.85rem;">Dark</button>
         <button onclick="setTheme('warm')" style="margin:3px; padding:5px 10px; font-size:0.85rem;">Warm</button>
         <button onclick="setTheme('cool')" style="margin:3px; padding:5px 10px; font-size:0.85rem;">Cool</button>
     </div>
-
     <div id="theme-message" style="display:none; margin-top:8px; font-size:0.85rem; color:#555;"></div>
     <div id="theme-timer" style="display:none; margin-top:4px; font-size:0.85rem; color:#555;"></div>
 </div>
 
-<div class="home-list">
+<!-- MAIN LAYOUT - TWO COLUMNS -->
+<div class="home-layout">
 
-<h1 class="home-title">Martin Hanispak</h1>
+    <!-- LEFT COLUMN - STICKY MENU -->
+    <div class="home-list">
+        <h1 class="home-title">Martin Hanispak</h1>
 
-<div style="
-display:flex;
-
-max-width:1700px;
-
-margin:0 auto;
-
-padding:0 80px;
-
-align-items:flex-start;
-"> margin:0 auto; padding:0 40px; gap:60px;">
-
-    <!-- Left thumbnails -->
-    <div>
         <a href="about.html" class="item">
             <img src="images/Memory.webp" alt="">
             <span>About</span>
@@ -172,92 +97,48 @@ align-items:flex-start;
         </a>
     </div>
 
- <!-- Quote section -->
-<div
-class="quote-section"
+    <!-- RIGHT COLUMN - SCROLLING CONTENT -->
+    <div class="quote-section">
 
-style="
-flex:1;
+        <hr style="
+            border: none;
+            border-top: 1px solid #ddd;
+            width: 100%;
+            margin: 0 auto 20px;
+        ">
 
-max-width:none;
+        <!-- MAIN QUOTE (slideshow) -->
+        <p class="quote-text" id="quote-text"></p>
 
-margin-left:140px;
+        <!-- MAIN IMAGE (slideshow) -->
+        <img id="quote-image" src="" alt="" style="margin-bottom: 60px;">
 
-padding-top:40px;
+        <!-- SECOND SECTION -->
+        <hr style="
+            width: 80%;
+            margin: 80px auto;
+            opacity: 0.25;
+        ">
 
-display:flex;
+        <p style="
+            font-style: italic;
+            font-size: 1.35rem;
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 900px;
+        ">
+            "The next work awaits."
+        </p>
 
-flex-direction:column;
+        <img src="images/Love.webp" alt="" style="
+            width: min(900px, 85vw);
+            display: block;
+            margin: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.12);
+        ">
 
-align-items:center;
-
-"
->
-
-    <hr style="
-    border:none;
-    border-top:1px solid #ddd;
-    width:100%;
-    margin:0 auto 20px;
-    ">
-
-    <!-- MAIN QUOTE (slideshow controlled by JS) -->
-    <p
-    class="quote-text"
-    id="quote-text"
-    style="
-    font-style:italic;
-    font-size:1.45rem;
-    line-height:1.8;
-    max-width:900px;
-    margin:0 auto 40px;
-    text-align:center;
-    ">
-    </p>
-
-    <!-- MAIN IMAGE (slideshow controlled by JS) -->
-    <img
-    id="quote-image"
-    src=""
-    alt=""
-    style="
-    width:min(900px,85vw);
-    height:auto;
-    aspect-ratio:1/1;
-    object-fit:cover;
-    border-radius:12px;
-    margin:40px auto 60px;
-    display:block;
-    box-shadow:0 10px 30px rgba(0,0,0,.12);
-    ">
-
-    <!-- SECOND SECTION -->
-
-    <hr style="
-    width:80%;
-    margin:80px auto;
-    opacity:.25;
-    ">
-
-    <p style="
-    font-style:italic;
-    font-size:1.35rem;
-    text-align:center;
-    margin-bottom:40px;
-    max-width:900px;
-    ">
-    "The next work awaits."
-    </p>
-
-    <img
-    src="images/Love.webp"
-    style="
-    width:min(900px,85vw);
-    display:block;
-    margin:auto;
-    border-radius:12px;
-    box-shadow:0 10px 30px rgba(0,0,0,.12);
-    ">
+    </div>
 
 </div>
 
@@ -292,38 +173,13 @@ function showQuote() {
 
 showQuote();
 setInterval(showQuote, 8000);
-window.addEventListener("scroll",()=>{
 
-const left=
-document.querySelector(
-".home-list > div:first-child"
-);
-
-if(!left)return;
-
-left.classList.toggle(
-"scrolled",
-window.scrollY>150
-);
-
-});
-    /* LEFT SIDE FADE ON SCROLL */
-    window.addEventListener("scroll",()=>{
-
-const left=document.querySelector(".home-list > div:first-child");
-
-if(!left)return;
-
-if(window.scrollY>120){
-
-left.classList.add("scrolled");
-
-}else{
-
-left.classList.remove("scrolled");
-
-}
-
+// FADE EFFECT ON SCROLL
+window.addEventListener("scroll", () => {
+    const leftMenu = document.querySelector(".home-list");
+    if (!leftMenu) return;
+    
+    leftMenu.classList.toggle("scrolled", window.scrollY > 120);
 });
 </script>
 
