@@ -493,7 +493,15 @@ filter:none;
 
 .home-title{
 
-margin-top:-40px !important;
+font-family:'Playfair Display',serif;
+
+font-size:3rem;
+
+font-weight:400;
+
+line-height:1;
+
+margin:0 0 35px 35px;
 
 }
 /* RIGHT SIDE */
