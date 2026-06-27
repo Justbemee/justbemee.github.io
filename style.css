@@ -408,18 +408,13 @@ footer a img {
 
 position:sticky;
 
-top:55px;
-
-align-self:flex-start;
+top:0;
 
 transition:
-opacity .8s ease,
-transform .8s ease,
-filter .8s ease;
+opacity .5s ease;
 
 }
 
-/* subtle fade */
 /* LEFT SIDE SOFT FADE */
 
 .home-list > div:first-child{
