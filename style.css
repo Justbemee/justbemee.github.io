@@ -62,13 +62,25 @@ align-items:flex-start;
 
 .home-list{
 
-width:340px;
+display:flex;
+
+align-items:flex-start;
+
+width:430px;
 
 flex-shrink:0;
 
 position:sticky;
 
-top:55px;
+top:10px;
+
+height:100vh;
+
+padding-left:40px;
+
+box-sizing:border-box;
+
+overflow:visible;
 
 }
 
