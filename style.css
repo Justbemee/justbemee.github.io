@@ -72,20 +72,25 @@ top:55px;
 
 }
 
-.home-list>div{
+.home-list{
 
-transition:
-opacity .7s ease,
-transform .7s ease;
+width:430px;
 
-}
+flex-shrink:0;
 
-.home-list>div.scrolled{
+position:sticky;
 
-opacity:.78;
+top:40px;
 
-transform:
-translateY(-6px);
+align-self:flex-start;
+
+padding-left:60px;
+
+box-sizing:border-box;
+
+height:calc(100vh - 80px);
+
+overflow:visible;
 
 }
 
