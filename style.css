@@ -428,15 +428,18 @@ footer a img {
 
 .home-list > div:first-child{
 
-position:sticky;
+position:fixed;
 
-top:0;
+left:80px;
+
+top:110px;
+
+width:320px;
 
 transition:
 opacity .5s ease;
 
 }
-
 /* LEFT SIDE SOFT FADE */
 
 .home-list > div:first-child{
