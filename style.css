@@ -428,13 +428,11 @@ filter .8s ease;
 
 .home-list > div:first-child.scrolled{
 
-opacity:.78;
+opacity:.82;
 
-transform:
-translateY(-4px);
+transform:none;
 
-filter:
-saturate(.88);
+filter:none;
 
 }
 ./* RIGHT SIDE ONLY */
