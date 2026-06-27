@@ -205,13 +205,11 @@ align-items:center;
 
 .quote-line{
 
-width:90%;
+width:min(900px,85%);
 
-max-width:1000px;
+margin-bottom:18px;
 
-opacity:.25;
-
-margin-bottom:40px;
+opacity:.22;
 
 }
 
