@@ -246,7 +246,8 @@ function showQuote() {
 }
 
 showQuote();
-setInterval(showQuote, 8000);
+setInterval(showQuote,8000);
+
 window.addEventListener("scroll",()=>{
 
 const left=
@@ -258,28 +259,11 @@ if(!left)return;
 
 left.classList.toggle(
 "scrolled",
-window.scrollY>150
+window.scrollY>120
 );
 
 });
-    /* LEFT SIDE FADE ON SCROLL */
-    window.addEventListener("scroll",()=>{
 
-const left=document.querySelector(".home-list > div:first-child");
-
-if(!left)return;
-
-if(window.scrollY>120){
-
-left.classList.add("scrolled");
-
-}else{
-
-left.classList.remove("scrolled");
-
-}
-
-});
 </script>
 
 <script src="theme.js"></script>
