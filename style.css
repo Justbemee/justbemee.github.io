@@ -67,16 +67,16 @@ nav {
     flex: 0 0 320px;
     width: 320px;
     position: sticky;
-    top: 120px;
+    top: 100px;
     align-self: flex-start;
-    max-height: calc(100vh - 120px);
+    max-height: calc(100vh - 100px);
 }
 
 .home-right {
     flex: 1 1 0;
     min-width: 0;
     width: 100%;
-    height: calc(100vh - 120px);
+    height: calc(100vh - 100px);
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -442,13 +442,15 @@ filter:none;
 
 .quote-section{
     margin:0;
-    padding:20px 20px 40px;
+    padding:40px 20px 40px;
     width:100%;
     max-width:100%;
+    align-items: stretch;
 }
 
 #quote-image{
-    width:min(700px,100%) !important;
+    width:100% !important;
+    max-width:860px !important;
     height:auto !important;
     aspect-ratio:1/1;
 }
@@ -502,7 +504,7 @@ padding-right:80px;
 
 width:100%;
 
-min-height:100vh;
+min-height:auto;
 
 display:flex;
 
