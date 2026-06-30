@@ -132,13 +132,12 @@ document.body.classList.add(
     <div id="theme-timer" style="display:none; margin-top:4px; font-size:0.85rem; color:#555;"></div>
 </div>
 
-<div class="home-list">
-
-<div class="home-layout">
+<div class="home-wrapper">
+    <div class="home-layout">
 
 <!-- LEFT -->
 
-<div class="home-list">
+        <div class="home-left">
 
 <h1 class="home-title">
 Martin Hanispak
@@ -177,7 +176,8 @@ Martin Hanispak
 
 <!-- RIGHT -->
 
-<div class="quote-section">
+        <div class="home-right">
+            <div class="quote-section">
 
 <div class="slide">
 
@@ -210,10 +210,10 @@ class="hero-image">
 
 <hr class="quote-bottom">
 
-</div>
+            </div>
+        </div>
 
-</div>
-
+    </div>
 </div>
 
 <script>
@@ -248,19 +248,18 @@ function showQuote() {
 showQuote();
 setInterval(showQuote,8000);
 
-window.addEventListener("scroll",()=>{
+window.addEventListener("scroll", () => {
 
-const left=
-document.querySelector(
-".home-list > div:first-child"
-);
+    const left = document.querySelector(
+        ".home-left"
+    );
 
-if(!left)return;
+    if (!left) return;
 
-left.classList.toggle(
-"scrolled",
-window.scrollY>120
-);
+    left.classList.toggle(
+        "scrolled",
+        window.scrollY > 120
+    );
 
 });
 
