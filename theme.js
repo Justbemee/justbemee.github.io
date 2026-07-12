@@ -46,6 +46,8 @@
             } else {
                 stopAll();
                 document.body.classList.remove('dark-very', 'dark-warm', 'dark-cool');
+                // Clear any inline background applied during preload so light theme renders correctly
+                document.documentElement.style.background = '';
             }
 
             localStorage.setItem('darkMode', isDark);

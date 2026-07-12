@@ -6,113 +6,41 @@
     <title>Martin Hanispak</title>
     <link rel="icon" href="images/Memory.webp">
     <link rel="stylesheet" href="style.css">
-    <script>
-(function () {
-
-const dark =
-localStorage.getItem("darkMode");
-
-const theme =
-localStorage.getItem("theme") || "very";
-
-if (dark === "true") {
-
-document.documentElement.style.background =
-theme === "warm"
-? "#1a140f"
-: theme === "cool"
-? "#0f1a1f"
-: "#0a0a0a";
-
-document.write(
-'<style>body{visibility:hidden}</style>'
-);
-
-}
-
-})();
-</script>
-    <script>
-(function(){
-
-const dark =
-localStorage.getItem('darkMode');
-
-const theme =
-localStorage.getItem('theme');
-
-if(dark==='true'){
-
-document.documentElement.classList.add(
-'theme-preload'
-);
-
-document.addEventListener(
-'DOMContentLoaded',
-()=>{
-
-document.body.classList.add(
-'dark-'+(theme||'very')
-);
-
-});
-
-}
-
-})();
-</script>
-    <script>
-(function(){
-
-const dark =
-localStorage.getItem('darkMode');
-
-const theme =
-localStorage.getItem('theme');
-
-if(dark==='true'){
-
-document.documentElement.classList.add(
-'theme-preload'
-);
-
-document.addEventListener(
-'DOMContentLoaded',
-()=>{
-
-document.body.classList.add(
-'dark-'+(theme||'very')
-);
-
-});
-
-}
-
-})();
-</script>
+        <script>
+        (function(){
+            const dark = localStorage.getItem('darkMode') === 'true';
+            const theme = localStorage.getItem('theme') || 'very';
+            if (dark) {
+                document.documentElement.classList.add('theme-preload');
+                document.documentElement.style.background =
+                    theme === 'warm' ? '#1a140f' : theme === 'cool' ? '#0f1a1f' : '#0a0a0a';
+                document.addEventListener('DOMContentLoaded', () => {
+                    document.body.classList.add('dark-' + (theme || 'very'));
+                });
+            }
+        })();
+        </script>
 </head>
 
-<body>
+<body class="home-page">
 
 <!-- Top banner -->
-<div style="
+<div id="top-banner" style="
     position: fixed;
     top: 20px;
     left: 50%;
     transform: translateX(-60%);
     max-width: 600px;
-    background: #f8f8f8;
-    color: #555;
+    color: var(--muted);
     padding: 12px 16px;
     font-size: 1rem;
-    border: 1px solid #eee;
     border-radius: 10px;
     z-index: 150;
     text-align: center;
 ">
     This website is still growing and evolving.<br>
     Feel free to explore the gallery or 
-    <a href="contact.html" style="color:#0066cc; text-decoration:underline;">get in touch</a>.
+    <a href="contact.html" style="color:var(--text); text-decoration:underline;">get in touch</a>.
 </div>
 
 <!-- Dark mode slider -->
@@ -248,20 +176,20 @@ function showQuote() {
 showQuote();
 setInterval(showQuote,8000);
 
-window.addEventListener("scroll", () => {
+const right = document.querySelector('.home-right');
 
-    const left = document.querySelector(
-        ".home-left"
-    );
-
+function updateLeftScrolled() {
+    const left = document.querySelector('.home-left');
     if (!left) return;
+    const scrolled = window.scrollY > 120 || (right && right.scrollTop > 120);
+    left.classList.toggle('scrolled', scrolled);
+}
 
-    left.classList.toggle(
-        "scrolled",
-        window.scrollY > 120
-    );
+window.addEventListener('scroll', updateLeftScrolled);
+if (right) right.addEventListener('scroll', updateLeftScrolled);
 
-});
+// run once on load
+updateLeftScrolled();
 
 </script>
 

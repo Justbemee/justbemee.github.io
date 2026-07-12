@@ -24,8 +24,12 @@
             line-height: 1.65;
             font-size: 1.22rem;
         }
-        body.dark .quote-card {
-            background: #1f1f1f;
+        body.dark-very .quote-card,
+        body.dark-warm .quote-card,
+        body.dark-cool .quote-card {
+            background: rgba(255,255,255,0.02);
+            color: var(--text);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.45);
         }
         .view-all {
             display: inline-block;
@@ -37,9 +41,11 @@
             text-decoration: none;
             font-weight: 500;
         }
-        body.dark .view-all {
-            background: #ddd;
-            color: #111;
+        body.dark-very .view-all,
+        body.dark-warm .view-all,
+        body.dark-cool .view-all {
+            background: var(--text);
+            color: var(--bg);
         }
     </style>
 </head>
