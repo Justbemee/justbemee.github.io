@@ -428,6 +428,40 @@ input:checked + .slider:before {
     transform: translateX(26px);
 }
 
+.theme-option {
+    margin: 3px;
+    padding: 7px 12px;
+    font-size: 0.85rem;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.9);
+    color: var(--text);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.theme-option:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.16);
+    background: rgba(255,255,255,1);
+}
+
+body.dark-very .theme-option,
+body.dark-warm .theme-option,
+body.dark-cool .theme-option {
+    background: rgba(255,255,255,0.12);
+    color: var(--text);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+
+body.dark-very .theme-option:hover,
+body.dark-warm .theme-option:hover,
+body.dark-cool .theme-option:hover {
+    background: rgba(255,255,255,0.2);
+}
+
 /* FOOTER */
 footer {
     text-align: center;
