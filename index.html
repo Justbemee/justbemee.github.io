@@ -154,14 +154,18 @@ const quotes = [
 ];
 
 const allImages = [
-    "images/Memory.webp","images/Lost Acrylic on Canvas.webp","images/Love.webp","images/The face of Flower.webp","images/Acrylic on Canvas Reused.webp",
-    "images/Dinosaurus.webp","images/We have no user guide to life, so let's just do it","images/bitcoin.webp","images/connect.webp","images/disguise.webp",
-    "images/Factory work must be replaced by AGI.webp","images/Fear is limitation - Love is infinity.webp","images/Finding your footing when you're in over your head..webp",
-    "images/Fireworks.webp","images/Heart.webp","images/Hierarchy Monster.webp","images/Human lives becomes beautiful not because we do the right thinks. Human lives becomes beautiful because we put our heart in to what we are doing..webp",
-    "images/It is good if you are confused. It means you are constantly stepping into new territory.webp","images/Lost Acrylic on Canvas.webp","images/Love is crowded, love is unexpected, and love knows no boundaries .webp",
-    "images/Love is not about somebody, it is about you being truly pleasant..webp","images/Mind will play all kinds of games with you. So if you feel like you _lost your head_ than work with your Physical body. Which is the most reliable tool to achieve balance..webp",
-    "images/Now rolling dust-free and shared with all positive Bitclout community.webp","images/Principles .webp","images/The face of Flower.webp","images/We must understand the importance of freedom while we have it..webp",
-    "images/We suffer more in imagination than in reality.webp","images/You are on the right track now, do not turn..webp"
+    { src: "images/Memory.webp", title: "Memory" },
+    { src: "images/Love.webp", title: "Love" },
+    { src: "images/The face of Flower.webp", title: "Flower" },
+    { src: "images/Acrylic on Canvas Reused.webp", title: "Acrylic on Canvas" },
+    { src: "images/Dinosaurus.webp", title: "Dinosaurus" },
+    { src: "images/Factory work must be replaced by AGI.webp", title: "Factory Work" },
+    { src: "images/Fear is limitation - Love is infinity.webp", title: "Fear / Love" },
+    { src: "images/Fireworks.webp", title: "Fireworks" },
+    { src: "images/Heart.webp", title: "Heart" },
+    { src: "images/Hierarchy Monster.webp", title: "Hierarchy Monster" },
+    { src: "images/bitcoin.webp", title: "Bitcoin" },
+    { src: "images/connect.webp", title: "Connect" }
 ];
 
 let current = 0;
@@ -169,12 +173,12 @@ function showQuote() {
     const q = quotes[current % quotes.length];
     const img = allImages[current % allImages.length];
     document.getElementById('quote-text').textContent = '"' + q.text + '"';
-    document.getElementById('quote-image').src = img;
+    document.getElementById('quote-image').src = img.src;
     current++;
 }
 
 showQuote();
-setInterval(showQuote,8000);
+setInterval(showQuote, 4000);
 
 const right = document.querySelector('.home-right');
 
