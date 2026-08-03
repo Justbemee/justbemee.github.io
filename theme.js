@@ -4,6 +4,7 @@
     const msg = document.getElementById('theme-message');
     const timerBox = document.getElementById('theme-timer');
     const toggleUI = document.querySelector('.switch');
+    const banner = document.getElementById('top-banner');
 
     let themeTimerInterval = null;
     let jokeInterval = null;
@@ -35,6 +36,9 @@
             timerBox.style.opacity = '0';
             timerBox.style.display = 'none';
         }
+        if (banner) {
+            banner.classList.remove('is-visible');
+        }
     }
 
     function showThemeUI() {
@@ -46,6 +50,9 @@
         if (timerBox) {
             timerBox.style.display = 'block';
             timerBox.style.opacity = '1';
+        }
+        if (banner) {
+            banner.classList.add('is-visible');
         }
     }
 
@@ -77,12 +84,8 @@
     const savedDark = localStorage.getItem('darkMode') === 'true';
     const savedTheme = localStorage.getItem('theme') || 'very';
 
-    if (savedDark) {
-        applyTheme(savedTheme);
-    }
-
     if (toggle) {
-        toggle.checked = savedDark;
+        toggle.checked = false;
 
         toggle.addEventListener('change', () => {
             const isDark = toggle.checked;

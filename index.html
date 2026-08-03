@@ -8,16 +8,8 @@
     <link rel="stylesheet" href="style.css">
         <script>
         (function(){
-            const dark = localStorage.getItem('darkMode') === 'true';
-            const theme = localStorage.getItem('theme') || 'very';
-            if (dark) {
-                document.documentElement.classList.add('theme-preload');
-                document.documentElement.style.background =
-                    theme === 'warm' ? '#1a140f' : theme === 'cool' ? '#0f1a1f' : '#0a0a0a';
-                document.addEventListener('DOMContentLoaded', () => {
-                    document.body.classList.add('dark-' + (theme || 'very'));
-                });
-            }
+            document.documentElement.classList.remove('theme-preload');
+            document.documentElement.style.background = '';
         })();
         </script>
 </head>
@@ -25,7 +17,7 @@
 <body class="home-page">
 
 <!-- Top banner -->
-<div id="top-banner" style="
+<div id="top-banner" class="theme-banner" style="
     position: fixed;
     top: 20px;
     left: 50%;
@@ -37,6 +29,10 @@
     border-radius: 10px;
     z-index: 150;
     text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
 ">
     This website is still growing and evolving.<br>
     Feel free to explore the gallery or 
@@ -146,26 +142,17 @@ class="hero-image">
 
 <script>
 const quotes = [
-    { text: "The artist must train not only his eye but also his soul.", source: "Terrence McKenna" },
-    { text: "Nature loves courage.", source: "Terrence McKenna" },
-    { text: "Stop thinking and start doing.", source: "Terrence McKenna" },
-    { text: "The only way to make sense out of change is to plunge into it.", source: "Terrence McKenna" },
-    { text: "You are not a drop in the ocean. You are the entire ocean in a drop.", source: "Terrence McKenna" }
+    { text: "Love is the greatest power", source: "Martin Hanispak" },
+    { text: "Believing in myself like no one else, yet painting for everyone else", source: "Martin Hanispak" },
+    { text: "The greatest high is an expanding mind", source: "Martin Hanispak" }
 ];
-
 const allImages = [
-    { src: "images/Memory.webp", title: "Memory" },
-    { src: "images/Love.webp", title: "Love" },
-    { src: "images/The face of Flower.webp", title: "Flower" },
-    { src: "images/Acrylic on Canvas Reused.webp", title: "Acrylic on Canvas" },
     { src: "images/Dinosaurus.webp", title: "Dinosaurus" },
     { src: "images/Factory work must be replaced by AGI.webp", title: "Factory Work" },
     { src: "images/Fear is limitation - Love is infinity.webp", title: "Fear / Love" },
     { src: "images/Fireworks.webp", title: "Fireworks" },
-    { src: "images/Heart.webp", title: "Heart" },
     { src: "images/Hierarchy Monster.webp", title: "Hierarchy Monster" },
-    { src: "images/bitcoin.webp", title: "Bitcoin" },
-    { src: "images/connect.webp", title: "Connect" }
+
 ];
 
 let current = 0;
