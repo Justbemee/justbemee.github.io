@@ -84,8 +84,12 @@
     const savedDark = localStorage.getItem('darkMode') === 'true';
     const savedTheme = localStorage.getItem('theme') || 'very';
 
+    if (savedDark) {
+        applyTheme(savedTheme);
+    }
+
     if (toggle) {
-        toggle.checked = false;
+        toggle.checked = savedDark;
 
         toggle.addEventListener('change', () => {
             const isDark = toggle.checked;
