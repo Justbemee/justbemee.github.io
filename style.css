@@ -382,6 +382,10 @@ opacity:.2;
     cursor: none;
 }
 
+#lightbox-info.shift-right {
+    right: -11px !important;
+}
+
 #zoom-lens {
     position: absolute;
     width: 220px;
@@ -399,6 +403,10 @@ opacity:.2;
     width: 700%;
     height: 700%;
     object-fit: none;
+}
+
+#lightbox-info.shift-right {
+    right: -11px !important;
 }
 
 /* iPhone slider */

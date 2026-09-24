@@ -78,7 +78,7 @@
         <a href="#" class="gallery-item" data-src="images/Hierarchy Monster.webp" data-title="Hierarchy Monster" data-full-title="Hierarchy Monster" data-medium="Acrylic on Canvas" data-size="100×100 cm" data-availability="Available"><img src="images/Hierarchy Monster.webp" alt="Hierarchy Monster"></a>
         <a href="#" class="gallery-item" data-src="images/Human lives becomes beautiful not because we do the right thinks. Human lives becomes beautiful because we put our heart in to what we are doing..webp" data-title="Human Lives" data-full-title="Human lives becomes beautiful not because we do the right thinks. Human lives becomes beautiful because we put our heart in to what we are doing." data-medium="Acrylic on Canvas" data-size="100×100 cm" data-availability="Available"><img src="images/Human lives becomes beautiful not because we do the right thinks. Human lives becomes beautiful because we put our heart in to what we are doing..webp" alt="Human lives becomes beautiful not because we do the right thinks. Human lives becomes beautiful because we put our heart in to what we are doing."></a>
         <a href="#" class="gallery-item" data-src="images/It is good if you are confused. It means you are constantly stepping into new territory.webp" data-title="New Territory" data-full-title="It is good if you are confused. It means you are constantly stepping into new territory" data-medium="Acrylic on Canvas" data-size="100×100 cm" data-availability="Available"><img src="images/It is good if you are confused. It means you are constantly stepping into new territory.webp" alt="It is good if you are confused. It means you are constantly stepping into new territory"></a>
-        <a href="#" class="gallery-item" data-src="images/Love is crowded, love is unexpected, and love knows no boundaries .webp" data-title="Love Crowded" data-full-title="Love is crowded, love is unexpected, and love knows no boundaries" data-medium="Acrylic on Canvas" data-size="100×100 cm" data-availability="Available"><img src="images/Love is crowded, love is unexpected, and love knows no boundaries .webp" alt="Love is crowded, love is unexpected, and love knows no boundaries"></a>
+        <a href="#" class="gallery-item" data-src="images/Love crowded updated.jpg" data-title="Love Crowded" data-full-title="Love is crowded, love is unexpected, and love knows no boundaries" data-medium="Acrylic on Canvas" data-size="100×100 cm" data-availability="Available"><img src="images/Love crowded updated.jpg" alt="Love is crowded, love is unexpected, and love knows no boundaries"></a>
         <a href="#" class="gallery-item" data-src="images/Love is not about somebody, it is about you being truly pleasant..webp" data-title="Pleasant Love" data-full-title="Love is not about somebody, it is about you being truly pleasant" data-medium="Acrylic on Canvas" data-size="100×100 cm" data-availability="Available"><img src="images/Love is not about somebody, it is about you being truly pleasant..webp" alt="Love is not about somebody, it is about you being truly pleasant"></a>
         <a href="#" class="gallery-item" data-src="images/Mind will play all kinds of games with you. So if you feel like you _lost your head_ than work with your Physical body. Which is the most reliable tool to achieve balance..webp" data-title="Mind Games" data-full-title="Mind will play all kinds of games with you. So if you feel like you lost your head, than work with your Physical body" data-medium="Acrylic on Canvas" data-size="100×100 cm" data-availability="Available"><img src="images/Mind will play all kinds of games with you. So if you feel like you _lost your head_ than work with your Physical body. Which is the most reliable tool to achieve balance..webp" alt="Mind will play all kinds of games with you. So if you feel like you lost your head, than work with your Physical body"></a>
         <a href="#" class="gallery-item" data-src="images/Now rolling dust-free and shared with all positive Bitclout community.webp" data-title="Bitclout" data-full-title="Now rolling dust-free and shared with all positive Bitclout community" data-medium="Acrylic on Canvas" data-size="100×100 cm" data-availability="Available"><img src="images/Now rolling dust-free and shared with all positive Bitclout community.webp" alt="Now rolling dust-free and shared with all positive Bitclout community"></a>
@@ -161,18 +161,59 @@ document.querySelectorAll('.gallery-item').forEach(item => {
         const fullTitle = this.getAttribute('data-full-title') || '';
         const medium = this.getAttribute('data-medium') || 'Acrylic on Canvas';
         const size = this.getAttribute('data-size') || '100×100 cm';
-        const availability = this.getAttribute('data-availability') || 'Available';
+        const availability = this.getAttribute('data-availability');
         const filename = src.split('/').pop().replace('.webp', '');
         const cleanName = filename.replace(/[-._]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 
         document.getElementById('lightbox-img').src = src;
         document.getElementById('lightbox-name').textContent = shortTitle || cleanName;
+        const shiftInfoRight = [
+            'images/isforestalive.jpg',
+            'images/Rectangle of life.jpg',
+            'images/Reverse circleeyes.jpg',
+            'images/The exposure.jpg',
+            'images/The unknown 3-0.jpg'
+        ].includes(src);
+        document.getElementById('lightbox-info').classList.toggle('shift-right', shiftInfoRight);
         document.getElementById('lightbox-details').innerHTML =
-            `${fullTitle || cleanName}<br>${medium}<br>Size: ${size}<br>${availability}`;
+            `${fullTitle || cleanName}<br>${medium}<br>Size: ${size}${availability ? '<br>' + availability : ''}`;
 
         document.getElementById('lightbox').style.display = 'flex';
     });
 });
+
+fetch('all-paintings.html')
+    .then(response => response.text())
+    .then(html => {
+        const source = new DOMParser().parseFromString(html, 'text/html');
+        const sourceItems = new Map(
+            [...source.querySelectorAll('.gallery-item')].map(item => [item.dataset.src, item])
+        );
+
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            const sourceItem = sourceItems.get(item.dataset.src) || sourceItems.get(
+                item.dataset.src === 'images/Love is crowded, love is unexpected, and love knows no boundaries .webp'
+                    ? 'images/Love crowded updated.jpg'
+                    : item.dataset.src
+            );
+            if (!sourceItem) return;
+
+            ['title', 'fullTitle', 'medium', 'size', 'availability'].forEach(name => {
+                const value = sourceItem.dataset[name];
+                if (value === undefined) item.removeAttribute(`data-${name.replace(/[A-Z]/g, letter => '-' + letter.toLowerCase())}`);
+                else item.dataset[name] = value;
+            });
+
+            const sourcePath = sourceItem.dataset.src;
+            item.dataset.src = sourcePath;
+            const image = item.querySelector('img');
+            if (image) {
+                image.src = sourcePath;
+                image.alt = sourceItem.querySelector('img')?.alt || sourceItem.dataset.title || '';
+            }
+        });
+    })
+    .catch(() => {});
 </script>
 
 </body>
