@@ -135,7 +135,10 @@
 
     <div id="lightbox-info" style="position:absolute; top:18%; right:65px; width:340px; color:white; font-family:'Playfair Display', serif; text-align:center; pointer-events:none;">
         <div id="lightbox-name" style="font-size:1.78rem; margin-bottom:18px; text-shadow:0 2px 12px rgba(0,0,0,0.95); font-weight:400;"></div>
-        <div id="lightbox-details" style="font-size:1.08rem; line-height:1.65; opacity:0.94; text-shadow:0 1px 8px rgba(0,0,0,0.85);"></div>
+        <div id="lightbox-details" style="font-size:1.08rem; line-height:1.65; opacity:0.94; text-shadow:0 1px 8px rgba(0,0,0,0.85);">
+            <div id="lightbox-full-title"></div>
+            <div id="lightbox-meta"></div>
+        </div>
     </div>
 </div>
 
@@ -167,16 +170,8 @@ document.querySelectorAll('.gallery-item').forEach(item => {
 
         document.getElementById('lightbox-img').src = src;
         document.getElementById('lightbox-name').textContent = shortTitle || cleanName;
-        const shiftInfoRight = [
-            'images/isforestalive.jpg',
-            'images/Rectangle of life.jpg',
-            'images/Reverse circleeyes.jpg',
-            'images/The exposure.jpg',
-            'images/The unknown 3-0.jpg'
-        ].includes(src);
-        document.getElementById('lightbox-info').classList.toggle('shift-right', shiftInfoRight);
-        document.getElementById('lightbox-details').innerHTML =
-            `${fullTitle || cleanName}<br>${medium}<br>Size: ${size}${availability ? '<br>' + availability : ''}`;
+        document.getElementById('lightbox-full-title').textContent = fullTitle || cleanName;
+        document.getElementById('lightbox-meta').textContent = `${medium}  ${size}${availability ? '  ' + availability : ''}`;
 
         document.getElementById('lightbox').style.display = 'flex';
     });
@@ -191,11 +186,7 @@ fetch('all-paintings.html')
         );
 
         document.querySelectorAll('.gallery-item').forEach(item => {
-            const sourceItem = sourceItems.get(item.dataset.src) || sourceItems.get(
-                item.dataset.src === 'images/Love is crowded, love is unexpected, and love knows no boundaries .webp'
-                    ? 'images/Love crowded updated.jpg'
-                    : item.dataset.src
-            );
+            const sourceItem = sourceItems.get(item.dataset.src);
             if (!sourceItem) return;
 
             ['title', 'fullTitle', 'medium', 'size', 'availability'].forEach(name => {

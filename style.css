@@ -382,10 +382,6 @@ opacity:.2;
     cursor: none;
 }
 
-#lightbox-info.shift-right {
-    right: -11px !important;
-}
-
 #zoom-lens {
     position: absolute;
     width: 220px;
@@ -405,8 +401,27 @@ opacity:.2;
     object-fit: none;
 }
 
-#lightbox-info.shift-right {
-    right: -11px !important;
+#lightbox-info {
+    top: 28% !important;
+    width: min(240px, 24vw) !important;
+}
+
+#lightbox-full-title {
+    margin-bottom: 24px;
+    overflow-wrap: anywhere;
+}
+
+#lightbox-meta {
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 800px) {
+    #lightbox-info {
+        top: 28% !important;
+        width: min(260px, 68vw) !important;
+        right: 20px !important;
+    }
 }
 
 /* iPhone slider */
