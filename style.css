@@ -70,17 +70,13 @@ body:not(.home-page) #top-banner {
     border-color: var(--banner-border) !important;
 }
 
-body.home-page nav {
-    background-color: transparent !important;
+/* NAV */
+body.home-page nav,
+body:not(.home-page) nav {
+    background-color: var(--header-bg, #ffffff) !important;
     border-bottom: none !important;
 }
 
-body:not(.home-page) nav {
-    background-color: var(--header-bg) !important;
-    border-bottom: 1px solid #eeeeee !important;
-}
-
-/* NAV */
 nav {
     position: fixed;
     top: 0;
