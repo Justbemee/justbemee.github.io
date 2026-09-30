@@ -112,11 +112,19 @@ class="quote-text"
 id="quote-text">
 </p>
 
+<div class="slideshow-image-frame">
 <img
 id="quote-image"
 src=""
 alt=""
-class="hero-image">
+class="hero-image slideshow-layer">
+<img
+id="quote-image-next"
+src=""
+alt=""
+aria-hidden="true"
+class="hero-image slideshow-layer">
+</div>
 
 <hr class="quote-bottom">
 
@@ -201,24 +209,43 @@ const quotes = [
 ];
 const allImages = [
     { src: "images/Dinosaurus.webp", title: "Dinosaurus" },
-    { src: "images/Factory work must be replaced by AGI.webp", title: "Factory Work" },
     { src: "images/Fear is limitation - Love is infinity.webp", title: "Fear / Love" },
-    { src: "images/Fireworks.webp", title: "Fireworks" },
     { src: "images/Hierarchy Monster.webp", title: "Hierarchy Monster" },
+    { src: "images/It is good if you are confused. It means you are constantly stepping into new territory.webp", title: "New Territory", imageClass: "slideshow-align-top" },
+    { src: "images/Human lives becomes beautiful not because we do the right thinks. Human lives becomes beautiful because we put our heart in to what we are doing..webp", title: "Heart on fire" },
+    { src: "images/disguise.webp", title: "Disguise", imageClass: "slideshow-align-top" },
 
 ];
 
 let current = 0;
+const slideshowImages = [...document.querySelectorAll('.slideshow-layer')];
+let visibleImageIndex = 0;
+
 function showQuote() {
     const q = quotes[current % quotes.length];
     const img = allImages[current % allImages.length];
     document.getElementById('quote-text').textContent = '"' + q.text + '"';
-    document.getElementById('quote-image').src = img.src;
+    const nextImageIndex = 1 - visibleImageIndex;
+    const outgoingImage = slideshowImages[visibleImageIndex];
+    const incomingImage = slideshowImages[nextImageIndex];
+    const showImage = () => {
+        incomingImage.className = 'hero-image slideshow-layer ' + (img.imageClass || '');
+        incomingImage.src = img.src;
+        requestAnimationFrame(() => {
+            incomingImage.classList.add('is-visible');
+            outgoingImage.classList.remove('is-visible');
+            visibleImageIndex = nextImageIndex;
+        });
+    };
+    const preloadedImage = new Image();
+    preloadedImage.onload = showImage;
+    preloadedImage.onerror = showImage;
+    preloadedImage.src = img.src;
     current++;
 }
 
 showQuote();
-setInterval(showQuote, 4000);
+setInterval(showQuote, 3000);
 
 const right = document.querySelector('.home-right');
 

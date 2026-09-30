@@ -29,12 +29,24 @@
 
         .product-card {
             background: var(--bg);
+            border: 1px solid rgba(0, 0, 0, 0.09);
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06),
+                        0 14px 32px rgba(0, 0, 0, 0.13),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.7);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
+        }
+
+        body.dark-very .product-card,
+        body.dark-warm .product-card,
+        body.dark-cool .product-card {
+            border-color: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.24),
+                        0 14px 32px rgba(0, 0, 0, 0.34),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.04);
         }
 
         .product-card:hover {
@@ -78,6 +90,10 @@
             margin-top: 8px;
         }
 
+        .bitcoin-symbol {
+            color: inherit;
+        }
+
         .product-price {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
@@ -104,6 +120,18 @@
 
         .product-button:hover {
             opacity: 0.85;
+        }
+
+        .product-button::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            margin-right: 10px;
+            border-radius: 50%;
+            background: #789b72;
+            box-shadow: 0 0 0 2px rgba(120, 155, 114, 0.2);
+            vertical-align: 1px;
         }
 
         @media (max-width: 768px) {
@@ -148,12 +176,13 @@
     <div class="shop-grid">
         <!-- Product 1: Autumn or Winter -->
         <div class="product-card">
-            <img src="images/Autumn or winter.jpg" alt="Autumn or Winter" class="product-image">
+            <img src="images/Autumn or winter.jpg" alt="Autumn Tree" class="product-image">
             <div class="product-info">
-                <h2 class="product-title">Autumn or Winter</h2>
+                <h2 class="product-title">Autumn Tree</h2>
                 <div class="product-details">
-                    <div>Acrylic on Canvas</div>
-                    <strong>60 × 60 cm</strong>
+                    <div>“Love the trees until their leaves fall off, then encourage them to try again next year.” — Chad Sugg</div>
+                    <strong>Acrylic on Canvas</strong>
+                    <strong>60×60 cm</strong>
                 </div>
                 <div class="product-price">€411</div>
                 <a href="https://mh.blunt.cash/buy/autumn-or-winter" target="_blank" class="product-button">Pay with Blunt.cash</a>
@@ -166,9 +195,9 @@
             <div class="product-info">
                 <h2 class="product-title">New Territory</h2>
                 <div class="product-details">
-                    <div>It is good if you are confused. It means you are constantly stepping into new territory</div>
+                    <div>It is good if you are confused. It means you are constantly stepping into new territory.</div>
                     <strong>Acrylic on Canvas</strong>
-                    <strong>60 × 50 cm</strong>
+                    <strong>60×50 cm</strong>
                 </div>
                 <div class="product-price">€411</div>
                 <a href="https://mh.blunt.cash/buy/new-teritorry" target="_blank" class="product-button">Pay with Blunt.cash</a>
@@ -177,13 +206,13 @@
 
         <!-- Product 3: Ultimate Tool 1-0 -->
         <div class="product-card">
-            <img src="images/Ultimate tool 1-0.jpg" alt="Ultimate Tool 1-0" class="product-image">
+            <img src="images/Ultimate tool 1-0.jpg" alt="Ultimate Tool 1-3" class="product-image">
             <div class="product-info">
-                <h2 class="product-title">Ultimate Tool 1-0</h2>
+                <h2 class="product-title">Ultimate Tool 1-3</h2>
                 <div class="product-details">
-                    <div>Ultimate tool 1-0</div>
+                    <div><span class="bitcoin-symbol" role="img" aria-label="B">₿</span>ehold, humans discovered the ultimate tool for peace and prosperity.</div>
                     <strong>Acrylic/Oil on Canvas</strong>
-                    <strong>60 × 50 cm</strong>
+                    <strong>60×50 cm</strong>
                 </div>
                 <div class="product-price">€411</div>
                 <a href="https://mh.blunt.cash/buy/ultimate-tool" target="_blank" class="product-button">Pay with Blunt.cash</a>

@@ -50,3 +50,8 @@ Folder structure
   - in index.html, add a new `<a href="newpage.html" class="item">...`
   - or add a link in gallery.html / other pages if appropriate
 - If the page needs images, place them in images and reference them with relative paths like `images/your-image.webp`.
+
+### 7. Homepage painting previews
+- Keep homepage painting previews' visible edges consistently rounded; use the existing 18px radius as the reference.
+- The Time painting's zoom, proportions, horizontal framing, and crop are intentional. When adjusting its gap, change only its vertical position so the faces remain framed as intended.
+- Keep painting edge and spacing changes scoped to the homepage unless a broader change is explicitly requested.
