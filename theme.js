@@ -81,11 +81,16 @@
         }, 2000);
     }
 
-    const savedDark = localStorage.getItem('darkMode') === 'true';
+    const isMobileHome = () => document.body.classList.contains('home-page') &&
+        window.matchMedia('(max-width: 700px)').matches;
+    const mobileHome = isMobileHome();
+    const savedDark = mobileHome
+        ? localStorage.getItem('homeMobileDarkMode') === 'true'
+        : localStorage.getItem('darkMode') === 'true';
     const savedTheme = localStorage.getItem('theme') || 'very';
 
     if (savedDark) {
-        applyTheme(savedTheme);
+        applyTheme(mobileHome ? 'cool' : savedTheme);
     }
 
     if (toggle) {
@@ -93,6 +98,18 @@
 
         toggle.addEventListener('change', () => {
             const isDark = toggle.checked;
+
+            if (isMobileHome()) {
+                stopAll();
+                if (isDark) applyTheme('cool');
+                else {
+                    document.body.classList.remove('dark-very', 'dark-warm', 'dark-cool');
+                    document.documentElement.style.background = '';
+                }
+                clearThemeUI();
+                localStorage.setItem('homeMobileDarkMode', isDark);
+                return;
+            }
 
             if (isDark) {
                 applyTheme(localStorage.getItem('theme') || 'very');
@@ -109,6 +126,15 @@
     }
 
     window.setTheme = function (theme) {
+        if (isMobileHome()) {
+            stopAll();
+            applyTheme('cool');
+            localStorage.setItem('homeMobileDarkMode', 'true');
+            if (toggle) toggle.checked = true;
+            clearThemeUI();
+            return;
+        }
+
         localStorage.setItem('theme', theme);
         localStorage.setItem('darkMode', 'true');
 

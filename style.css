@@ -663,6 +663,13 @@ opacity:.18;
 }
 
 @media (max-width: 700px) {
+    body.home-page #top-banner,
+    body.home-page #theme-menu,
+    body.home-page #theme-message,
+    body.home-page #theme-timer {
+        display: none !important;
+    }
+
     body.home-page::before {
         content: "";
         position: fixed;

@@ -66,3 +66,7 @@ Folder structure
 
 ### 9. Temporarily hidden pages
 - `thoughts.html` is intentionally hidden as of 2026-10-01. Keep it out of homepage navigation and redirect direct visits to `index.html` until the user explicitly asks to restore it.
+
+### 10. Mobile homepage theme control
+- On phone widths, the homepage dark toggle uses only the Cool theme and must not show the theme chooser, countdown, jokes, or top banner.
+- Store the mobile homepage theme preference separately from the desktop theme preference; keep desktop theme behavior unchanged.
