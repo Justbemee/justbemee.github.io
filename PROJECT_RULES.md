@@ -55,3 +55,10 @@ Folder structure
 - Keep homepage painting previews' visible edges consistently rounded; use the existing 18px radius as the reference.
 - The Time painting's zoom, proportions, horizontal framing, and crop are intentional. When adjusting its gap, change only its vertical position so the faces remain framed as intended.
 - Keep painting edge and spacing changes scoped to the homepage unless a broader change is explicitly requested.
+
+### 8. Site maintenance checks
+- Treat `all-paintings.html` as the canonical source for painting metadata and image paths; update dependent Portfolio entries when those records change.
+- Keep `style.css` valid CSS with no prose or labels outside comments.
+- Test the homepage at approximately 390px wide after layout changes; the mobile view must stack the navigation and slideshow instead of allowing the fixed desktop sidebar to push the slideshow offscreen.
+- When adding or renaming an image, verify the exact case, spaces, punctuation, and extension against the filename in `images/`.
+- Keep page-specific text, form, and control colors theme-aware; avoid hard-coded light-mode colors that reduce contrast in dark themes.
