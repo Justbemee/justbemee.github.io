@@ -1,7 +1,8 @@
 Folder structure
 - Root files:
   - index.html — home page
-  - about.html, all-paintings.html, consulting.html, contact.html, gallery.html, thoughts.html — site pages
+  - about.html, all-paintings.html, consulting.html, contact.html, gallery.html — active site pages
+  - thoughts.html — temporarily hidden; preserve content and keep unlinked until explicitly restored
   - style.css — main stylesheet
   - theme.js — dark mode / theme logic
   - README.md — project note
@@ -62,3 +63,6 @@ Folder structure
 - Test the homepage at approximately 390px wide after layout changes; the mobile view must stack the navigation and slideshow instead of allowing the fixed desktop sidebar to push the slideshow offscreen.
 - When adding or renaming an image, verify the exact case, spaces, punctuation, and extension against the filename in `images/`.
 - Keep page-specific text, form, and control colors theme-aware; avoid hard-coded light-mode colors that reduce contrast in dark themes.
+
+### 9. Temporarily hidden pages
+- `thoughts.html` is intentionally hidden as of 2026-10-01. Keep it out of homepage navigation and redirect direct visits to `index.html` until the user explicitly asks to restore it.

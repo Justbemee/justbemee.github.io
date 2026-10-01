@@ -40,7 +40,7 @@
 </div>
 
 <!-- Dark mode slider -->
-<div style="position:fixed; top:20px; right:40px; z-index:200; text-align:right;">
+<div class="theme-control">
     <label class="switch">
         <input type="checkbox" id="dark-toggle">
         <span class="slider"></span>
@@ -82,11 +82,6 @@ Martin Hanispak
 <a href="contact.html" class="item">
 <img src="images/Love.webp" alt="">
 <span>Contact</span>
-</a>
-
-<a href="thoughts.html" class="item">
-<img src="images/The face of Flower.webp" alt="">
-<span>Thoughts</span>
 </a>
 
 <a href="consulting.html" class="item">
@@ -211,9 +206,9 @@ const allImages = [
     { src: "images/Dinosaurus.webp", title: "Dinosaurus" },
     { src: "images/Fear is limitation - Love is infinity.webp", title: "Fear / Love" },
     { src: "images/Hierarchy Monster.webp", title: "Hierarchy Monster" },
-    { src: "images/It is good if you are confused. It means you are constantly stepping into new territory.webp", title: "New Territory", imageClass: "slideshow-align-top" },
-    { src: "images/Human lives becomes beautiful not because we do the right thinks. Human lives becomes beautiful because we put our heart in to what we are doing..webp", title: "Heart on fire" },
-    { src: "images/disguise.webp", title: "Disguise", imageClass: "slideshow-align-top" },
+    { src: "images/It is good if you are confused. It means you are constantly stepping into new territory.webp", title: "New Territory", imageClass: "slideshow-align-top", tightMobileGap: true },
+    { src: "images/Human lives becomes beautiful not because we do the right thinks. Human lives becomes beautiful because we put our heart in to what we are doing..webp", title: "Heart on fire", tightMobileGap: true },
+    { src: "images/disguise.webp", title: "Disguise", imageClass: "slideshow-align-top", tightMobileGap: true },
 
 ];
 
@@ -225,6 +220,7 @@ function showQuote() {
     const q = quotes[current % quotes.length];
     const img = allImages[current % allImages.length];
     document.getElementById('quote-text').textContent = '"' + q.text + '"';
+    document.querySelector('.slide').classList.toggle('tight-mobile-gap', Boolean(img.tightMobileGap));
     const nextImageIndex = 1 - visibleImageIndex;
     const outgoingImage = slideshowImages[visibleImageIndex];
     const incomingImage = slideshowImages[nextImageIndex];

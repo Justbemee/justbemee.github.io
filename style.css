@@ -97,6 +97,14 @@ nav {
     border-radius: 8px;
 }
 
+.theme-control {
+    position: fixed;
+    top: 20px;
+    right: 40px;
+    z-index: 200;
+    text-align: right;
+}
+
 /* HOME */
 
 .home-wrapper {
@@ -655,6 +663,24 @@ opacity:.18;
 }
 
 @media (max-width: 700px) {
+    body.home-page::before {
+        content: "";
+        position: fixed;
+        inset: 0 0 auto;
+        height: 58px;
+        background: var(--bg);
+        box-shadow: 0 1px 10px rgba(0, 0, 0, 0.08);
+        z-index: 199;
+        pointer-events: none;
+    }
+
+    body.home-page .theme-control {
+        position: fixed;
+        top: max(12px, env(safe-area-inset-top));
+        right: 12px;
+        z-index: 200;
+    }
+
     body.home-page {
         overflow: auto;
     }
@@ -699,6 +725,35 @@ opacity:.18;
         padding: 12px 12px 28px;
     }
 
+    .home-page .slide,
+    .home-page .next-preview {
+        padding-bottom: 0;
+    }
+
+    .home-page .quote-line {
+        margin: 0 auto 12px;
+    }
+
+    .home-page .quote-bottom {
+        margin: 12px auto 0;
+    }
+
+    .home-page .hero-image {
+        margin: 0 0 12px;
+    }
+
+    .home-page .slideshow-image-frame,
+    .home-page .time-image-frame,
+    .home-page .hero-pair {
+        margin-bottom: 12px;
+    }
+
+    .home-page .slideshow-image-frame .hero-image,
+    .home-page .time-image-frame .hero-image,
+    .home-page .hero-pair .hero-image {
+        margin: 0;
+    }
+
     .home-page .hero-image {
         height: 64vh;
         min-height: 300px;
@@ -717,11 +772,28 @@ opacity:.18;
 
     .home-page .hero-pair .hero-image {
         width: calc(50% - 4px);
+        height: auto;
+        min-height: 0;
+        max-height: none;
+    }
+
+    .home-page .zoomed-out-image {
+        height: auto;
+        min-height: 0;
+        max-height: none;
+    }
+
+    .home-page .time-image {
+        transform: translate(-30px, 205px) scale(1.75);
     }
 
     .home-page .quote-text,
     .home-page .next-quote {
         font-size: 1.2rem;
-        margin-bottom: 12px;
+        margin: 0 0 12px;
+    }
+
+    .home-page .slide.tight-mobile-gap .quote-text {
+        margin-bottom: 6px;
     }
 }
