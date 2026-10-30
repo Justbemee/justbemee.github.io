@@ -7,15 +7,19 @@
     --header-bg: #ffffff;
     --banner-bg: transparent;
     --banner-border: transparent;
+    --field-bg: #ffffff;
+    --field-border: #d1d1d1;
+    --contact-link: #005bb5;
+    --focus-ring: #285ddc;
 }
 
 *, *::before, *::after {
     box-sizing: border-box;
 }
 
-body.dark-very { --bg: #0a0a0a; --text: #eeeeee; --header-bg: #0a0a0a; --banner-bg: transparent; --banner-border: transparent; }
-body.dark-warm { --bg: #1a140f; --text: #f0e6d2; --header-bg: #1a140f; --banner-bg: transparent; --banner-border: transparent; }
-body.dark-cool { --bg: #0f1a1f; --text: #e0f0ff; --header-bg: #0f1a1f; --banner-bg: transparent; --banner-border: transparent; }
+body.dark-very { --bg: #0a0a0a; --text: #eeeeee; --header-bg: #0a0a0a; --banner-bg: transparent; --banner-border: transparent; --field-bg: #171717; --field-border: #505050; --contact-link: #8bc5ff; --focus-ring: #8bc5ff; }
+body.dark-warm { --bg: #1a140f; --text: #f0e6d2; --header-bg: #1a140f; --banner-bg: transparent; --banner-border: transparent; --field-bg: #251e17; --field-border: #5b4b3b; --contact-link: #ffd08a; --focus-ring: #ffd08a; }
+body.dark-cool { --bg: #0f1a1f; --text: #e0f0ff; --header-bg: #0f1a1f; --banner-bg: transparent; --banner-border: transparent; --field-bg: #17252b; --field-border: #4a626b; --contact-link: #9cdeef; --focus-ring: #9cdeef; }
 
 /* Muted text for secondary content, adapts to theme */
 body.dark-very, body.dark-warm, body.dark-cool {
@@ -660,6 +664,111 @@ opacity:.18;
     object-fit: cover;
     object-position: 56% 50%;
     transform: translate(-30px, 270px) scale(1.75);
+}
+
+.slideshow-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    margin: -4px 0 12px;
+}
+
+.slideshow-dot {
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+.slideshow-dot::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--muted);
+    opacity: 0.4;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.slideshow-dot:hover::before,
+.slideshow-dot.is-active::before {
+    opacity: 0.9;
+}
+
+.slideshow-dot.is-active::before {
+    transform: scale(1.25);
+}
+
+.slideshow-dot:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: -2px;
+    border-radius: 50%;
+}
+
+.contact-field {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 20px;
+    border: 1px solid var(--field-border);
+    border-radius: 8px;
+    background: var(--field-bg);
+    color: var(--text);
+    font: inherit;
+    font-size: 1.05rem;
+}
+
+.contact-field::placeholder {
+    color: var(--muted);
+    opacity: 1;
+}
+
+.contact-field:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+.contact-message {
+    margin-bottom: 30px;
+    resize: vertical;
+}
+
+.contact-submit {
+    width: 100%;
+    padding: 16px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--text);
+    color: var(--bg);
+    font: inherit;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.contact-submit:hover {
+    opacity: 0.82;
+}
+
+.contact-submit:focus-visible,
+.contact-links a:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 3px;
+}
+
+.contact-divider {
+    color: var(--muted);
+}
+
+.contact-links a {
+    color: var(--contact-link);
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 @media (max-width: 700px) {

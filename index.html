@@ -121,6 +121,8 @@ aria-hidden="true"
 class="hero-image slideshow-layer">
 </div>
 
+<div id="slideshow-dots" class="slideshow-dots" role="group" aria-label="Choose a featured artwork"></div>
+
 <hr class="quote-bottom">
 
 </div>
@@ -215,12 +217,29 @@ const allImages = [
 let current = 0;
 const slideshowImages = [...document.querySelectorAll('.slideshow-layer')];
 let visibleImageIndex = 0;
+const slideshowDots = document.getElementById('slideshow-dots');
 
-function showQuote() {
-    const q = quotes[current % quotes.length];
-    const img = allImages[current % allImages.length];
+allImages.forEach((img, index) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'slideshow-dot';
+    dot.dataset.slide = index;
+    dot.setAttribute('aria-label', `Show artwork ${index + 1}: ${img.title}`);
+    dot.setAttribute('aria-pressed', 'false');
+    slideshowDots.appendChild(dot);
+});
+
+function showQuote(index = current) {
+    const imageIndex = index % allImages.length;
+    const q = quotes[imageIndex % quotes.length];
+    const img = allImages[imageIndex];
     document.getElementById('quote-text').textContent = '"' + q.text + '"';
     document.querySelector('.slide').classList.toggle('tight-mobile-gap', Boolean(img.tightMobileGap));
+    [...slideshowDots.children].forEach((dot, dotIndex) => {
+        const isActive = dotIndex === imageIndex;
+        dot.classList.toggle('is-active', isActive);
+        dot.setAttribute('aria-pressed', String(isActive));
+    });
     const nextImageIndex = 1 - visibleImageIndex;
     const outgoingImage = slideshowImages[visibleImageIndex];
     const incomingImage = slideshowImages[nextImageIndex];
@@ -237,11 +256,21 @@ function showQuote() {
     preloadedImage.onload = showImage;
     preloadedImage.onerror = showImage;
     preloadedImage.src = img.src;
-    current++;
+    current = (imageIndex + 1) % allImages.length;
 }
 
+let slideshowTimer;
+
+slideshowDots.addEventListener('click', event => {
+    const dot = event.target.closest('button[data-slide]');
+    if (!dot) return;
+    clearInterval(slideshowTimer);
+    showQuote(Number(dot.dataset.slide));
+    slideshowTimer = setInterval(showQuote, 3000);
+});
+
 showQuote();
-setInterval(showQuote, 3000);
+slideshowTimer = setInterval(showQuote, 3000);
 
 const right = document.querySelector('.home-right');
 
