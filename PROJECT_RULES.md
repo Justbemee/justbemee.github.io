@@ -5,6 +5,7 @@ Folder structure
   - thoughts.html — temporarily hidden; preserve content and keep unlinked until explicitly restored
   - style.css — main stylesheet
   - theme.js — dark mode / theme logic
+  - scripts/generate_thumbnails.py — local WebP thumbnail generator for the Portfolio pages
   - README.md — project note
   - CNAME — GitHub Pages custom domain config
 - Asset folder:
@@ -30,9 +31,9 @@ Folder structure
   - index.html and other pages use inline `style="..."` attributes for banners, hero images, buttons, etc.
 
 ### 4. Where images are stored
-- All images are stored in the images folder.
-- The folder contains many `.webp` files used throughout the site.
-- Page content references images with paths like Memory.webp, Love.webp, and so on.
+- Original images are stored in `images/`; generated gallery thumbnails are stored in `images/thumbnails/`.
+- Keep full-size originals as the source for the Portfolio lightbox. Gallery cards use the smaller generated copy as their `src` and retain the original in `data-src`.
+- Preserve exact image filename case, spaces, punctuation, and extension in paths.
 
 ### 5. Which files you should avoid editing
 - theme.js — avoid changing this unless you want to modify dark-mode/theme behavior.
@@ -44,7 +45,8 @@ Folder structure
 - Create a new `.html` file in the root, e.g. `newpage.html`.
 - Copy the structure from an existing page:
   - `<link rel="stylesheet" href="style.css">`
-  - `<nav>` with a home link
+  - the shared five-image `.page-nav` used by active interior pages
+  - shared `.page-title` styling where appropriate
   - page content
   - `<script src="theme.js"></script>` before `</body>` for dark mode
 - Add the new page link to navigation or homepage tiles where needed:
@@ -55,18 +57,29 @@ Folder structure
 ### 7. Homepage painting previews
 - Keep homepage painting previews' visible edges consistently rounded; use the existing 18px radius as the reference.
 - The Time painting's zoom, proportions, horizontal framing, and crop are intentional. When adjusting its gap, change only its vertical position so the faces remain framed as intended.
+- The Unknown pair uses filled 4:3 image frames and rounded outer corners. Autumn uses the homepage-specific `.zoomed-out-image` treatment; keep changes scoped to that image.
+- Keep the homepage layout and quote styling intentional: the desktop left column and thumbnail sizes are fixed by existing rules; quote text is 1.4rem on desktop and 1.3rem on mobile.
 - Keep painting edge and spacing changes scoped to the homepage unless a broader change is explicitly requested.
 
-### 8. Site maintenance checks
+### 8. Portfolio layout and thumbnails
+- Keep three gallery columns on wide desktop, two below 1100px, and one below 600px. Use the shared `.portfolio-container` and `.gallery` rules for both Portfolio and All Paintings.
+- Gallery thumbnails use a consistent 4:3 display frame with `object-fit: cover`, rounded corners, and native lazy loading. Preserve the existing lightbox behavior and original-image `data-src` values.
+- GitHub Pages remains branch-published. Do not add a GitHub Actions deployment workflow or change the Pages publishing source unless explicitly requested.
+- When adding or replacing a painting, keep the full-size original in `images/`, update its gallery card in `all-paintings.html` and any corresponding entry in `gallery.html`, then run `python3 scripts/generate_thumbnails.py` from the repository root.
+- The generator uses ImageMagick to create a WebP thumbnail no larger than 720px on its longest edge, retrying smaller/lower-quality output when needed. It keeps a generated copy only when it is smaller than the original, updates gallery-card `src` paths, and leaves original `data-src` paths unchanged.
+- Commit the original, generated `images/thumbnails/` copy when one is smaller, and updated gallery HTML together. ImageMagick must be installed locally to run the generator.
+
+### 9. Site maintenance checks
 - Treat `all-paintings.html` as the canonical source for painting metadata and image paths; update dependent Portfolio entries when those records change.
 - Keep `style.css` valid CSS with no prose or labels outside comments.
 - Test the homepage at approximately 390px wide after layout changes; the mobile view must stack the navigation and slideshow instead of allowing the fixed desktop sidebar to push the slideshow offscreen.
+- After gallery changes, check Portfolio and All Paintings at desktop, tablet (around 1024px), and mobile (around 390px); confirm the 3/2/1-column layout, no horizontal overflow, and working lightbox originals.
 - When adding or renaming an image, verify the exact case, spaces, punctuation, and extension against the filename in `images/`.
 - Keep page-specific text, form, and control colors theme-aware; avoid hard-coded light-mode colors that reduce contrast in dark themes.
 
-### 9. Temporarily hidden pages
+### 10. Temporarily hidden pages
 - `thoughts.html` is intentionally hidden as of 2026-10-01. Keep it out of homepage navigation and redirect direct visits to `index.html` until the user explicitly asks to restore it.
 
-### 10. Mobile homepage theme control
+### 11. Mobile homepage theme control
 - On phone widths, the homepage dark toggle uses only the Cool theme and must not show the theme chooser, countdown, jokes, or top banner.
 - Store the mobile homepage theme preference separately from the desktop theme preference; keep desktop theme behavior unchanged.
