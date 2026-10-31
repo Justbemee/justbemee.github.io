@@ -85,7 +85,7 @@ Martin Hanispak
 </a>
 
 <a href="consulting.html" class="item">
-<img src="images/Acrylic on Canvas Reused.webp" alt="">
+<img src="images/Sliding square.jpg" alt="">
 <span>Shop</span>
 </a>
 
@@ -129,8 +129,9 @@ class="hero-image slideshow-layer">
 
 <div class="next-preview">
 
-<p class="next-quote">
-"The next work awaits."
+                <p class="next-quote quote-with-attribution">
+“When I write, I feel like an armless, legless man with a crayon in his mouth.”
+<span class="quote-attribution">— Kurt Vonnegut</span>
 </p>
 
 <img
@@ -202,7 +203,8 @@ class="hero-image zoomed-out-image">
 const quotes = [
     { text: "Love is the greatest power", source: "Martin Hanispak" },
     { text: "Believing in myself like no one else, yet painting for everyone else", source: "Martin Hanispak" },
-    { text: "The greatest high is an expanding mind", source: "Martin Hanispak" }
+    { text: "The greatest high is an expanding mind", source: "Martin Hanispak" },
+    { text: "When I write, I feel like an armless, legless man with a crayon in his mouth.", attribution: "Kurt Vonnegut" }
 ];
 const allImages = [
     { src: "images/Dinosaurus.webp", title: "Dinosaurus" },
@@ -233,7 +235,18 @@ function showQuote(index = current) {
     const imageIndex = index % allImages.length;
     const q = quotes[imageIndex % quotes.length];
     const img = allImages[imageIndex];
-    document.getElementById('quote-text').textContent = '"' + q.text + '"';
+    const quoteText = document.getElementById('quote-text');
+    quoteText.classList.toggle('quote-with-attribution', Boolean(q.attribution));
+    quoteText.replaceChildren();
+    const quoteBody = document.createElement('span');
+    quoteBody.textContent = '“' + q.text + '”';
+    quoteText.appendChild(quoteBody);
+    if (q.attribution) {
+        const attribution = document.createElement('span');
+        attribution.className = 'quote-attribution';
+        attribution.textContent = '— ' + q.attribution;
+        quoteText.appendChild(attribution);
+    }
     document.querySelector('.slide').classList.toggle('tight-mobile-gap', Boolean(img.tightMobileGap));
     [...slideshowDots.children].forEach((dot, dotIndex) => {
         const isActive = dotIndex === imageIndex;
