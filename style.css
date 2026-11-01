@@ -39,10 +39,6 @@ body.home-page {
     overflow: hidden;
 }
 
-body.about-page {
-    overflow: hidden;
-}
-
 body.home-page .home-wrapper {
     min-height: calc(100vh - 80px);
 }
@@ -150,8 +146,12 @@ nav {
 }
 
 @media (hover: hover) and (pointer: fine) {
+    .page-nav-links {
+        transform: translateY(1px);
+    }
+
     .page-nav-link:hover img {
-        transform: translateY(-4px) scale(1.06);
+        transform: translateY(-10px) scale(1.16);
     }
 }
 
@@ -162,16 +162,18 @@ nav {
 
 .page-nav-label {
     position: absolute;
-    top: calc(100% + 8px);
+    top: calc(100% - 1px);
     left: 50%;
     z-index: 101;
+    padding: 0 2px;
+    background: transparent;
     font-family: 'Playfair Display', serif;
     font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--text);
     line-height: 1.2;
     white-space: nowrap;
-    text-shadow: 0 1px 5px var(--bg);
+    text-shadow: 0 1px 4px var(--header-bg);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -183,7 +185,7 @@ nav {
 .page-nav-link:focus-visible .page-nav-label {
     opacity: 1;
     visibility: visible;
-    transform: translate(-50%, 0);
+    transform: translate(-50%, -4px);
 }
 
 .theme-control {
@@ -909,6 +911,9 @@ opacity:.18;
     .page-nav-label {
         position: static;
         padding: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
         font-size: 0.7rem;
         opacity: 1;
         visibility: visible;
