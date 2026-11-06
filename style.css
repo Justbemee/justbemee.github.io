@@ -631,7 +631,7 @@ body.dark-cool .theme-option:hover {
 footer {
     text-align: center;
     padding: 60px 20px 40px;
-    color: #666;
+    color: var(--muted);
     font-size: 1rem;
 }
 

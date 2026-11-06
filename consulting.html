@@ -6,142 +6,269 @@
     <title>Shop — Martin Hanispak</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .shop-container {
-            max-width: 1200px;
-            margin: 80px auto;
+        .shop {
+            max-width: 1100px;
+            margin: 56px auto 40px;
             padding: 0 40px;
         }
 
+        .shop-intro {
+            max-width: 640px;
+            margin: 0 auto 48px;
+            text-align: center;
+        }
+
+        .shop-intro .page-title {
+            margin-bottom: 16px;
+        }
+
+        .shop-lead {
+            margin: 0;
+            color: var(--muted);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
         .shop-grid {
+            list-style: none;
+            margin: 0;
+            padding: 0;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 50px;
-            margin-bottom: 80px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 28px;
+            align-items: stretch;
         }
 
         .product-card {
-            background: var(--bg);
-            border: 1px solid rgba(0, 0, 0, 0.09);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06),
-                        0 14px 32px rgba(0, 0, 0, 0.13),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.7);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
             display: flex;
             flex-direction: column;
+            background: var(--field-bg);
+            border: 1px solid var(--field-border);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         }
 
-        body.dark-very .product-card,
-        body.dark-warm .product-card,
-        body.dark-cool .product-card {
-            border-color: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.24),
-                        0 14px 32px rgba(0, 0, 0, 0.34),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        .product-media {
+            display: block;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            background: var(--bg);
         }
 
-        .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .product-image {
+        .product-media img {
             width: 100%;
-            height: 280px;
+            height: 100%;
             object-fit: cover;
             display: block;
+            transition: transform 0.45s ease;
+        }
+
+        .product-media:focus-visible {
+            outline: 2px solid var(--focus-ring);
+            outline-offset: -4px;
         }
 
         .product-info {
-            padding: 24px;
-            flex-grow: 1;
             display: flex;
             flex-direction: column;
+            gap: 12px;
+            padding: 20px 22px 22px;
+            flex: 1;
+        }
+
+        .product-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            align-self: flex-start;
+            margin: 0;
+            padding: 4px 10px 4px 8px;
+            border-radius: 999px;
+            background: color-mix(in srgb, #3f7a45 14%, var(--field-bg));
+            color: var(--text);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .product-status::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #2f6b38;
+            box-shadow: 0 0 0 3px color-mix(in srgb, #2f6b38 22%, transparent);
+        }
+
+        body.dark-very .product-status,
+        body.dark-warm .product-status,
+        body.dark-cool .product-status {
+            background: color-mix(in srgb, #9dcea0 24%, var(--field-bg));
+        }
+
+        body.dark-very .product-status::before,
+        body.dark-warm .product-status::before,
+        body.dark-cool .product-status::before {
+            background: #9dcea0;
+            box-shadow: 0 0 0 3px color-mix(in srgb, #9dcea0 28%, transparent);
         }
 
         .product-title {
+            margin: 0;
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin-bottom: 12px;
+            font-size: 1.55rem;
+            font-weight: 500;
+            line-height: 1.15;
             color: var(--text);
         }
 
-        .product-details {
-            font-size: 0.95rem;
+        .product-note {
+            margin: 0;
             color: var(--muted);
-            margin-bottom: 16px;
-            line-height: 1.6;
-            flex-grow: 1;
+            font-size: 0.98rem;
+            font-style: italic;
+            line-height: 1.55;
         }
 
-        .product-details strong {
+        .product-meta {
+            display: grid;
+            grid-template-columns: 4.5rem 1fr;
+            gap: 6px 12px;
+            margin: 2px 0 0;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .product-meta dt {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .product-meta dd {
+            margin: 0;
             color: var(--text);
-            display: block;
-            margin-top: 8px;
-        }
-
-        .bitcoin-symbol {
-            color: inherit;
         }
 
         .product-price {
+            margin: auto 0 0;
+            padding-top: 8px;
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 400;
+            font-size: 1.7rem;
+            font-weight: 500;
+            line-height: 1;
             color: var(--text);
-            margin: 16px 0 20px 0;
         }
 
         .product-button {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 8px;
+            min-height: 48px;
+            padding: 12px 16px 12px 8px;
+            border-radius: 8px;
             background: var(--text);
             color: var(--bg);
-            padding: 12px 24px;
-            border: none;
-            border-radius: 4px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
             text-decoration: none;
-            text-align: center;
-            display: inline-block;
-            transition: opacity 0.3s ease;
+            text-align: left;
             font-family: 'Playfair Display', serif;
-        }
-
-        .product-button:hover {
-            opacity: 0.85;
+            font-size: 1.05rem;
+            line-height: 1.2;
         }
 
         .product-button::before {
             content: "";
-            display: inline-block;
             width: 8px;
             height: 8px;
-            margin-right: 10px;
+            flex: none;
             border-radius: 50%;
-            background: #789b72;
-            box-shadow: 0 0 0 2px rgba(120, 155, 114, 0.2);
-            vertical-align: 1px;
+            background: #9dcea0;
+            box-shadow: 0 0 0 3px color-mix(in srgb, #9dcea0 35%, transparent);
         }
 
-        @media (max-width: 768px) {
-            .shop-container {
+        body.dark-very .product-button::before,
+        body.dark-warm .product-button::before,
+        body.dark-cool .product-button::before {
+            background: #2f6b38;
+            box-shadow: 0 0 0 3px color-mix(in srgb, #2f6b38 28%, transparent);
+        }
+
+        .product-button:hover {
+            opacity: 0.86;
+        }
+
+        .product-button:focus-visible {
+            outline: 2px solid var(--focus-ring);
+            outline-offset: 3px;
+        }
+
+        .product-button:active {
+            transform: translateY(1px);
+        }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .product-card:hover .product-media img,
+            .product-media:focus-visible img {
+                transform: scale(1.045);
+            }
+        }
+
+        @media (max-width: 1100px) {
+            .shop-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 700px) {
+            .shop {
+                margin-top: 36px;
                 padding: 0 20px;
             }
 
+            .shop-intro {
+                margin-bottom: 32px;
+            }
+
             .shop-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
+                grid-template-columns: minmax(0, 1fr);
+                gap: 20px;
             }
 
             .product-title {
-                font-size: 1.3rem;
+                font-size: 1.35rem;
             }
 
             .product-price {
                 font-size: 1.5rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .product-media img,
+            .product-button {
+                transition: none;
+            }
+
+            .product-card:hover .product-media img,
+            .product-media:focus-visible img,
+            .product-button:active {
+                transform: none;
             }
         }
     </style>
@@ -176,62 +303,91 @@
     </div>
 </nav>
 
-<div class="shop-container">
-    <h1 class="page-title">Shop</h1>
+<main class="shop">
+    <header class="shop-intro">
+        <h1 class="page-title">Shop</h1>
+        <p class="shop-lead">Original paintings from the studio. Each work is available now. Checkout opens in a new tab on Blunt.cash.</p>
+    </header>
 
-    <div class="shop-grid">
-        <!-- Product 1: Autumn or Winter -->
-        <div class="product-card">
-            <img src="images/Autumn or winter.jpg" alt="Autumn Tree" class="product-image">
-            <div class="product-info">
-                <h2 class="product-title">Autumn Tree</h2>
-                <div class="product-details">
-                    <div>“Love the trees until their leaves fall off, then encourage them to try again next year.” — Chad Sugg</div>
-                    <strong>Acrylic on Canvas</strong>
-                    <strong>60×60 cm</strong>
+    <ul class="shop-grid">
+        <li>
+            <article class="product-card">
+                <a class="product-media" href="https://mh.blunt.cash/buy/autumn-or-winter" target="_blank" rel="noopener noreferrer" aria-label="Open checkout for Autumn Tree">
+                    <img src="images/Autumn or winter.jpg" alt="Autumn Tree, acrylic on canvas">
+                </a>
+                <div class="product-info">
+                    <p class="product-status">Available</p>
+                    <h2 class="product-title">Autumn Tree</h2>
+                    <p class="product-note">“Love the trees until their leaves fall off, then encourage them to try again next year.” — Chad Sugg</p>
+                    <dl class="product-meta">
+                        <dt>Medium</dt>
+                        <dd>Acrylic on canvas</dd>
+                        <dt>Size</dt>
+                        <dd>60×60 cm</dd>
+                    </dl>
+                    <p class="product-price"><span class="visually-hidden">Price </span>€411</p>
+                    <a class="product-button" href="https://mh.blunt.cash/buy/autumn-or-winter" target="_blank" rel="noopener noreferrer">
+                        Pay with Blunt.cash
+                        <span class="visually-hidden"> for Autumn Tree. Opens in a new tab.</span>
+                    </a>
                 </div>
-                <div class="product-price">€411</div>
-                <a href="https://mh.blunt.cash/buy/autumn-or-winter" target="_blank" class="product-button">Pay with Blunt.cash</a>
-            </div>
-        </div>
+            </article>
+        </li>
 
-        <!-- Product 2: New Territory -->
-        <div class="product-card">
-            <img src="images/It is good if you are confused. It means you are constantly stepping into new territory.webp" alt="New Territory" class="product-image">
-            <div class="product-info">
-                <h2 class="product-title">New Territory</h2>
-                <div class="product-details">
-                    <div>It is good if you are confused. It means you are constantly stepping into new territory.</div>
-                    <strong>Acrylic on Canvas</strong>
-                    <strong>60×50 cm</strong>
+        <li>
+            <article class="product-card">
+                <a class="product-media" href="https://mh.blunt.cash/buy/new-teritorry" target="_blank" rel="noopener noreferrer" aria-label="Open checkout for New Territory">
+                    <img src="images/It is good if you are confused. It means you are constantly stepping into new territory.webp" alt="New Territory, acrylic on canvas">
+                </a>
+                <div class="product-info">
+                    <p class="product-status">Available</p>
+                    <h2 class="product-title">New Territory</h2>
+                    <p class="product-note">It is good if you are confused. It means you are constantly stepping into new territory.</p>
+                    <dl class="product-meta">
+                        <dt>Medium</dt>
+                        <dd>Acrylic on canvas</dd>
+                        <dt>Size</dt>
+                        <dd>60×50 cm</dd>
+                    </dl>
+                    <p class="product-price"><span class="visually-hidden">Price </span>€411</p>
+                    <a class="product-button" href="https://mh.blunt.cash/buy/new-teritorry" target="_blank" rel="noopener noreferrer">
+                        Pay with Blunt.cash
+                        <span class="visually-hidden"> for New Territory. Opens in a new tab.</span>
+                    </a>
                 </div>
-                <div class="product-price">€411</div>
-                <a href="https://mh.blunt.cash/buy/new-teritorry" target="_blank" class="product-button">Pay with Blunt.cash</a>
-            </div>
-        </div>
+            </article>
+        </li>
 
-        <!-- Product 3: Ultimate Tool 1-0 -->
-        <div class="product-card">
-            <img src="images/Ultimate tool 1-0.jpg" alt="Ultimate Tool 1-3" class="product-image">
-            <div class="product-info">
-                <h2 class="product-title">Ultimate Tool 1-3</h2>
-                <div class="product-details">
-                    <div><span class="bitcoin-symbol" role="img" aria-label="B">₿</span>ehold, humans discovered the ultimate tool for peace and prosperity.</div>
-                    <strong>Acrylic/Oil on Canvas</strong>
-                    <strong>60×50 cm</strong>
+        <li>
+            <article class="product-card">
+                <a class="product-media" href="https://mh.blunt.cash/buy/ultimate-tool" target="_blank" rel="noopener noreferrer" aria-label="Open checkout for Ultimate Tool 1-3">
+                    <img src="images/Ultimate tool 1-0.jpg" alt="Ultimate Tool 1-3, acrylic and oil on canvas">
+                </a>
+                <div class="product-info">
+                    <p class="product-status">Available</p>
+                    <h2 class="product-title">Ultimate Tool 1-3</h2>
+                    <p class="product-note"><span aria-hidden="true">₿ehold, humans discovered the ultimate tool for peace and prosperity.</span><span class="visually-hidden">Behold, humans discovered the ultimate tool for peace and prosperity.</span></p>
+                    <dl class="product-meta">
+                        <dt>Medium</dt>
+                        <dd>Acrylic and oil on canvas</dd>
+                        <dt>Size</dt>
+                        <dd>60×50 cm</dd>
+                    </dl>
+                    <p class="product-price"><span class="visually-hidden">Price </span>€411</p>
+                    <a class="product-button" href="https://mh.blunt.cash/buy/ultimate-tool" target="_blank" rel="noopener noreferrer">
+                        Pay with Blunt.cash
+                        <span class="visually-hidden"> for Ultimate Tool 1-3. Opens in a new tab.</span>
+                    </a>
                 </div>
-                <div class="product-price">€411</div>
-                <a href="https://mh.blunt.cash/buy/ultimate-tool" target="_blank" class="product-button">Pay with Blunt.cash</a>
-            </div>
-        </div>
-    </div>
-</div>
+            </article>
+        </li>
+    </ul>
+</main>
 
-<footer style="text-align:center; padding:60px 20px; color:#666;">
+<footer>
     <p>© 2026 Martin Hanispak</p>
 </footer>
 
-<!-- GLOBAL DARK MODE SYSTEM -->
 <script src="theme.js"></script>
 
 </body>
