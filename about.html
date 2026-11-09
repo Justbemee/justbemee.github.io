@@ -5,6 +5,131 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Martin Hanispak — About</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .about-video-wrap {
+            position: relative;
+            margin-bottom: 35px;
+        }
+
+        .about-video-wrap video {
+            display: block;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-video-controls {
+            position: absolute;
+            z-index: 1;
+            top: 12px;
+            left: 50%;
+            display: flex;
+            align-items: center;
+            width: 44px;
+            max-width: calc(100% - 24px);
+            overflow: hidden;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.78);
+            color: #fff;
+            font: 14px system-ui, sans-serif;
+            transform: translateX(-50%);
+            transition: width 250ms ease;
+        }
+
+        .about-video-controls.is-open,
+        .about-video-controls:focus-within {
+            width: min(380px, calc(100% - 24px));
+        }
+
+        @media (hover: hover) {
+            .about-video-controls:hover {
+                width: min(380px, calc(100% - 24px));
+            }
+        }
+
+        .about-video-controls button {
+            border: 0;
+            padding: 8px 10px;
+            background: transparent;
+            color: inherit;
+            font: inherit;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .about-video-controls .about-video-toggle {
+            flex: 0 0 44px;
+            width: 44px;
+            padding: 8px 0;
+            text-align: center;
+        }
+
+        .about-video-options {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-width: 0;
+            flex: 1;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 150ms ease;
+        }
+
+        .about-video-controls.is-open .about-video-options,
+        .about-video-controls:focus-within .about-video-options {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        @media (hover: hover) {
+            .about-video-controls:hover .about-video-options {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+
+        .about-video-controls button:focus-visible,
+        .about-video-controls input:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 3px;
+        }
+
+        .about-video-controls label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+
+        .about-video-controls input {
+            width: 70px;
+            accent-color: #fff;
+        }
+
+        @media (max-width: 480px) {
+            .about-video-controls.is-open,
+            .about-video-controls:focus-within {
+                width: min(340px, calc(100% - 24px));
+            }
+
+            .about-video-controls button {
+                padding-right: 6px;
+                padding-left: 6px;
+                font-size: 12px;
+            }
+
+            .about-video-controls input {
+                width: 48px;
+            }
+        }
+
+        @media (max-width: 480px) and (hover: hover) {
+            .about-video-controls:hover {
+                width: min(340px, calc(100% - 24px));
+            }
+        }
+    </style>
 </head>
 
 <body class="about-page">
@@ -52,9 +177,98 @@ if (savedDark === 'true') {
 
 <div style="max-width:900px; margin:60px auto; padding:0 40px;">
 
-    <img src="images/You are on the right track now, do not turn..webp"
-         alt="You are on the right track now, do not turn"
-         style="width:100%; border-radius:12px; margin-bottom:35px; box-shadow:0 10px 30px rgba(0,0,0,0.1);">
+    <div class="about-video-wrap">
+        <video id="about-video" autoplay muted loop playsinline preload="metadata"
+               aria-label="A short gallery film introducing Martin Hanispak and his paintings">
+            <source src="brag-output/brag.mp4" type="video/mp4">
+            Your browser does not support video playback.
+        </video>
+        <div class="about-video-controls" id="about-video-controls" role="group" aria-label="Video controls">
+            <button type="button" class="about-video-toggle" id="about-video-toggle"
+                    aria-label="Show video controls; sound is off" aria-expanded="false" aria-controls="about-video-options">...</button>
+            <div class="about-video-options" id="about-video-options">
+                <button type="button" id="about-video-play" aria-controls="about-video">Pause</button>
+                <button type="button" id="about-video-mute" aria-controls="about-video">Turn sound on</button>
+                <label for="about-video-volume">Volume
+                    <input id="about-video-volume" type="range" min="0" max="1" step="0.05" value="0.7">
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const aboutVideo = document.getElementById('about-video');
+        const controls = document.getElementById('about-video-controls');
+        const controlsToggle = document.getElementById('about-video-toggle');
+        const playButton = document.getElementById('about-video-play');
+        const muteButton = document.getElementById('about-video-mute');
+        const volumeSlider = document.getElementById('about-video-volume');
+
+        aboutVideo.volume = Number(volumeSlider.value);
+        playButton.textContent = aboutVideo.paused ? 'Play' : 'Pause';
+
+        const setControlsOpen = (open) => {
+            controls.classList.toggle('is-open', open);
+            controlsToggle.setAttribute('aria-expanded', String(open));
+            updateControlsToggleLabel();
+        };
+
+        const updateControlsToggleLabel = () => {
+            const action = controls.classList.contains('is-open') ? 'Hide' : 'Show';
+            const soundState = aboutVideo.muted ? 'sound is off' : 'sound is on';
+            controlsToggle.setAttribute('aria-label', `${action} video controls; ${soundState}`);
+        };
+
+        updateControlsToggleLabel();
+
+        controlsToggle.addEventListener('click', () => {
+            setControlsOpen(!controls.classList.contains('is-open'));
+        });
+
+        controls.addEventListener('mouseenter', () => setControlsOpen(true));
+        controls.addEventListener('mouseleave', () => {
+            if (!controls.contains(document.activeElement)) {
+                setControlsOpen(false);
+            }
+        });
+        controls.addEventListener('focusin', () => setControlsOpen(true));
+        controls.addEventListener('focusout', (event) => {
+            if (!controls.contains(event.relatedTarget) && !controls.matches(':hover')) {
+                setControlsOpen(false);
+            }
+        });
+
+        playButton.addEventListener('click', () => {
+            if (aboutVideo.paused) {
+                aboutVideo.play();
+            } else {
+                aboutVideo.pause();
+            }
+        });
+
+        aboutVideo.addEventListener('play', () => {
+            playButton.textContent = 'Pause';
+        });
+        aboutVideo.addEventListener('pause', () => {
+            playButton.textContent = 'Play';
+        });
+
+        muteButton.addEventListener('click', () => {
+            aboutVideo.muted = !aboutVideo.muted;
+            if (!aboutVideo.muted && aboutVideo.volume === 0) {
+                aboutVideo.volume = Number(volumeSlider.value);
+            }
+            muteButton.textContent = aboutVideo.muted ? 'Turn sound on' : 'Mute sound';
+            updateControlsToggleLabel();
+        });
+
+        volumeSlider.addEventListener('input', () => {
+            aboutVideo.volume = Number(volumeSlider.value);
+            aboutVideo.muted = aboutVideo.volume === 0;
+            muteButton.textContent = aboutVideo.muted ? 'Turn sound on' : 'Mute sound';
+            updateControlsToggleLabel();
+        });
+    </script>
 
     <p style="text-align:center; font-style:italic; font-size:1.35rem; max-width:700px; margin:0 auto 35px; color:var(--muted);">
         “Don’t bend. Don’t water it down. Don’t try to make it logical. Rather, follow your most intense obsessions mercilessly.”<br>
