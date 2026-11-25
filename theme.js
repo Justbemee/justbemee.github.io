@@ -194,4 +194,36 @@
         }, 1000);
     }
 })();
+
+(function () {
+    const thumbnails = [...document.querySelectorAll('.page-nav-link img')];
+    if (thumbnails.length === 0) return;
+
+    let updateScheduled = false;
+
+    function updateThumbnailFade() {
+        updateScheduled = false;
+
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = maxScroll > 0
+            ? Math.min(1, Math.max(0, window.scrollY / maxScroll))
+            : 0;
+
+        thumbnails.forEach((thumbnail, index) => {
+            const thumbnailProgress = Math.min(1, Math.max(0, progress * thumbnails.length - index));
+            thumbnail.style.setProperty('--thumbnail-opacity', String(1 - thumbnailProgress * 0.65));
+        });
+    }
+
+    function scheduleThumbnailFadeUpdate() {
+        if (updateScheduled) return;
+        updateScheduled = true;
+        window.requestAnimationFrame(updateThumbnailFade);
+    }
+
+    window.addEventListener('scroll', scheduleThumbnailFadeUpdate, { passive: true });
+    window.addEventListener('resize', scheduleThumbnailFadeUpdate);
+    updateThumbnailFade();
+})();
+
 document.body.style.visibility = 'visible';
