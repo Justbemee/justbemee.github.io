@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 :root {
-    --bg: #ffffff;
+    --bg: #dce8f5;
     --text: #111111;
     --muted: #666666;
-    --header-bg: #ffffff;
+    --header-bg: #dce8f5;
     --banner-bg: transparent;
     --banner-border: transparent;
     --field-bg: #ffffff;
@@ -678,7 +678,7 @@ footer a img {
     width: 100%;
     max-width: 100%;
     margin: 0;
-    padding: 20px 20px 40px;
+    padding: 0 0 40px;
 }
 
 .slide,
@@ -690,6 +690,40 @@ footer a img {
     justify-content: flex-start;
     align-items: center;
     padding-bottom: 24px;
+}
+
+.home-page .slide {
+    padding-bottom: 8px;
+}
+
+.home-page .quote-preview {
+    padding-bottom: 16px;
+}
+
+.home-page .quote-preview .quote-line,
+.home-page .quote-preview .quote-bottom {
+    width: min(900px, 90%);
+    height: 2px;
+    border: 0;
+    background-color: var(--text);
+    opacity: 0.35;
+}
+
+.home-page .quote-preview .quote-line {
+    margin: 0 auto 6px;
+}
+
+.home-page .quote-preview .quote-bottom {
+    margin: 6px auto 0;
+}
+
+.home-page .quote-preview .quote-bottom + .hero-image {
+    margin-top: 16px;
+}
+
+.home-page .quote-preview .quote-text,
+.home-page .quote-preview .next-quote {
+    margin: 0 auto;
 }
 
 .quote-line {
@@ -1018,12 +1052,16 @@ opacity:.18;
     }
 
     .home-page .quote-section {
-        padding: 12px 12px 28px;
+        padding: 0 12px 28px;
     }
 
     .home-page .slide,
     .home-page .next-preview {
         padding-bottom: 0;
+    }
+
+    .home-page .quote-preview {
+        padding-bottom: 12px;
     }
 
     .home-page .quote-line {
