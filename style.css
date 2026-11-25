@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
 
 :root {
-    --bg: #dce8f5;
+    --bg: #d6e5f7;
     --text: #111111;
     --muted: #666666;
-    --header-bg: #dce8f5;
+    --header-bg: #d6e5f7;
     --banner-bg: transparent;
     --banner-border: transparent;
     --field-bg: #ffffff;
