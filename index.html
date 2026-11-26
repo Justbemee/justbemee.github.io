@@ -98,25 +98,72 @@ Martin Hanispak
         <div class="home-right">
             <div class="quote-section">
 
-<div class="slide">
+                <div class="home-feature-stage" aria-label="Featured artworks">
+                    <div class="slide">
+                        <div class="slideshow-image-frame">
+                            <img
+                                id="quote-image"
+                                src=""
+                                alt="Featured artwork"
+                                class="hero-image slideshow-layer">
+                            <img
+                                id="quote-image-next"
+                                src=""
+                                alt="Featured artwork"
+                                aria-hidden="true"
+                                class="hero-image slideshow-layer">
+                        </div>
+                        <div
+                            id="slideshow-dots"
+                            class="slideshow-dots"
+                            role="group"
+                            aria-label="Choose a featured artwork"></div>
+                    </div>
 
-<div class="slideshow-image-frame">
-<img
-id="quote-image"
-src=""
-alt=""
-class="hero-image slideshow-layer">
-<img
-id="quote-image-next"
-src=""
-alt=""
-aria-hidden="true"
-class="hero-image slideshow-layer">
-</div>
+                    <div class="home-art-stack">
+                        <figure class="home-art-card home-art-card--banner">
+                            <img
+                                src="images/You are on the right track now, do not turn..webp"
+                                alt="You are on the right track now, do not turn"
+                                class="hero-image">
+                        </figure>
 
-<div id="slideshow-dots" class="slideshow-dots" role="group" aria-label="Choose a featured artwork"></div>
-
-</div>
+                        <div
+                            class="home-art-card home-art-slideshow"
+                            role="group"
+                            aria-label="Artwork slideshow">
+                            <img
+                                src="images/Sliding square.jpg"
+                                alt="Sliding square painting by Martin Hanispak"
+                                class="hero-image home-art-slide is-visible">
+                            <img
+                                src="images/The Attack.jpg"
+                                alt=""
+                                aria-hidden="true"
+                                class="hero-image home-art-slide">
+                            <img
+                                src="images/Lost Acrylic on Canvas.webp"
+                                alt=""
+                                aria-hidden="true"
+                                class="hero-image home-art-slide">
+                            <img
+                                src="images/Rectangle of life.jpg"
+                                alt=""
+                                aria-hidden="true"
+                                class="hero-image home-art-slide">
+                            <img
+                                src="images/We have no user guide to life, so let's just do it"
+                                alt=""
+                                aria-hidden="true"
+                                class="hero-image home-art-slide">
+                            <div
+                                id="home-art-slideshow-dots"
+                                class="home-art-slideshow-dots"
+                                role="group"
+                                aria-label="Choose an artwork"></div>
+                        </div>
+                    </div>
+                </div>
 
 <div class="next-preview quote-preview">
 
@@ -180,7 +227,7 @@ id="quote-text">
     </div>
 </div>
 
-<script>
+    <script>
 const quotes = [
     { text: "Scars are the stories stitched into our skin. Marks of the battles we fought to win.", source: "Martin Hanispak" },
     { text: "The greatest enemy of knowledge is not ignorance, it is the illusion of knowledge.", attribution: "Stephen Hawking" },
@@ -240,6 +287,9 @@ function showQuote(index = current) {
     const showImage = () => {
         incomingImage.className = 'hero-image slideshow-layer ' + (img.imageClass || '');
         incomingImage.src = img.src;
+        incomingImage.alt = img.title + ', painting by Martin Hanispak';
+        incomingImage.removeAttribute('aria-hidden');
+        outgoingImage.setAttribute('aria-hidden', 'true');
         requestAnimationFrame(() => {
             incomingImage.classList.add('is-visible');
             outgoingImage.classList.remove('is-visible');
@@ -265,6 +315,63 @@ slideshowDots.addEventListener('click', event => {
 
 showQuote();
 slideshowTimer = setInterval(showQuote, 3000);
+
+const homeArtSlides = [
+    { alt: 'Sliding square painting by Martin Hanispak' },
+    { alt: 'The Attack, painting by Martin Hanispak' },
+    { alt: 'Lost, acrylic on canvas by Martin Hanispak' },
+    { alt: 'Rectangle of Life, painting by Martin Hanispak' },
+    { alt: "We have no user guide to life, so let's just do it, painting by Martin Hanispak" }
+];
+const homeArtSlideElements = [...document.querySelectorAll('.home-art-slide')];
+const homeArtSlideshowDots = document.getElementById('home-art-slideshow-dots');
+let currentHomeArtSlide = 0;
+
+homeArtSlides.forEach((_, index) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'home-art-slide-dot';
+    dot.dataset.slide = index;
+    dot.setAttribute('aria-label', `Show artwork ${index + 1}`);
+    dot.setAttribute('aria-pressed', String(index === currentHomeArtSlide));
+    if (index === currentHomeArtSlide) dot.classList.add('is-active');
+    homeArtSlideshowDots.appendChild(dot);
+});
+
+function showHomeArtSlide(index) {
+    const slideIndex = index % homeArtSlides.length;
+    if (slideIndex === currentHomeArtSlide) return;
+
+    const outgoingImage = homeArtSlideElements[currentHomeArtSlide];
+    const incomingImage = homeArtSlideElements[slideIndex];
+    const image = homeArtSlides[slideIndex];
+    incomingImage.alt = image.alt;
+    incomingImage.removeAttribute('aria-hidden');
+    incomingImage.classList.add('is-visible');
+    outgoingImage.classList.remove('is-visible');
+    outgoingImage.setAttribute('aria-hidden', 'true');
+    currentHomeArtSlide = slideIndex;
+
+    [...homeArtSlideshowDots.children].forEach((dot, dotIndex) => {
+        const isActive = dotIndex === slideIndex;
+        dot.classList.toggle('is-active', isActive);
+        dot.setAttribute('aria-pressed', String(isActive));
+    });
+}
+
+let homeArtSlideshowTimer = setInterval(() => {
+    showHomeArtSlide((currentHomeArtSlide + 1) % homeArtSlides.length);
+}, 5000);
+
+homeArtSlideshowDots.addEventListener('click', event => {
+    const dot = event.target.closest('button[data-slide]');
+    if (!dot) return;
+    clearInterval(homeArtSlideshowTimer);
+    showHomeArtSlide(Number(dot.dataset.slide));
+    homeArtSlideshowTimer = setInterval(() => {
+        showHomeArtSlide((currentHomeArtSlide + 1) % homeArtSlides.length);
+    }, 5000);
+});
 
 const right = document.querySelector('.home-right');
 const left = document.querySelector('.home-left');
