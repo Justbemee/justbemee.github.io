@@ -6,7 +6,8 @@ Folder structure
   - style.css — main stylesheet
   - theme.js — dark mode / theme logic
   - scripts/generate_thumbnails.py — local WebP thumbnail generator for the Portfolio pages
-  - README.md — project note
+  - README.md — project vision, priorities, and current status
+  - PROJECT_RULES.md — project-specific development and maintenance rules
   - CNAME — GitHub Pages custom domain config
 - Asset folder:
   - images — contains all artwork images and the favicon image references
@@ -83,3 +84,9 @@ Folder structure
 ### 11. Mobile homepage theme control
 - On phone widths, the homepage dark toggle uses only the Cool theme and must not show the theme chooser, countdown, jokes, or top banner.
 - Store the mobile homepage theme preference separately from the desktop theme preference; keep desktop theme behavior unchanged.
+
+### 12. Visual experiments and approvals
+- Preview proposed visual changes in the actual page context before integrating them; a static screenshot is not an animated preview.
+- Keep unapproved visual experiments out of the website. If an experiment is rejected, revert only the changes made for that experiment.
+- Keep Rive experiments local unless the user explicitly approves uploading them to a Rive workspace or integrating a Rive runtime into the site.
+- Keep README.md aligned with the actual implementation, project goals, and current priorities.
